@@ -1,0 +1,6 @@
+Claim check<br>
+<form [formGroup]="getStatusFrom">
+    <input type="text"  formControlName="claimCode">
+    <button (click)="getClaimStatus()" [disabled]="!getStatusFrom.valid">Consulter</button>
+</form>
+{{status}}
