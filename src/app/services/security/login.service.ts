@@ -8,7 +8,6 @@ import {environment} from '../../../environments/environment';
 
 const httpOptions =  {
   headers: new HttpHeaders({
-    'Access-Control-Allow-Origin': 'http://localhost:4200/',
     'Content-Type': 'application/x-www-form-urlencoded',
     'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT'}),
   responseType: 'text' as 'text'
@@ -59,7 +58,6 @@ export class LoginService {
                 id: response['id'],
                 userId: response['userId']},
               expires);
-            console.log(StorageService.get('currentUser'));
             return true;
           } else {
             // return false to indicate failed login

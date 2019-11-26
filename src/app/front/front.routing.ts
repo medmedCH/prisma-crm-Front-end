@@ -2,14 +2,14 @@ import {HomeComponent} from './home/home.component';
 import {FrontComponent} from './front.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { LoginComponent } from './../pages/login/login.component';
+
 const routes: Routes = [
   {
     path: '',
     component: FrontComponent,
     children: [
       {path: '', component: HomeComponent},
-      {path: '', loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'},
+      {path: '', loadChildren: '../layouts/auth-layout/auth-layout.module#AuthLayoutModule'},
       {path: 'claim', loadChildren: './claim/claim.module#ClaimModule'}
     ]
   },
