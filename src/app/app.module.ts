@@ -17,6 +17,7 @@ import {FrontModule} from './front/front.module';
 import {BackModule} from './back/back.module';
 import {AuthIntercepter} from './services/security/auth.intercepter';
 import { ReactiveFormsModule } from '@angular/forms';
+import {RoleGuard} from "./services/security/role.guard";
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     LoginService,
+    RoleGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthIntercepter,

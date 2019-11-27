@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   Login() {
     this.loginService.login(this.model.email, this.model.password)
       .subscribe(
-      response => {
+        (response: any) => {
                 console.log(response);
                 this.router.navigate(['dash']);
             } ,
