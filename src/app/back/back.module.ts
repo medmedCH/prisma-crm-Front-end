@@ -6,6 +6,7 @@ import { BackComponent } from './back.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardLayoutModule } from './dashboardLayout/dashboard.layout.module';
 import {AuthGuard} from '../services/security/auth.guard';
+import { PromotionComponent } from './promotion/promotion.component';
 
 
 @NgModule({
@@ -13,7 +14,7 @@ import {AuthGuard} from '../services/security/auth.guard';
     BackRouting,
     DashboardLayoutModule
   ],
-  declarations: [ BackComponent, DashboardComponent],
+  declarations: [ BackComponent, DashboardComponent, PromotionComponent],
   providers: [AuthGuard]
 })
 export class BackModule { }
