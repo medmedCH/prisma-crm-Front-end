@@ -1,0 +1,39 @@
+<div class="col-sm-6 offset-md-3 order-xl-1">
+  <div class="card bg-secondary shadow">
+    <div  class="card-header bg-white border-0">
+      <div  class="row align-items-center">
+        <div  class="col-8"><h3  class="mb-0">Ajouter une nouvelle réclamation</h3></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="addClaimFrom">
+        <div class="form-group">
+          <label>Titre de la réclamation</label>
+          <input type="text" formControlName="titre" class="form-control form-control-alternative">
+        </div>
+        <div class="form-group">
+          <label>Description : </label>
+          <textarea formControlName="description" class="form-control form-control-alternative"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Type :</label><select class="custom-select" formControlName="type">
+          <option value="TECHNIQUE">Technique</option>
+          <option value="RELATIONNELLE">Relationnelle</option>
+          <option value="FINANCIERE">Financiére</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label>Priorité : </label>
+          <select class="custom-select" formControlName="priority">
+            <option value="FAIBLE">Faible</option>
+            <option value="MOYEN">Moyenne</option>
+            <option value="ELEVEE">Elevée</option>
+            <option value="URGENT">Urgent</option>
+          </select>
+        </div>
+        <button (click)="addClaim()" [disabled]="!addClaimFrom.valid" class="btn btn-primary my-4">Confirmer</button>
+      </form>
+    </div>
+  </div>
+</div>
+
