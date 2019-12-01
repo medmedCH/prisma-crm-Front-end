@@ -17,6 +17,7 @@ import {FrontModule} from './front/front.module';
 import {BackModule} from './back/back.module';
 import {AuthIntercepter} from './services/security/auth.intercepter';
 import { ReactiveFormsModule } from '@angular/forms';
+import {ProductModule} from './back/product/product.module';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule,
     NgbModule,
+    ProductModule,
     ROUTING,
     StorageServiceModule,
     ReactiveFormsModule

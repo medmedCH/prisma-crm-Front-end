@@ -12,6 +12,7 @@ const routes: Routes = [
     path: 'dash',
     loadChildren: './back/back.module#BackModule'
   },
+
  /* {
     path: '',
     component: AdminLayoutComponent,

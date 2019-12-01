@@ -11,6 +11,7 @@ const routes: Routes = [
     children: [
       {path: '', component: DashboardComponent},
       // {path: 'claim', loadChildren: './claim/claim.back.module#ClaimBackModule'},
+      {path: 'product', loadChildren: './product/product.module#ProductModule'}
     ]
   },
 
