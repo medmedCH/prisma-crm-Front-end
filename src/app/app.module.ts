@@ -19,6 +19,7 @@ import {AuthIntercepter} from './services/security/auth.intercepter';
 import { ReactiveFormsModule } from '@angular/forms';
 import {ProductModule} from './back/product/product.module';
 
+
 @NgModule({
   imports: [
     FrontModule,
