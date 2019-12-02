@@ -32,8 +32,9 @@ export class ClaimAddComponent {
   });
 
   addClaim() {
-    if (null === StorageService.get('currentUser')) {
+    if (null !== StorageService.get('currentUser')) {
       const currentUser = StorageService.get('currentUser');
+      console.log('heeeeyyyyyyyy');
       console.log(currentUser);
       // tslint:disable-next-line:max-line-length
       this.c = new Claim(this.addClaimFrom.value.titre, this.addClaimFrom.value.description, this.addClaimFrom.value.type, this.addClaimFrom.value.priority, currentUser.userId);

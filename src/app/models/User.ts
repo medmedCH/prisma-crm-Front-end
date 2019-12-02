@@ -4,8 +4,9 @@ export class User {
 
   public id: number;
   public firstName: string;
-  public lasName: string;
+  public lastName: string;
   public password: string;
+
   public email: string;
   public createdAt: Date;
   public lastAuthentificated: Date;
@@ -13,5 +14,14 @@ export class User {
   public phoneNumber: string;
   public confirmationToken: string;
   public address: Address;
+  public profileImage: string;
 
+  constructor(firstName: string, lastName: string, password: string, email: string, phoneNumber: string, profileImage: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.password = password;
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+    this.profileImage = profileImage;
+  }
 }

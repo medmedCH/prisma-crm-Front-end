@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { FrontComponent } from './front.component';
 import { ClaimModule } from './claim/claim.module';
 import {AlertComponent} from './alerteJumbotron/alert.component';
+import {RepairModule} from './repair/repair.module';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import {AlertComponent} from './alerteJumbotron/alert.component';
     FrontRouting,
     ClaimModule,
     CommonModule,
+    RepairModule
   ],
   declarations: [ FrontComponent, HomeComponent, AlertComponent ],
 })

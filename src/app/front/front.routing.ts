@@ -10,7 +10,8 @@ const routes: Routes = [
     children: [
       {path: '', component: HomeComponent},
       {path: '', loadChildren: '../layouts/auth-layout/auth-layout.module#AuthLayoutModule'},
-      {path: 'claim', loadChildren: './claim/claim.module#ClaimModule'}
+      {path: 'claim', loadChildren: './claim/claim.module#ClaimModule'},
+      {path: 'repair', loadChildren: './repair/repair.module#RepairModule'}
     ]
   },
 ];

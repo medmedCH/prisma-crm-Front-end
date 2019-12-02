@@ -10,7 +10,7 @@ const routes: Routes = [
     component: BackComponent,
     children: [
       {path: '', component: DashboardComponent},
-      // {path: 'claim', loadChildren: './claim/claim.back.module#ClaimBackModule'},
+       {path: 'profile', loadChildren: './user/claim.back.module#ClaimBackModule'},
     ]
   },
 

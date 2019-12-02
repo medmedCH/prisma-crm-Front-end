@@ -7,4 +7,5 @@ import {Component} from '@angular/core';
 })
 export class FrontComponent {
   title = 'argon-dashboard-angular';
+
 }
