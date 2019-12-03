@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Claim} from '../../models/Claim';
-import {StorageService} from "../security/storage.service";
+import {StorageService} from '../security/storage.service';
 
 const httpOptions =  {
   headers: new HttpHeaders({
@@ -21,7 +21,7 @@ export class ClaimService {
   claimURL = 'http://localhost:9080/prisma-crm-web'
 
   getAllClaims() {
-    return this.http.get(this.claimURL + '/dashboard/reclamation');
+    return this.http.get<Claim[]>(this.claimURL + '/dashboard/reclamation');
   }
 
   getClaimById(id: number) {
@@ -36,12 +36,21 @@ export class ClaimService {
     }));
   }
 
-  getFaqById(id: number) {
-    return this.http.get(this.claimURL + '/reclamation/FAQ/' + id);
-  }
-
   addClaim(c: Claim) {
     const body = JSON.stringify(c);
     return this.http.post(this.claimURL + '/reclamation', body, httpOptions);
+  }
+
+
+  getAllFaq() {
+    return this.http.get(this.claimURL + '/reclamation/FAQ/' );
+  }
+
+
+  getFaqById(id: number) {
+    return this.http.get(this.claimURL + '/reclamation/FAQ/' + id);
+  }
+  getAllNotesByClaimId(id: number) {
+    return this.http.get<Claim[]>(this.claimURL + '/notesClaim/claim/' + id );
   }
 }

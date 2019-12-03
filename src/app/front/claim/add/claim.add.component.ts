@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {ClaimService} from 'src/app/services/managers/claim.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {StatusModalComponent} from '../check/statusModal/statusModal.component';
 import {Claim} from '../../../models/Claim';
 import {StorageService} from '../../../services/security/storage.service';
 import {AlertService} from '../../../services/common/AlerteService';
+import {LoginService} from '../../../services/security/login.service';
 
 @Component({
   selector: 'app-claim-add',
@@ -21,7 +21,8 @@ export class ClaimAddComponent {
   constructor(private claimService: ClaimService,
               private storageService: StorageService,
               private alertService: AlertService,
-              private router: Router) {
+              private loginService: LoginService,
+              private router: Router, private  route: ActivatedRoute) {
   }
 
   addClaimFrom = new FormGroup({
@@ -42,11 +43,11 @@ export class ClaimAddComponent {
           response => {},
           error => {console.log(error); }
         );
-    } else {
-      this.router.navigate(['/login']);
-      this.alertService.error('Vous devez se connecter d\'abord');
     }
-
+    if (!LoginService.isLogged()) {
+      this.router.navigate(['/login'], { queryParams: { returnUrl: ['/claim/add'] } });
+    }
   }
+
 
 }
