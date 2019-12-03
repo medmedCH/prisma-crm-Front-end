@@ -29,7 +29,6 @@ import {ProductModule} from './back/product/product.module';
     BackModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule,
     NgbModule,
     ProductModule,
     ROUTING,

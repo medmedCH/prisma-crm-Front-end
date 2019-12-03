@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Claim} from '../../models/Claim';
 import {StorageService} from '../security/storage.service';
@@ -20,6 +20,7 @@ export class ClaimService {
   }
   claimURL = 'http://localhost:9080/prisma-crm-web'
 
+
   getAllClaims() {
     return this.http.get<Claim[]>(this.claimURL + '/dashboard/reclamation');
   }
@@ -34,6 +35,7 @@ export class ClaimService {
       console.log(response);
       return response;
     }));
+
   }
 
   addClaim(c: Claim) {

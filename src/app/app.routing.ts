@@ -11,8 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'dash',
-    loadChildren: './back/back.module#BackModule',
-    canActivate: [AuthGuard]
+    loadChildren: './back/back.module#BackModule'
   },
   {
     path: '**',
