@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import { ClaimService } from 'src/app/services/managers/claim.service';
 import {Router} from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {StatusModalComponent} from './statusModal/statusModal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-claim-check',
@@ -13,7 +15,7 @@ export class ClaimCheckComponent {
   title = 'Consul Claim';
   status;
   claim;
-  constructor(private claimService: ClaimService, private router: Router) {
+  constructor(private claimService: ClaimService, private router: Router , private modalService: NgbModal) {
   }
 
 
@@ -40,13 +42,17 @@ export class ClaimCheckComponent {
 
   getClaimStatus() {
     this.claimService.getStatudClaimByCode(this.getStatusFrom.value.claimCode)
-      .subscribe( response => {
+      .subscribe(
+        response => {
           this.status = response['claimStatus'];
-          console.log(this.status.claimStatus)
-        } ,
-        error =>{
-          console.log(error);
+          const modalRef = this.modalService.open(StatusModalComponent);
+          modalRef.componentInstance.status = this.status;
+        },
+        error => {
+          const modalRef = this.modalService.open(StatusModalComponent);
+          modalRef.componentInstance.status = 'Code invalide';
         }
       );
   }
+
 }

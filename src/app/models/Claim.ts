@@ -9,6 +9,7 @@ export class Claim {
   public description: string;
   public priority: string;
   public type: string;
+  public status: string;
   public createdAt: Date;
   public openedAt: Date;
   public delegatedAt: Date;

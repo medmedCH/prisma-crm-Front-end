@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {StorageService} from '../../services/security/storage.service';
 import {AllClaimBackComponent} from './all/all.claim.back';
+import {EditClaimBackComponent} from './edit/edit.claim.back.component';
 
 @NgModule({
   imports: [
@@ -15,11 +16,12 @@ import {AllClaimBackComponent} from './all/all.claim.back';
     NgbModule
   ],
   declarations: [
-    AllClaimBackComponent
+    AllClaimBackComponent,
+    EditClaimBackComponent
   ],
   providers: [ClaimService, StorageService],
   entryComponents: [
-    // StatusModalComponent,
+    EditClaimBackComponent,
   ],
 })
 export class ClaimBackModule { }

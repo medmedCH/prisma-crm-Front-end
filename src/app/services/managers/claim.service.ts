@@ -26,7 +26,7 @@ export class ClaimService {
   }
 
   getClaimById(id: number) {
-    return this.http.get(this.claimURL + '/dashboard/reclamation/id/' + id);
+    return this.http.get<Claim>(this.claimURL + '/dashboard/reclamation/id/' + id);
   }
 
   getStatudClaimByCode(id: string) {
@@ -41,6 +41,14 @@ export class ClaimService {
   addClaim(c: Claim) {
     const body = JSON.stringify(c);
     return this.http.post(this.claimURL + '/reclamation', body, httpOptions);
+  }
+
+  deleteClaim(c: Claim ) {
+    return this.http.delete(this.claimURL + '/dashboard/reclamation/delete/' + c.id);
+  }
+  editClaim(c: Claim) {
+    const body = JSON.stringify(c);
+    return this.http.put('http://localhost:9080/prisma-crm-web/claim/editClaim/' + c.id , c, httpOptions);
   }
 
 
