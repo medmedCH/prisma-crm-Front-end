@@ -9,8 +9,8 @@ const routes: Routes = [
     component: FrontComponent,
     children: [
       {path: '', component: HomeComponent},
-      {path: '', loadChildren: '../layouts/auth-layout/auth-layout.module#AuthLayoutModule'},
-      {path: 'claim', loadChildren: './claim/claim.module#ClaimModule'}
+      {path: '', loadChildren: () => import('../layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)},
+      {path: 'claim', loadChildren: () => import('./claim/claim.module').then(m => m.ClaimModule)}
     ]
   },
 ];
