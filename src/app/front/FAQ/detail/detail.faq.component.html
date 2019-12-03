@@ -1,0 +1,25 @@
+
+
+<!--<br>-->
+
+<div class="header bg-gradient-danger py-7 py-lg-8" style="background: linear-gradient(87deg, #36aef5 0, #36f59df2 100%) !important; height: 50px ">
+
+</div>
+<div class="card card-profile shadow mt--300 col-md-6 offset-md-3 claimCard">
+    <h2>{{ c.title }}</h2>
+    <div>{{c.description}}</div><br>
+    <span>Crée le : {{c.createdAt}}</span>
+</div>
+
+<div class="card col-md-6 offset-md-3 notes" *ngFor="let n of notes">
+  <span class="avatar avatar-sm rounded-circle" *ngIf="n.createdBy.profileImage != null">
+    <img src="./../../../../assets/img/theme/team-2-800x800.jpg" >
+  </span>
+  <span class="avatar avatar-sm rounded-circle" *ngIf="n.createdBy.profileImage == null">
+    <img src="./../../../../assets/img/theme/team-1-800x800.jpg" >
+  </span>
+  {{n.description}} <br>
+  {{n.createdAt}}
+  {{n.createdBy.firstName}}
+
+</div>
