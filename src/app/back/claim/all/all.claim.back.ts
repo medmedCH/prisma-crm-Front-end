@@ -64,4 +64,17 @@ export class  AllClaimBackComponent {
         }
     );
   }
+
+  clickMethod(c: Claim) {
+    if (confirm('Are you sure to delete this claim' )) {
+      this.claimService.deleteClaim(c).subscribe(
+        response => {
+          this.fetchData();
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+  }
 }
