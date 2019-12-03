@@ -13,5 +13,7 @@ export class User {
   public phoneNumber: string;
   public confirmationToken: string;
   public address: Address;
+  public profileImage: Address;
+  public token?: string;
 
 }

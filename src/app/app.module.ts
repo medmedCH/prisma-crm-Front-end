@@ -19,6 +19,7 @@ import {AuthIntercepter} from './services/security/auth.intercepter';
 import { ReactiveFormsModule } from '@angular/forms';
 import {RoleGuard} from './services/security/role.guard';
 import {AlertService} from './services/common/AlerteService';
+import {ErrorInterceptor} from './services/security/error.intercepter';
 
 @NgModule({
   imports: [
@@ -34,8 +35,6 @@ import {AlertService} from './services/common/AlerteService';
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
-    AuthLayoutComponent,
   ],
   providers: [
     LoginService,
