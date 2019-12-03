@@ -9,8 +9,8 @@ const routes: Routes = [
     path: '',
     component: BackComponent,
     children: [
-      {path: '', component: DashboardComponent},
-      // {path: 'claim', loadChildren: './claim/claim.back.module#ClaimBackModule'},
+      // {path: '', component: BackComponent},
+      {path: 'claim', loadChildren: './claim/claim.back.module#ClaimBackModule'},
     ]
   },
 
