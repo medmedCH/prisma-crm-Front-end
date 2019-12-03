@@ -16,10 +16,13 @@ import {Product} from '../../../models/Product';
 // tslint:disable-next-line:component-class-suffix
 export class NgbdModalContent {
   @Input() prod;
-  constructor(public activeModal: NgbActiveModal, private productService: ProductService) {}
+
+  constructor(public activeModal: NgbActiveModal, private productService: ProductService) {
+  }
 
   productForm = new FormGroup({
     nameInput: new FormControl('', [Validators.required]),
+    referenceInput: new FormControl('', [Validators.required]),
     descriptionInput: new FormControl('', [Validators.required]),
     typeInput: new FormControl('', [Validators.required]),
     priceInput: new FormControl('', [Validators.required]),
@@ -30,31 +33,39 @@ export class NgbdModalContent {
   get nameInput() {
     return this.productForm.get('nameInput');
   }
+
   get descriptionInput() {
     return this.productForm.get('descriptionInput');
   }
+
   get typeInput() {
     return this.productForm.get('typeInput');
   }
+
   get priceInput() {
     return this.productForm.get('priceInput');
   }
+
   get guaranteeInput() {
     return this.productForm.get('guaranteeInput');
   }
 
-  updateProd(id: number) {
-    const obj: Product = {
-      id : this.prod.id,
-      name : this.productForm.value.nameInput === '' ? this.prod.name : this.productForm.value.nameInput,
-      description : this.productForm.value.descriptionInput === '' ? this.prod.description : this.productForm.value.descriptionInput,
-      type : this.productForm.value.typeInput === '' ? this.prod.type : this.productForm.value.typeInput,
-      price : this.productForm.value.priceInput === '' ? this.prod.price : this.productForm.value.priceInput,
-      guarantee : this.productForm.value.guaranteeInput  === '' ? this.prod.guarantee : this.productForm.value.guaranteeInput,
-    };
+  get referenceInput() {
+    return this.productForm.get('referenceInput');
+  }
 
-    this.productService.editProduct(obj)
-    console.log(obj);
+  updateProd(id: number) {
+    const obj: Product = this.prod;
+    obj.reference = this.productForm.value.referenceInput === '' ? obj.reference : this.productForm.value.referenceInput;
+    obj.name = this.productForm.value.nameInput === '' ? obj.name : this.productForm.value.nameInput;
+    obj.description = this.productForm.value.descriptionInput === '' ? this.prod.description : this.productForm.value.descriptionInput;
+    obj.type = this.productForm.value.typeInput === '' ? this.prod.type : this.productForm.value.typeInput;
+    obj.price = this.productForm.value.priceInput === '' ? this.prod.price : this.productForm.value.priceInput;
+    obj.guarantee = this.productForm.value.guaranteeInput === '' ? this.prod.guarantee : this.productForm.value.guaranteeInput;
+
+    this.productService.editProduct(obj).subscribe(data => data);
+    this.activeModal.close('Close click');
+    
   }
 }
 

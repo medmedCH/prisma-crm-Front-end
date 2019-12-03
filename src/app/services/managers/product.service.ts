@@ -20,7 +20,9 @@ export class ProductService {
 
   editProduct(p: Product) {
 
-    return this.http.post('http://localhost:9080/prisma-crm-web/product', p ) ;
+    console.log('prod= ' );
+    console.log(p);
+    return this.http.put('http://localhost:9080/prisma-crm-web/product', p ) ;
   }
 
   deleteProduct(id: number) {
