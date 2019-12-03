@@ -20,6 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {RoleGuard} from './services/security/role.guard';
 import {AlertService} from './services/common/AlerteService';
 import {ErrorInterceptor} from './services/security/error.intercepter';
+import {ProductModule} from './back/product/product.module';
+
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import {ErrorInterceptor} from './services/security/error.intercepter';
     FormsModule,
     HttpClientModule,
     NgbModule,
+    ProductModule,
     ROUTING,
     StorageServiceModule,
     ReactiveFormsModule

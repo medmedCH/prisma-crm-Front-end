@@ -1,0 +1,49 @@
+
+
+<div>
+  <br>
+
+<h1>Products:</h1> <br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Reference</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Type</th>
+      <th scope="col">Guarantee</th>
+      <th scope="col">Price</th>
+      <th scope="col">Brand</th>
+      <th scope="col">Resolution</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of liste; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{p.reference}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.description}}</td>
+      <td>{{p.type}}</td>
+      <td>{{p.guarantee}}</td>
+      <td>{{p.price}}</td>
+      <td>{{p.brand}}</td>
+      <td>{{p.resolution}}</td>
+      <td>{{p.createdAt}}</td>
+      <td> <button class="btn btn-primary" (click)="open(p.id)"><i class="far fa-edit"></i></button></td>
+      <!-- <td> <button class="btn btn-primary" (click)="editProd(p.id)" ></button></td> -->
+      <td> <button class="btn btn-danger" (click)="deleteProd(p.id)" ><i class="far fa-trash-alt"></i></button></td>
+
+
+    </tr>
+
+    </tbody>
+  </table>
+
+
+</div>
+
