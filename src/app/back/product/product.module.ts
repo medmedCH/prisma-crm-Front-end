@@ -19,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductRouting,
     HttpClientModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   declarations: [ProductAllComponent, NgbdModalContent],
   providers: [ProductService],

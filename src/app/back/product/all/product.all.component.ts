@@ -5,6 +5,8 @@ import {ProductService} from '../../../services/managers/product.service';
 
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {BehaviorSubject} from 'rxjs';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Product} from '../../../models/Product';
 
 @Component({
   selector: 'app-product-all',
@@ -14,10 +16,45 @@ import {BehaviorSubject} from 'rxjs';
 // tslint:disable-next-line:component-class-suffix
 export class NgbdModalContent {
   @Input() prod;
+  constructor(public activeModal: NgbActiveModal, private productService: ProductService) {}
 
-  constructor(public activeModal: NgbActiveModal) {}
-  hello() {
-     console.log(this.prod);
+  productForm = new FormGroup({
+    nameInput: new FormControl('', [Validators.required]),
+    descriptionInput: new FormControl('', [Validators.required]),
+    typeInput: new FormControl('', [Validators.required]),
+    priceInput: new FormControl('', [Validators.required]),
+    guaranteeInput: new FormControl('', [Validators.required]),
+  });
+
+
+  get nameInput() {
+    return this.productForm.get('nameInput');
+  }
+  get descriptionInput() {
+    return this.productForm.get('descriptionInput');
+  }
+  get typeInput() {
+    return this.productForm.get('typeInput');
+  }
+  get priceInput() {
+    return this.productForm.get('priceInput');
+  }
+  get guaranteeInput() {
+    return this.productForm.get('guaranteeInput');
+  }
+
+  updateProd(id: number) {
+    const obj: Product = {
+      id : this.prod.id,
+      name : this.productForm.value.nameInput === '' ? this.prod.name : this.productForm.value.nameInput,
+      description : this.productForm.value.descriptionInput === '' ? this.prod.description : this.productForm.value.descriptionInput,
+      type : this.productForm.value.typeInput === '' ? this.prod.type : this.productForm.value.typeInput,
+      price : this.productForm.value.priceInput === '' ? this.prod.price : this.productForm.value.priceInput,
+      guarantee : this.productForm.value.guaranteeInput  === '' ? this.prod.guarantee : this.productForm.value.guaranteeInput,
+    };
+
+    this.productService.editProduct(obj)
+    console.log(obj);
   }
 }
 
@@ -57,14 +94,7 @@ export class ProductAllComponent implements OnInit {
     this.productService.deleteProduct(id).subscribe((Data) => {
     }) ;
   }
-  ngOnInit() {
-    this.productService.getProducts()
-      .subscribe( data => {
-          this.liste = data ;
-        }
-      );
 
-  }
 
   open(id: number) {
 
@@ -76,5 +106,15 @@ export class ProductAllComponent implements OnInit {
       modalRef.componentInstance.prod = data;
     });
   }
+
+  ngOnInit() {
+    this.productService.getProducts()
+      .subscribe( data => {
+          this.liste = data ;
+        }
+      );
+
+  }
+
   }
 
