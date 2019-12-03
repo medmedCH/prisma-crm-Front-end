@@ -33,18 +33,19 @@ export class ClaimAddComponent {
   });
 
   addClaim() {
-    if (null === StorageService.get('currentUser')) {
+    if (LoginService.isLogged()) {
       const currentUser = StorageService.get('currentUser');
-      console.log(currentUser);
+      console.log(StorageService.get('currentUser'));
       // tslint:disable-next-line:max-line-length
       this.c = new Claim(this.addClaimFrom.value.titre, this.addClaimFrom.value.description, this.addClaimFrom.value.type, this.addClaimFrom.value.priority, currentUser.userId);
       this.claimService.addClaim(this.c)
         .subscribe(
-          response => {},
+          response => {
+            this.router.navigate(['/dash/claim']);
+          },
           error => {console.log(error); }
         );
-    }
-    if (!LoginService.isLogged()) {
+    } else {
       this.router.navigate(['/login'], { queryParams: { returnUrl: ['/claim/add'] } });
       this.alertService.error('Vous devez se connecter d\'abord');
     }
