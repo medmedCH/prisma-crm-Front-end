@@ -1,0 +1,34 @@
+
+<div class="hello">
+
+</div>
+
+<div>
+
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Date début </th>
+      <th scope="col">Nom Promotion </th>
+      <th scope="col">Période</th>
+      <th scope="col">Pourcentage</th>
+      <th scope="col">Date fin</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let x of pr ">
+    <tr>
+
+      <td>{{x.s_date}}</td>
+      <td>{{x.name}}</td>
+      <td>{{x.period}}</td>
+      <td>{{x.percentage}}</td>
+      <td>{{x.e_date}}</td>
+      <td><a routerLink="update" > <input type="button" value="Modifier" class="btn btn-primary mr-1"> </a><td>
+
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+
