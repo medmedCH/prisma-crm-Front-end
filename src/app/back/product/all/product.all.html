@@ -1,10 +1,8 @@
 
-<div class="hello">
-
-</div>
 
 <div>
   <br>
+
 <h1>Products:</h1> <br>
   <table class="table table-striped">
     <thead>
@@ -19,6 +17,8 @@
       <th scope="col">Brand</th>
       <th scope="col">Resolution</th>
       <th scope="col">Created At</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
 
     </tr>
     </thead>
@@ -34,11 +34,16 @@
       <td>{{p.brand}}</td>
       <td>{{p.resolution}}</td>
       <td>{{p.createdAt}}</td>
+      <td> <button class="btn btn-primary" (click)="open(p.id)"><i class="far fa-edit"></i></button></td>
+      <!-- <td> <button class="btn btn-primary" (click)="editProd(p.id)" ></button></td> -->
+      <td> <button class="btn btn-danger" (click)="deleteProd(p.id)" ><i class="far fa-trash-alt"></i></button></td>
 
 
     </tr>
 
     </tbody>
   </table>
+
+
 </div>
 

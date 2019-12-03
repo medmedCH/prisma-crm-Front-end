@@ -10,13 +10,27 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  getProducts() {
-
-    return this.http.get('http://localhost:9080/prisma-crm-web/product/all').pipe(map( response => {
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>('http://localhost:9080/prisma-crm-web/product/all').pipe(map( response => {
       console.log('response = ');
       console.log(response);
       return response;
     }));
   }
+
+  editProduct(p: Product) {
+
+    return this.http.post('http://localhost:9080/prisma-crm-web/product', p ) ;
+  }
+
+  deleteProduct(id: number) {
+
+    return this.http.delete('http://localhost:9080/prisma-crm-web/product/' + id) ;
+  }
+
+  getProductById(id: number) {
+    return this.http.get('http://localhost:9080/prisma-crm-web/product/' + id );
+  }
+
 
 }
