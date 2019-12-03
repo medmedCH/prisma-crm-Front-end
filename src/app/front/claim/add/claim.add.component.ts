@@ -46,6 +46,7 @@ export class ClaimAddComponent {
     }
     if (!LoginService.isLogged()) {
       this.router.navigate(['/login'], { queryParams: { returnUrl: ['/claim/add'] } });
+      this.alertService.error('Vous devez se connecter d\'abord');
     }
   }
 

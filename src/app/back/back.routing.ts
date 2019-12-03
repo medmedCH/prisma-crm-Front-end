@@ -10,12 +10,9 @@ const routes: Routes = [
     component: BackComponent,
     children: [
       {path: '', component: DashboardComponent},
-<<<<<<< HEAD
       {path: 'claim', loadChildren: './claim/claim.back.module#ClaimBackModule'},
-      {path: 'product', loadChildren: './product/product.module#ProductModule'}
-=======
-      {path: 'promotion', loadChildren: () => import('./promotion/promotion.module').then(m => m.PromotionModule)}
->>>>>>> bf7218dd85542c56d099def06d4d2ee35438ffde
+      {path: 'product', loadChildren: './product/product.module#ProductModule'},
+      {path: 'product', loadChildren: './promotion/promotion.module#PromotionModule'}
     ]
   },
 
