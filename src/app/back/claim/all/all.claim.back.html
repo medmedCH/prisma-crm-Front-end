@@ -18,7 +18,7 @@
             <th scope="col">Description</th>
             <th scope="col">Date de création</th>
             <th scope="col">État</th>
-            <th scope="col"></th>
+            <th scope="col" class="text-center">Actions</th>
           </tr>
           </thead>
           <tbody>
@@ -28,7 +28,8 @@
             <td>{{c.description}}</td>
             <td>{{c.createdAt}}</td>
             <td>{{c.status}}</td>
-            <td class="text-right">
+            <td class="text-center">
+              <a  class="btn btn-default" [routerLink]="['/dash/claim/show/', c.id]">Afficher</a>
               <button class="btn btn-warning" (click)="edit(c)">Modifier</button>
               <button class="btn btn-danger" (click)="clickMethod(c)" >Supprimer</button>
             </td>

@@ -33,6 +33,9 @@ export class EditClaimBackComponent implements OnInit {
     console.log('click');
     if ((this.c.title !== this.editClaimForm.value.title) || (this.c.description !== this.editClaimForm.value.description) ) {
       console.log('changement');
+      this.c.title = this.editClaimForm.value.title;
+      this.c.description = this.editClaimForm.value.description;
+      console.log(this.c);
       this.claimService.editClaim(c).subscribe(
         response => {
           console.log('edit sucessfullaaay');

@@ -26,7 +26,7 @@ export class ClaimService {
   }
 
   getClaimById(id: number) {
-    return this.http.get<Claim>(this.claimURL + '/dashboard/reclamation/id/' + id);
+    return this.http.get<Claim>(this.claimURL + '/dashboard/reclamation/' + id);
   }
 
   getStatudClaimByCode(id: string) {

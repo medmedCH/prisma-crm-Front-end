@@ -7,6 +7,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {StorageService} from '../../services/security/storage.service';
 import {AllClaimBackComponent} from './all/all.claim.back';
 import {EditClaimBackComponent} from './edit/edit.claim.back.component';
+import {ShowClaimBackComponent} from './show/show.claim.back.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {EditClaimBackComponent} from './edit/edit.claim.back.component';
   ],
   declarations: [
     AllClaimBackComponent,
-    EditClaimBackComponent
+    EditClaimBackComponent,
+    ShowClaimBackComponent,
   ],
   providers: [ClaimService, StorageService],
   entryComponents: [
