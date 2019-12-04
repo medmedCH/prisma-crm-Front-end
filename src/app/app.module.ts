@@ -17,6 +17,7 @@ import {FrontModule} from './front/front.module';
 import {BackModule} from './back/back.module';
 import {AuthIntercepter} from './services/security/auth.intercepter';
 import { ReactiveFormsModule } from '@angular/forms';
+import {CartsService} from './services/carts.service';
 
 @NgModule({
   imports: [
@@ -33,7 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
   ],
   providers: [
     LoginService,
