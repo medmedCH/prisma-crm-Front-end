@@ -1,5 +1,5 @@
 .claimCard {
-  margin-top: -150px !important;
+  margin-top: -100px !important;
   padding: 50px;
   border-radius: 5px;
   margin-bottom: 50px;
@@ -13,12 +13,4 @@
   font-weight: 100;
   font-size: 13px;
   text-align: left;
-}
-
-.notes {
-  background: rgb(255, 255, 255);
-  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
-  padding: 50px;
-  border-radius: 5px;
-  margin-bottom: 20px;
 }

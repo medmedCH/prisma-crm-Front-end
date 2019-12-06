@@ -1,6 +1,10 @@
-<!--<div class="header bg-gradient-danger py-7 py-lg-8" style="background: linear-gradient(87deg, #36aef5 0, #36f59df2 100%) !important; height: 50px ">-->
-
-<!--</div>-->
+<div class="header" style="height: 150px; background: linear-gradient(87deg, #f5365c 0, #f56036 100%) !important; text-align: right;" >
+   <br>
+  <div class=" col-md-11">
+      <button class="btn btn-default">Déléguer </button>
+      <button class="btn btn-success">Résolut </button>
+  </div>
+</div>
 <br>
 <br>
 <div class="card card-profile shadow mt--300 col-md-10 offset-md-1 claimCard">
@@ -9,15 +13,5 @@
   <span>Crée le : {{c.createdAt}}</span>
 </div>
 
-<div class="card col-md-10 offset-md-1 notes" *ngFor="let n of notes">
-  <span class="avatar avatar-sm rounded-circle" *ngIf="n.createdBy.profileImage != null">
-    <img src="./../../../../assets/img/theme/team-2-800x800.jpg" >
-  </span>
-  <span class="avatar avatar-sm rounded-circle" *ngIf="n.createdBy.profileImage == null">
-    <img src="./../../../../assets/img/theme/team-1-800x800.jpg" >
-  </span>
-  {{n.description}} <br>
-  {{n.createdAt}}
-  {{n.createdBy.firstName}}
-
-</div>
+<all-notes-claim-back [notes]="notes"></all-notes-claim-back>
+<!--<add-note-claim-back [claim]="c"></add-notes-claim-back>-->
