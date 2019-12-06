@@ -69,7 +69,7 @@ export class  AllClaimBackComponent {
     if (confirm('Are you sure to delete this claim' )) {
       this.claimService.deleteClaim(c).subscribe(
         response => {
-          this.fetchData();
+          this.allClaims.splice(c.id, 1);
         },
         error => {
           console.log(error);
