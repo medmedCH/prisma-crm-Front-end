@@ -88,4 +88,17 @@ export class ShowClaimBackComponent implements OnInit {
         }
       );
   }
+
+  setIsFaq(c: Claim) {
+    this.claimService.setAsFAQ(c.id)
+      .subscribe(
+        response => {
+          this.alertService.success('Réclamation setted As FAQ !!');
+          c.isFaq = true;
+        } ,
+        error => {
+          console.log(error);
+        }
+      );
+  }
 }
