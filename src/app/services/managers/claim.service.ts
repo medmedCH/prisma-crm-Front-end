@@ -63,4 +63,11 @@ export class ClaimService {
   getAllNotesByClaimId(id: number) {
     return this.http.get<Claim[]>(this.claimURL + '/notesClaim/claim/' + id );
   }
+
+  resolveClaim(id: number) {
+    return this.http.put(this.claimURL + '/dashboard/reclamation/resolve/' + id, httpOptions);
+  }
+  deleguerClaim(id: number) {
+    return this.http.get(this.claimURL + '/dashboard/reclamation/deleguer/' + id);
+  }
 }
