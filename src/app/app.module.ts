@@ -47,6 +47,11 @@ import {ProductModule} from './back/product/product.module';
       useClass: AuthIntercepter,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
     NgbActiveModal
   ],
   bootstrap: [AppComponent]
