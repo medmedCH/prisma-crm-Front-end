@@ -34,7 +34,7 @@ export class CreateComponent implements OnInit {
     this.promotionservice.addPromotion(p).subscribe(data => 'ok');
 
     this.router.navigateByUrl('/promotion/show');
-
+    this.promotionservice.getpromotion().subscribe(data => 'ok');
 
   }
 

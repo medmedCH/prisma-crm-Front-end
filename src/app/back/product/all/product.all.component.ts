@@ -56,16 +56,15 @@ export class NgbdModalContent {
 
   updateProd(id: number) {
     const obj: Product = this.prod;
-    obj.reference = this.productForm.value.referenceInput === '' ? obj.reference : this.productForm.value.referenceInput;
-    obj.name = this.productForm.value.nameInput === '' ? obj.name : this.productForm.value.nameInput;
+    obj.reference = this.productForm.value.referenceInput ===      '' ? obj.reference : this.productForm.value.referenceInput;
+    obj.name = this.productForm.value.nameInput ===                '' ? obj.name : this.productForm.value.nameInput;
     obj.description = this.productForm.value.descriptionInput === '' ? this.prod.description : this.productForm.value.descriptionInput;
-    obj.type = this.productForm.value.typeInput === '' ? this.prod.type : this.productForm.value.typeInput;
-    obj.price = this.productForm.value.priceInput === '' ? this.prod.price : this.productForm.value.priceInput;
-    obj.guarantee = this.productForm.value.guaranteeInput === '' ? this.prod.guarantee : this.productForm.value.guaranteeInput;
+    obj.type = this.productForm.value.typeInput ===               '' ?  this.prod.type : this.productForm.value.typeInput;
+    obj.price = this.productForm.value.priceInput ===             '' ? this.prod.price : this.productForm.value.priceInput;
+    obj.guarantee = this.productForm.value.guaranteeInput ===      '' ? this.prod.guarantee : this.productForm.value.guaranteeInput;
 
     this.productService.editProduct(obj).subscribe(data => data);
     this.activeModal.close('Close click');
-    
   }
 }
 
