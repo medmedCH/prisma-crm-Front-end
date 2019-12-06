@@ -7,12 +7,14 @@ import {DetailFaqComponent} from './detail/detail.faq.component';
 import {FaqService} from '../../services/managers/faq.service';
 import {FaqRouting} from './faq.routing';
 import {ClaimService} from '../../services/managers/claim.service';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
     // FaqRouting,
     ReactiveFormsModule,
     CommonModule,
+    RouterModule,
   ],
   declarations: [
     AllFaqComponent,
