@@ -9,13 +9,12 @@ declare interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-  {path: '/dashboard', title: 'Dashboard', icon: 'ni-tv-2 text-primary', class: ''},
-  {path: '/icons', title: 'Icons', icon: 'ni-planet text-blue', class: ''},
-  {path: '/maps', title: 'Maps', icon: 'ni-pin-3 text-orange', class: ''},
-  {path: '/user-profile', title: 'User profile', icon: 'ni-single-02 text-yellow', class: ''},
-  {path: '/tables', title: 'Tables', icon: 'ni-bullet-list-67 text-red', class: ''},
-  {path: '/login', title: 'Login', icon: 'ni-key-25 text-info', class: ''},
-  {path: '/register', title: 'Register', icon: 'ni-circle-08 text-pink', class: ''}
+  {path: '/back/', title: 'Dashboard', icon: 'ni-tv-2 text-primary', class: ''},
+  {path: '/back/products', title: 'Products', icon: 'ni-app text-blue', class: ''},
+  {path: '/back/orders', title: 'Orders', icon: 'ni-basket text-orange', class: ''},
+  {path: '/back/carts', title: 'Carts', icon: 'ni-bag-17 text-yellow', class: ''},
+  {path: '/back/quotations', title: 'Quotations', icon: 'ni-send text-red', class: ''},
+  {path: '/back/invoices', title: 'Invoices', icon: 'ni-single-copy-04 text-info', class: ''}
 ];
 
 @Component({

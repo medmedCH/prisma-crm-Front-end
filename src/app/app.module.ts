@@ -18,6 +18,7 @@ import {BackModule} from './back/back.module';
 import {AuthIntercepter} from './services/security/auth.intercepter';
 import { ReactiveFormsModule } from '@angular/forms';
 import {CartsService} from './services/carts.service';
+import {NgxPayPalModule} from 'ngx-paypal';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {CartsService} from './services/carts.service';
     NgbModule,
     ROUTING,
     StorageServiceModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPayPalModule
   ],
   declarations: [
     AppComponent,

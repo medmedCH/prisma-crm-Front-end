@@ -6,6 +6,13 @@ import { BackComponent } from './back.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardLayoutModule } from './dashboardLayout/dashboard.layout.module';
 import {AuthGuard} from '../services/security/auth.guard';
+import { OrdersComponent } from './orders/orders.component';
+import { ProductsComponent } from './products/products.component';
+import { CartsComponent } from './carts/carts.component';
+import { QuotationsComponent } from './quotations/quotations.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { EditOrderComponent } from './edit-order/edit-order.component';
+import { ViewOrderComponent } from './view-order/view-order.component';
 
 
 @NgModule({
@@ -13,7 +20,8 @@ import {AuthGuard} from '../services/security/auth.guard';
     BackRouting,
     DashboardLayoutModule
   ],
-  declarations: [ BackComponent, DashboardComponent],
+  // tslint:disable-next-line:max-line-length
+  declarations: [ BackComponent, DashboardComponent, OrdersComponent, ProductsComponent, CartsComponent, QuotationsComponent, InvoicesComponent, EditOrderComponent, ViewOrderComponent],
   providers: [AuthGuard]
 })
 export class BackModule { }

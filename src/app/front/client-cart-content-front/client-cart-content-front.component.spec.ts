@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClientCartContentFrontComponent } from './client-cart-content-front.component';
 
+
 describe('ClientCartContentFrontComponent', () => {
   let component: ClientCartContentFrontComponent;
   let fixture: ComponentFixture<ClientCartContentFrontComponent>;
@@ -23,3 +24,4 @@ describe('ClientCartContentFrontComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
