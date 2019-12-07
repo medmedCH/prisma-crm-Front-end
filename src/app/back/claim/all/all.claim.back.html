@@ -12,6 +12,7 @@
       <table class="table align-items-center table-flush">
         <thead class="thead-light">
         <tr>
+          <th scope="col"></th>
           <th scope="col">Code</th>
           <th scope="col">Titre</th>
           <th scope="col">Description</th>
@@ -21,7 +22,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let c of allClaims">
+        <tr *ngFor="let c of allClaims; let i =index">
+          <td>
+            <label class="form-radio">
+              <input type="checkbox" (change)="checkbox(c, i)" [(ngModel)]="c.checked" >
+            </label>
+          </td>
           <td>{{c.code}}</td>
           <td>{{c.title}}</td>
           <td>
@@ -40,6 +46,7 @@
       </table>
     </div>
     <div class="card-footer py-4">
+      Par séléction multiple : <button class="btn btn-facebook" (click)="deleteSelectedClaims()"> Delete </button>
       <nav aria-label="...">
         <ul class="pagination justify-content-end mb-0">
           <li class="page-item disabled">

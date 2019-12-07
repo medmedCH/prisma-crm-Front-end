@@ -17,6 +17,7 @@ import {EditClaimBackComponent} from '../edit/edit.claim.back.component';
 export class  AllClaimBackComponent {
 
   allClaims: Claim[];
+  tableChecked = new Array;
   claimToEdit: Claim;
 
   constructor(private claimService: ClaimService,
@@ -77,4 +78,30 @@ export class  AllClaimBackComponent {
       );
     }
   }
+
+
+  checkbox(item: Claim, n: number) {
+    if (this.tableChecked.find(x => x === item) ) {
+        this.tableChecked.splice(this.tableChecked.indexOf(item), 1);
+    } else {
+        this.tableChecked.push(item);
+    }
+  }
+
+  deleteSelectedClaims() {
+    console.log(this.tableChecked);
+    this.tableChecked.forEach(x => {
+      this.claimService.deleteClaim(x).subscribe(
+        response => {
+          console.log(this.tableChecked.indexOf(x));
+          this.allClaims.splice(this.tableChecked.indexOf(x), 1);
+          this.tableChecked.splice(this.tableChecked.indexOf(x), 1);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    });
+  }
+
 }

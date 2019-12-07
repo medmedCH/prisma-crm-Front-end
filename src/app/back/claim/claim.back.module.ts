@@ -18,7 +18,8 @@ import {AuthIntercepter} from '../../services/security/auth.intercepter';
     ClaimBackRouting,
     ReactiveFormsModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   declarations: [
     AllClaimBackComponent,
