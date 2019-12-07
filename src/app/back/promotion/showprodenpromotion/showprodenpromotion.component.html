@@ -1,0 +1,42 @@
+
+
+<div>
+  <br>
+
+  <h1>Produit en Promotion:</h1> <br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Type</th>
+      <th scope="col">Guarantee</th>
+      <th scope="col">Price</th>
+      <th scope="col">Brand</th>
+      <th scope="col">New price</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of prd">
+      <td><img src="assets/img/brand/favicon.png"></td>
+      <td>{{p.name}}</td>
+      <td>{{p.description}}</td>
+      <td>{{p.type}}</td>
+      <td>{{p.guarantee}}</td>
+      <td>{{p.price}}</td>
+      <td>{{p.brand}}</td>
+      <td>{{p.new_price}}</td>
+
+
+
+    </tr>
+
+    </tbody>
+  </table>
+
+
+</div>
+
