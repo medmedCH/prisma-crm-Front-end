@@ -19,4 +19,4 @@
 </div>
 
 <all-notes-claim-back [notes]="notes" (sendDeleteRequest)="deletNote($event)"></all-notes-claim-back>
-<!--<add-note-claim-back [claim]="c"></add-notes-claim-back>-->
+<add-notes-claim-back [claim]="c"  (sendAddRequest)="addNote($event)"></add-notes-claim-back>

@@ -16,8 +16,8 @@ import {StorageService} from '../../../services/security/storage.service';
   styleUrls: ['./show.claim.back.component.css']
 })
 export class ShowClaimBackComponent implements OnInit {
-  c: {} = {} ;
-
+  c: Claim;
+  noteClaim: NoteClaim;
   notes: NoteClaim[];
   id = this.route.snapshot.params.id;
   userLogged = StorageService.get('currentUser');
@@ -61,6 +61,24 @@ export class ShowClaimBackComponent implements OnInit {
         }
       );
     }
+  }
+
+  addNote(desc: string) {
+    const uid = StorageService.get('currentUser');
+    console.log(uid.userId);
+    console.log(desc);
+
+    this.noteClaim = new NoteClaim(desc, uid.userId);
+    this.notesClaimService.addNoteToClaim(this.noteClaim, this.c)
+      .subscribe(
+        response => {
+          console.log('ok');
+          this.fetchAllNotes();
+        },
+        error => {
+          console.log('not ok');
+        }
+      );
   }
 
   resolve(c: Claim) {

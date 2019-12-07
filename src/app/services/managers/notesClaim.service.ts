@@ -24,4 +24,10 @@ export class NotesClaimService {
     return this.http.delete(this.claimURL + '/dashboard/reclamation/deleteNote/' + n.id);
   }
 
+  addNoteToClaim(n: NoteClaim, c: Claim) {
+    const body = JSON.stringify(n);
+    console.log(body);
+    return this.http.post(this.claimURL + '/dashboard/reclamation/addNoteToClaim/' + c.id, body, httpOptions);
+  }
+
 }
