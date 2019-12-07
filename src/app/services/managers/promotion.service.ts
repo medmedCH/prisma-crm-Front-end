@@ -35,5 +35,7 @@ export class PromotionService {
   getPromotionById(id: number) {
     return this.http.get('http://localhost:9080/prisma-crm-web/promotion/' + id );
   }
-
+  getproductPromotion() {
+    return this.http.get<Product[]>('http://localhost:9080/prisma-crm-web/promotion/allpp');
+  }
 }

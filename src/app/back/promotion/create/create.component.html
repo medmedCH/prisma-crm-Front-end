@@ -1,7 +1,4 @@
-<script src="../promotion.module.ts"></script>
-<div class="hello">
 
-</div>
 
 
 <div class="card m-3">
@@ -18,6 +15,19 @@
           <div *ngIf="f.nm.errors.required">Nom obligatoire</div>
         </div>
       </div>
+<!--
+      <div class="form-group">
+        <label>Date début</label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+          </div>
+          <input class="form-control datepicker"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" placeholder="choisir une date" formControlName="dd" name="s_date"
+                 [(ngModel)]="promotion.s_date" >
+        </div>
+      </div>-->
+
+
 
 
       <div class="form-group">
@@ -31,6 +41,10 @@
           <div *ngIf="f.dd.errors.required">Date début obligatoire</div>
         </div>
       </div>
+
+
+
+
 
       <div class="form-group">
         <label>pourcentage</label>

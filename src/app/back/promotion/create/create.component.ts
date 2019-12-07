@@ -33,8 +33,6 @@ export class CreateComponent implements OnInit {
   addPromotion(p) {
     this.promotionservice.addPromotion(p).subscribe(data => 'ok');
 
-    this.router.navigateByUrl('/promotion/show');
-    this.promotionservice.getpromotion().subscribe(data => 'ok');
 
   }
 
@@ -54,6 +52,12 @@ export class CreateComponent implements OnInit {
 
     // display form values on success
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.ajoutForm.value, null, 4));
+
+    this.router.navigateByUrl('/promotion/show');
+/*
+    window.location.reload();
+*/
+    this.promotionservice.getpromotion().subscribe(data => 'ok');
   }
 
   onReset() {

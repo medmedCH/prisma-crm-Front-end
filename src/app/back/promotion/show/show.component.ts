@@ -3,7 +3,6 @@ import {PromotionService} from '../../../services/managers/promotion.service';
 import {Promotion} from '../../../models/Promotion';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {BehaviorSubject} from 'rxjs';
 
 
 @Component({
@@ -72,7 +71,6 @@ export class ShowComponent implements OnInit {
   pr: Promotion[] = [];
   promotion: Promotion = new Promotion();
   promo;
-  s: BehaviorSubject<any>;
 
   constructor(private promotionservice: PromotionService, private modalService: NgbModal) {
   }
@@ -80,13 +78,7 @@ export class ShowComponent implements OnInit {
   ngOnInit() {
 
     this.promotionservice.getpromotion().subscribe(data => this.pr = data);
-
   }
-
-  modifier(promotion) {
-    this.promotionservice.modifier(promotion).subscribe(data => 'modifier');
-  }
-
   open(id: number) {
     const modalRef = this.modalService.open(NgbdModalContent);
     this.promotionservice.getPromotionById(id).subscribe(data => {

@@ -9,6 +9,8 @@ import {ClaimBackModule} from './claim/claim.back.module';
 import {ProductModule} from './product/product.module';
 import {PromotionModule} from './promotion/promotion.module';
 import {PromotionService} from '../services/managers/promotion.service';
+import {OffreModule} from './offre/offre.module';
+import {OffreService} from '../services/managers/offre.service';
 
 @NgModule({
   imports: [
@@ -16,10 +18,11 @@ import {PromotionService} from '../services/managers/promotion.service';
     DashboardLayoutModule,
     ClaimBackModule,
     ProductModule,
-    PromotionModule
+    PromotionModule,
+    OffreModule
   ],
-  declarations: [BackComponent, DashboardComponent],
-  providers: [AuthGuard, PromotionService]
+  declarations: [BackComponent, DashboardComponent ],
+  providers: [AuthGuard, PromotionService, OffreService ]
 })
 export class BackModule {
 }

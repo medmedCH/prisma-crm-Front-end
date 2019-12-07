@@ -8,6 +8,7 @@ import {PasserenpromotionComponent} from './passerenpromotion/passerenpromotion.
 import {HttpClientModule} from '@angular/common/http';
 import {PromotionService} from '../../services/managers/promotion.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ShowprodenpromotionComponent } from './showprodenpromotion/showprodenpromotion.component';
 
 
 
@@ -24,7 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     CreateComponent,
     ShowComponent,
-    PasserenpromotionComponent, NgbdModalContent
+    PasserenpromotionComponent, NgbdModalContent, ShowprodenpromotionComponent
   ],
   providers: [PromotionService],
   exports: [ShowComponent],

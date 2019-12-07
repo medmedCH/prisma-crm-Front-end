@@ -12,7 +12,9 @@ const routes: Routes = [
       {path: '', component: DashboardComponent},
       {path: 'claim', loadChildren: './claim/claim.back.module#ClaimBackModule'},
       {path: 'product', loadChildren: './product/product.module#ProductModule'},
-      {path: 'promotion', loadChildren: './promotion/promotion.module#PromotionModule'}
+      {path: 'promotion', loadChildren: './promotion/promotion.module#PromotionModule'},
+      {path: 'offre', loadChildren: './offre/offre.module#OffreModule'}
+
     ]
   },
 
