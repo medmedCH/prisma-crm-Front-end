@@ -21,6 +21,7 @@ import {RoleGuard} from './services/security/role.guard';
 import {AlertService} from './services/common/AlerteService';
 import {ErrorInterceptor} from './services/security/error.intercepter';
 import {ProductModule} from './back/product/product.module';
+import {NotesClaimService} from './services/managers/notesClaim.service';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {ProductModule} from './back/product/product.module';
     LoginService,
     RoleGuard,
     AlertService,
+    NotesClaimService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthIntercepter,
