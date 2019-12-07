@@ -38,7 +38,7 @@ export class EditClaimBackComponent implements OnInit {
       console.log(this.c);
       this.claimService.editClaim(c).subscribe(
         response => {
-          console.log('edit sucessfullaaay');
+          console.log('editClaim sucessfullaaay');
         },
         error => {
           console.log(error);
