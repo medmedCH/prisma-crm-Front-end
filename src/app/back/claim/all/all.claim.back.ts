@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {ClaimService} from 'src/app/services/managers/claim.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {StorageService} from '../../../services/security/storage.service';
 import {AlertService} from '../../../services/common/AlerteService';
@@ -14,11 +13,13 @@ import {EditClaimBackComponent} from '../edit/edit.claim.back.component';
   templateUrl: './all.claim.back.html',
   styleUrls: []
 })
-export class  AllClaimBackComponent {
+export class AllClaimBackComponent {
 
   allClaims: Claim[];
   tableChecked = new Array;
   claimToEdit: Claim;
+  config: any;
+  collection = {count: 10, data: []};
 
   constructor(private claimService: ClaimService,
               private storageService: StorageService,
@@ -57,17 +58,32 @@ export class  AllClaimBackComponent {
       response => {
         console.log('hello faq');
         this.allClaims = response;
-        console.log(response);
-      } ,
-        error => {
-          console.log('hello error');
-          console.log(error);
+        this.collection.count = response.length;
+        console.log(this.collection.count);
+        for (var i = 0; i < this.collection.count; i++) {
+          this.collection.data.push(
+            {
+              value: this.allClaims.pop()
+            }
+          );
+          this.config = {
+            itemsPerPage: 10,
+            currentPage: 1,
+            totalItems: this.collection.count
+          };
         }
+        console.log(this.collection.data);
+
+      },
+      error => {
+        console.log('hello error');
+        console.log(error);
+      }
     );
   }
 
   clickMethod(c: Claim) {
-    if (confirm('Are you sure to delete this claim' )) {
+    if (confirm('Are you sure to delete this claim')) {
       this.claimService.deleteClaim(c).subscribe(
         response => {
           this.allClaims.splice(c.id, 1);
@@ -79,12 +95,11 @@ export class  AllClaimBackComponent {
     }
   }
 
-
   checkbox(item: Claim, n: number) {
-    if (this.tableChecked.find(x => x === item) ) {
-        this.tableChecked.splice(this.tableChecked.indexOf(item), 1);
+    if (this.tableChecked.find(x => x === item)) {
+      this.tableChecked.splice(this.tableChecked.indexOf(item), 1);
     } else {
-        this.tableChecked.push(item);
+      this.tableChecked.push(item);
     }
   }
 
@@ -104,4 +119,7 @@ export class  AllClaimBackComponent {
     });
   }
 
+  pageChanged(event) {
+    this.config.currentPage = event;
+  }
 }

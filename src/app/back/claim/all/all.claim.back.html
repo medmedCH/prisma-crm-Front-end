@@ -1,5 +1,5 @@
 <!--<div *ngFor="let c of allClaims">-->
-<!--&lt;!&ndash;  {{c.title}}&ndash;&gt;-->
+<!--&lt;!&ndash;  {{c.value.title}}&ndash;&gt;-->
 <!--</div>-->
 
 
@@ -16,27 +16,27 @@
           <th scope="col">Code</th>
           <th scope="col">Titre</th>
           <th scope="col">Description</th>
-          <th scope="col">Date de création</th>
           <th scope="col">État</th>
+          <th scope="col">Date de création</th>
           <th scope="col" class="text-center">Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let c of allClaims; let i =index">
+        <tr *ngFor="let c of collection.data  | paginate: config ; let i =index">
           <td>
             <label class="form-radio">
-              <input type="checkbox" (change)="checkbox(c, i)" [(ngModel)]="c.checked" >
+              <input type="checkbox" (change)="checkbox(c, i)" [(ngModel)]="c.value.checked" >
             </label>
           </td>
-          <td>{{c.code}}</td>
-          <td>{{c.title}}</td>
+          <td>{{c.value.code}}</td>
+          <td>{{c.value.title}}</td>
           <td>
-            <div style="overflow: hidden; width: 300px; word-wrap: break-word;"> {{c.description}}</div>
+            <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
           </td>
-          <td>{{c.createdAt}}</td>
-          <td>{{c.status}}</td>
+          <td>{{c.value.status}}</td>
+          <td>{{c.value.createdAt}}</td>
           <td class="text-center">
-            <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.id]">Afficher</a>
+            <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>
             <button class="btn btn-warning btn-sm" (click)="edit(c)">Modifier</button>
             <button class="btn btn-danger btn-sm" (click)="clickMethod(c)">Supprimer</button>
           </td>
@@ -44,32 +44,17 @@
 
         </tbody>
       </table>
+
     </div>
-    <div class="card-footer py-4">
-      Par séléction multiple : <button class="btn btn-facebook" (click)="deleteSelectedClaims()"> Delete </button>
-      <nav aria-label="...">
-        <ul class="pagination justify-content-end mb-0">
-          <li class="page-item disabled">
-            <a class="page-link" href="javascript:void(0)" tabindex="-1">
-              <i class="fas fa-angle-left"></i>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-          <li class="page-item active">
-            <a class="page-link" href="javascript:void(0)">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="javascript:void(0)">
-              <i class="fas fa-angle-right"></i>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <div class="card-footer row">
+      <div class="col-md-4">
+        Par séléction multiple : <button class="btn btn-facebook" (click)="deleteSelectedClaims()"> Delete </button>
+      </div>
+      <div class="col-md-8 text-right">
+        <nav aria-label="...">
+          <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </nav>
+      </div>
     </div>
   </div>
 </div>

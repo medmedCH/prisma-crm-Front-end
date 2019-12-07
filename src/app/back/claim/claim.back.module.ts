@@ -12,6 +12,7 @@ import {AddNoteClaimComponent} from './addNote/add.note.claim.component';
 import {AllNotesClaimComponent} from './allNotes/all.notes.claim.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthIntercepter} from '../../services/security/auth.intercepter';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   imports: [
@@ -19,7 +20,9 @@ import {AuthIntercepter} from '../../services/security/auth.intercepter';
     ReactiveFormsModule,
     CommonModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
+
   ],
   declarations: [
     AllClaimBackComponent,
