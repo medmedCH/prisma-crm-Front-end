@@ -18,7 +18,7 @@ export class AllClaimBackComponent {
   allClaims: Claim[];
   tableChecked = new Array;
   claimToEdit: Claim;
-  config: {} = {itemsPerPage: 0, currentPage: 0, totalItem: 0};
+  config = {itemsPerPage: 0, currentPage: 0, totalItems: 0};
   collection = {count: 10, data: []};
 
   constructor(private claimService: ClaimService,
@@ -45,37 +45,36 @@ export class AllClaimBackComponent {
     // @ts-ignore
     this.claimService.getAllClaims<Claim[]>().subscribe(
       response => {
-        console.log('hello faq');
         this.allClaims = response;
         this.collection.count = response.length;
-        console.log(this.collection.count);
         for (var i = 0; i < this.collection.count; i++) {
+          const cl = this.allClaims.pop();
           this.collection.data.push(
             {
-              value: this.allClaims.pop()
+              id: cl.id,
+              value: cl
             }
           );
           this.config = {
-            itemsPerPage: 10,
+            itemsPerPage: 5,
             currentPage: 1,
             totalItems: this.collection.count
           };
         }
-        console.log(this.collection.data);
-
       },
       error => {
         console.log('hello error');
         console.log(error);
       }
     );
+    console.log(this.collection.data);
   }
 
   deleteClaim(c: Claim) {
     if (confirm('Are you sure to delete this claim')) {
       this.claimService.deleteClaim(c).subscribe(
         response => {
-          this.allClaims.splice(c.id, 1);
+          this.collection.data.splice(c.id, 1);
         },
         error => {
           console.log(error);
@@ -92,21 +91,24 @@ export class AllClaimBackComponent {
     }
   }
 
-  deleteSelectedClaims() {
+  archiverSelectedClaims() {
     if (confirm('Are you sure to delete those claims !!! ')) {
-      console.log(this.tableChecked);
-      this.tableChecked.forEach(x => {
-        this.claimService.deleteClaim(x).subscribe(
-          response => {
-            console.log(this.tableChecked.indexOf(x));
-            this.allClaims.splice(this.tableChecked.indexOf(x), 1);
-            this.tableChecked.splice(this.tableChecked.indexOf(x), 1);
-          },
-          error => {
-            console.log(error);
-          }
-        );
-      });
+      let tempChecked = [];
+      this.tableChecked.forEach(e => tempChecked.push(e));
+      for (let i = 0; i < tempChecked.length; i++) {
+        let tcv = tempChecked[i];
+        let index = this.collection.data.findIndex(item => item.id === tcv.id);
+        this.claimService.deleteClaim(tcv).subscribe(
+            response => {
+            },
+            error => {
+              console.log(error);
+            }
+          );
+        this.collection.data.splice(index, 1);
+        let indexChecked = this.tableChecked.findIndex(item => item.id === tcv.id);
+        this.tableChecked.splice(indexChecked, 1);
+      }
     }
   }
 

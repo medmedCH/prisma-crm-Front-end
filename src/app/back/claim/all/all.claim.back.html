@@ -25,7 +25,7 @@
         <tr *ngFor="let c of collection.data  | paginate: config ; let i =index">
           <td>
             <label class="form-radio">
-              <input type="checkbox" (change)="checkbox(c, i)" [(ngModel)]="c.value.checked" >
+              <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked" >
             </label>
           </td>
           <td>{{c.value.code}}</td>
@@ -37,8 +37,8 @@
           <td>{{c.value.createdAt}}</td>
           <td class="text-center">
             <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>
-            <button class="btn btn-warning btn-sm" (click)="edit(c)">Modifier</button>
-            <button class="btn btn-danger btn-sm" (click)="deleteClaim(c)">Supprimer</button>
+            <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>
           </td>
         </tr>
 
@@ -48,7 +48,7 @@
     </div>
     <div class="card-footer row">
       <div class="col-md-4">
-        Par séléction multiple : <button class="btn btn-facebook" (click)="deleteSelectedClaims()"> Delete </button>
+        Par séléction multiple : <button class="btn btn-facebook" (click)="archiverSelectedClaims()"> Supprimer </button>
       </div>
       <div class="col-md-8 text-right">
         <nav aria-label="...">

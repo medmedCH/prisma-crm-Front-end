@@ -50,6 +50,9 @@ export class ClaimService {
     const body = JSON.stringify(c);
     return this.http.put('http://localhost:9080/prisma-crm-web/claim/editClaim/' + c.id , c, httpOptions);
   }
+  archiverClaim(c: Claim) {
+    return this.http.put(this.claimURL + '/dashboard/reclamation/archiver/' + c.id , httpOptions);
+  }
 
 
   getAllFaq() {
