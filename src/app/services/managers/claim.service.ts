@@ -76,4 +76,8 @@ export class ClaimService {
   deleguerClaim(id: number) {
     return this.http.get(this.claimURL + '/dashboard/reclamation/deleguer/' + id);
   }
+
+  desarchiverClaim(c: any) {
+    return this.http.put(this.claimURL + '/dashboard/reclamation/desarchiver/' + c.id , httpOptions);
+  }
 }

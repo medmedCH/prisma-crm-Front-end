@@ -19,6 +19,7 @@ export class Claim {
   public firstResponsable: Agent;
   public responsable: Agent;
   public resolvedBy: Agent;
+  public checked: boolean;
 
   public constructor(title: string, d: string, ty: string, p: string, uid: number) {
     this.title = title;
