@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FaqService} from '../../../services/managers/faq.service';
@@ -13,11 +13,10 @@ import {ClaimService} from '../../../services/managers/claim.service';
 })
 export class AllFaqComponent {
   claims;
-  claimsF;
-  claimsT;
-  claimsR;
 
-  constructor(private claimService: ClaimService, private router: Router) {
+  constructor(private claimService: ClaimService, private router: Router, private route: ActivatedRoute,) {
+    console.log(this.route.snapshot.data);
+    this.claims = this.route.snapshot.data['listFaq'];
   }
 
   // tslint:disable-next-line:use-life-cycle-interface

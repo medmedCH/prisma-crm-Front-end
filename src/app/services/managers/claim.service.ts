@@ -56,7 +56,7 @@ export class ClaimService {
 
 
   getAllFaq() {
-    return this.http.get(this.claimURL + '/reclamation/FAQ/' );
+    return this.http.get<Claim[]>(this.claimURL + '/reclamation/FAQ/' );
   }
 
   getFaqById(id: number) {

@@ -21,6 +21,8 @@ export class DetailFaqComponent {
   id = this.route.snapshot.params.id;
 
   constructor(private claimService: ClaimService, private router: Router, private route: ActivatedRoute) {
+    console.log(this.route.snapshot.data['faq']);
+    this.c = this.route.snapshot.data['faq'];
   }
 
   // tslint:disable-next-line:use-life-cycle-interface

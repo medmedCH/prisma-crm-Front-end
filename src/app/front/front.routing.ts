@@ -5,6 +5,9 @@ import {RouterModule, Routes} from '@angular/router';
 import {AllFaqComponent} from './FAQ/show/all.faq.component';
 import {DetailFaqComponent} from './FAQ/detail/detail.faq.component';
 import {RoleGuard} from '../services/security/role.guard';
+import {AllClaimsResolverService} from "../services/resolvers/all.claims.resolver.service";
+import {AllFaqResolverService} from '../services/resolvers/all.faq.resolver.service';
+import {FaqDetailResolverService} from '../services/resolvers/faq.detail.resolver.service';
 
 const routes: Routes = [
   {
@@ -13,8 +16,8 @@ const routes: Routes = [
     children: [
       {path: '', component: HomeComponent},
       {path: '', loadChildren: '../layouts/auth-layout/auth-layout.module#AuthLayoutModule'},
-      {path: 'faq', component: AllFaqComponent},
-      {path: 'faq/:id', component: DetailFaqComponent },
+      {path: 'faq', component: AllFaqComponent, resolve : { listFaq: AllFaqResolverService }},
+      {path: 'faq/:id', component: DetailFaqComponent, resolve : {faq: FaqDetailResolverService} },
       {path: 'claim', loadChildren: './claim/claim.module#ClaimModule'},
     ]
   },

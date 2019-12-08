@@ -5,12 +5,11 @@ import {ClaimService} from '../managers/claim.service';
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class ClaimDetailResolverService implements Resolve<Claim> {
+export class AllFaqResolverService implements Resolve<Claim[]> {
   constructor(private claimService: ClaimService) {}
 
   // @ts-ignore
-  resolve(route: ActivatedRoute, state: RouterStateSnapshot): Observable<Claim> | Promise<any> | any {
-    // @ts-ignore
-    return this.claimService.getClaimById(route.paramMap.get('id'));
+  resolve(route: ActivatedRoute, state: RouterStateSnapshot): Observable<Claim[]> {
+    return this.claimService.getAllFaq();
   }
 }
