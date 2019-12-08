@@ -8,7 +8,7 @@
   <span style="font-size: 13px" >Crée par : {{n.createdBy.firstName}} {{n.createdBy.lastName}}</span>
   <div class="row offset-md-10" *ngIf="n.createdBy.id == userLogged">
     <button class="btn btn-sm btn-danger"  (click)="deleteNote(n)" >Supprimer</button>
-    <button class="btn btn-sm btn-success" >Editer</button>
+    <button class="btn btn-sm btn-success" (click)="editNote(n)">Editer</button>
   </div>
 </div>
 <!--(click)="deleteNote(n)"-->

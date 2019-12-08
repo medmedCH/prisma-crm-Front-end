@@ -29,16 +29,15 @@ export class EditClaimBackComponent implements OnInit {
     this.editClaimForm.get('description').setValue(this.c.description);
   }
 
-  edit(c: Claim) {
+  edit() {
     console.log('click');
     if ((this.c.title !== this.editClaimForm.value.title) || (this.c.description !== this.editClaimForm.value.description) ) {
       console.log('changement');
       this.c.title = this.editClaimForm.value.title;
       this.c.description = this.editClaimForm.value.description;
-      console.log(this.c);
-      this.claimService.editClaim(c).subscribe(
+      this.claimService.editClaim(this.c).subscribe(
         response => {
-          console.log('editClaim sucessfullaaay');
+          this.activeModal.close();
         },
         error => {
           console.log(error);

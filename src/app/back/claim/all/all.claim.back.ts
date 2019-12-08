@@ -6,7 +6,7 @@ import {StorageService} from '../../../services/security/storage.service';
 import {AlertService} from '../../../services/common/AlerteService';
 import {LoginService} from '../../../services/security/login.service';
 import {Claim} from '../../../models/Claim';
-import {EditClaimBackComponent} from '../edit/edit.claim.back.component';
+import {EditClaimBackComponent} from '../editClaim/edit.claim.back.component';
 
 @Component({
   selector: 'app-all-claim-back',

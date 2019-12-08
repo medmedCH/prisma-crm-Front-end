@@ -30,4 +30,10 @@ export class NotesClaimService {
     return this.http.post(this.claimURL + '/dashboard/reclamation/addNoteToClaim/' + c.id, body, httpOptions);
   }
 
+  editNoteClaim(n: NoteClaim) {
+    console.log(n,'n service');
+    const headers = new HttpHeaders().append('Content-Type' , 'application/json');
+    return this.http.put('http://localhost:9080/prisma-crm-web/claim/editNoteClaim/'+n.id, n, { headers : headers} );
+  }
+
 }

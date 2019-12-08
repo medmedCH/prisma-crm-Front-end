@@ -6,13 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {StorageService} from '../../services/security/storage.service';
 import {AllClaimBackComponent} from './all/all.claim.back';
-import {EditClaimBackComponent} from './edit/edit.claim.back.component';
+import {EditClaimBackComponent} from './editClaim/edit.claim.back.component';
 import {ShowClaimBackComponent} from './show/show.claim.back.component';
 import {AddNoteClaimComponent} from './addNote/add.note.claim.component';
 import {AllNotesClaimComponent} from './allNotes/all.notes.claim.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthIntercepter} from '../../services/security/auth.intercepter';
-import {NgxPaginationModule} from "ngx-pagination";
+import {NgxPaginationModule} from 'ngx-pagination';
+import {EditNoteBackComponent} from './editNoteClaim/edit.note.claim.back.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     EditClaimBackComponent,
     ShowClaimBackComponent,
     AddNoteClaimComponent,
-    AllNotesClaimComponent
+    AllNotesClaimComponent,
+    EditNoteBackComponent
   ],
   providers: [
     ClaimService,
@@ -42,6 +44,7 @@ import {NgxPaginationModule} from "ngx-pagination";
   ],
   entryComponents: [
     EditClaimBackComponent,
+    EditNoteBackComponent
   ],
 })
 export class ClaimBackModule { }
