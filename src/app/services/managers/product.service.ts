@@ -55,7 +55,8 @@ export class ProductService {
     return this.http.delete('http://localhost:9080/prisma-crm-web/product/tarif/' + id) ;
   }
   assignTarifToProduct(idProduct: number, idTariff: number) {
-    return this.http.put('http://localhost:9080/prisma-crm-web/product?idProduct=' + idProduct + '&idTarif=' + idTariff , {} ) ;
+    console.log('hi' + idProduct + ' ' + idTariff);
+    return this.http.get('http://localhost:9080/prisma-crm-web/product/assignTarif/' + idProduct + '/' + idTariff ) ;
   }
 
 

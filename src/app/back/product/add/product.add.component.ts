@@ -96,19 +96,22 @@ export class ProductAddComponent implements OnInit {
       memory: this.brandInput.value,
       resolution : this.resolutionInput.value,
       camera: this.cameraInput.value,
-      imageUrl: this.fileToUpload.name
+      imageUrl: this.typeInput.value === 'Mobile' ? this.fileToUpload.name : ''
   };
 
 
-    this.processFile(this.fileToUpload.name);
+    if (this.typeInput.value === 'Mobile') {
+      this.processFile(this.fileToUpload.name);
+    }
     this.productService.addProduct(product).subscribe(data => {
       this.productAdded = data;
       if (product.type === 'ADSL') {
-        // tslint:disable-next-line:forin
-        for (const key in this.tariffList) {
-          const tr = this.tariffList[key];
-          this.productService.assignTarifToProduct(this.productAdded.id, tr.id);
-        }
+        this.tariffList.forEach((item, index) => {
+          // tslint:disable-next-line:no-shadowed-variable
+          this.productService.assignTarifToProduct(this.productAdded.id, item.id).subscribe(data => {
+           console.log(data);
+          });
+        });
       }
     });
 
