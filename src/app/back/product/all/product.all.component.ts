@@ -54,6 +54,8 @@ export class NgbdModalContent {
     return this.productForm.get('referenceInput');
   }
 
+
+
   updateProd(id: number) {
     const obj: Product = this.prod;
     obj.reference = this.productForm.value.referenceInput === '' ? obj.reference : this.productForm.value.referenceInput;
@@ -65,7 +67,6 @@ export class NgbdModalContent {
 
     this.productService.editProduct(obj).subscribe(data => data);
     this.activeModal.close('Close click');
-    
   }
 }
 
