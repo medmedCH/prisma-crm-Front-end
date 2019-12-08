@@ -1,7 +1,7 @@
 import {User} from './User';
 
 export class Agent extends User {
-  public contrctType: string;
+  public contractType: string;
   public startDate: Date;
   public endDate: Date;
   public salary: number;
