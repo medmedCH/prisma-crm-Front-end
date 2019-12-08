@@ -11,7 +11,7 @@ import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ProductAddComponent} from './add/product.add.component';
-import {ProductUploadComponent} from './upload/product.upload.component';
+
 
 
 
@@ -25,7 +25,7 @@ import {ProductUploadComponent} from './upload/product.upload.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  declarations: [ProductAllComponent, NgbdModalContent, ProductAddComponent, ProductUploadComponent],
+  declarations: [ProductAllComponent, NgbdModalContent, ProductAddComponent],
   providers: [ProductService],
   exports: [ProductAllComponent],
   bootstrap: [ProductAllComponent],
