@@ -28,6 +28,8 @@ export class ShowClaimBackComponent implements OnInit {
               private alertService: AlertService,
               private router: Router,
               private route: ActivatedRoute) {
+    console.log(this.route.snapshot.data);
+    this.c = this.route.snapshot.data['claimSelected'];
   }
 
   ngOnInit() {
