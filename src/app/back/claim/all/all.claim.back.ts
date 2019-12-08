@@ -28,6 +28,8 @@ export class AllClaimBackComponent {
               private router: Router,
               private route: ActivatedRoute,
               private modalService: NgbModal) {
+    console.log(this.route.snapshot.data);
+    this.allClaims = this.route.snapshot.data['listClaim'];
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -36,38 +38,27 @@ export class AllClaimBackComponent {
     this.fetchData();
   }
 
+  fetchData() {
+    this.collection.count = this.allClaims.length;
+    for (var i = 0; i < this.collection.count; i++) {
+      const cl = this.allClaims.pop();
+      this.collection.data.push(
+        {
+          id: cl.id,
+          value: cl
+        }
+      );
+      this.config = {
+        itemsPerPage: 5,
+        currentPage: 1,
+        totalItems: this.collection.count
+      };
+    }
+  }
+
   edit(c: Claim) {
     const modalRef = this.modalService.open(EditClaimBackComponent);
     modalRef.componentInstance.c = c;
-  }
-
-  fetchData() {
-    // @ts-ignore
-    this.claimService.getAllClaims<Claim[]>().subscribe(
-      response => {
-        this.allClaims = response;
-        this.collection.count = response.length;
-        for (var i = 0; i < this.collection.count; i++) {
-          const cl = this.allClaims.pop();
-          this.collection.data.push(
-            {
-              id: cl.id,
-              value: cl
-            }
-          );
-          this.config = {
-            itemsPerPage: 5,
-            currentPage: 1,
-            totalItems: this.collection.count
-          };
-        }
-      },
-      error => {
-        console.log('hello error');
-        console.log(error);
-      }
-    );
-    console.log(this.collection.data);
   }
 
   deleteClaim(c: Claim) {

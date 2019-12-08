@@ -14,6 +14,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthIntercepter} from '../../services/security/auth.intercepter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {EditNoteBackComponent} from './editNoteClaim/edit.note.claim.back.component';
+import {AllClaimsResolverService} from '../../services/resolvers/all.claims.resolver.service';
+import {ClaimDetailResolverService} from '../../services/resolvers/claim.detail.resolver.service';
 
 @NgModule({
   imports: [
@@ -36,6 +38,8 @@ import {EditNoteBackComponent} from './editNoteClaim/edit.note.claim.back.compon
   providers: [
     ClaimService,
     StorageService,
+    AllClaimsResolverService,
+    ClaimDetailResolverService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthIntercepter,
