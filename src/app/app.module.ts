@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {CartsService} from './services/carts.service';
 import {NgxPayPalModule} from 'ngx-paypal';
 
+
 @NgModule({
   imports: [
     FrontModule,

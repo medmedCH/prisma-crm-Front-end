@@ -2,6 +2,7 @@ export class ClientOrderModel {
 
   private _id: number;
   private _createdAt: Date;
+  private updatedAt: Date;
   private _reductionRatio: number;
   private _orderNature: string;
   private _totale: number;

@@ -1,5 +1,6 @@
 import {ClientOrderModel} from './ClientOrderModel';
 import {ProductCartRow} from './ProductCartRow';
+import {Client} from './Client';
 
 export class CartModel {
   get checkedOut(): boolean {
@@ -9,13 +10,24 @@ export class CartModel {
   set checkedOut(value: boolean) {
     this._checkedOut = value;
   }
+
   private _id: number;
   private _createdAt: Date;
   private _updatedAt: Date;
   private _model: ClientOrderModel;
-  private _rows: ProductCartRow;
+  private _rows: Array<ProductCartRow>;
   private _notifiedAboutCartForgottenItems: boolean;
-  private _checkedOut: boolean ;
+  private _checkedOut: boolean;
+  private _client: Client;
+
+  get client(): Client {
+    return this._client;
+  }
+
+  set client(value: Client) {
+    this._client = value;
+  }
+
   get id(): number {
     return this._id;
   }
@@ -47,6 +59,7 @@ export class CartModel {
   set model(value: ClientOrderModel) {
     this._model = value;
   }
+
   get notifiedAboutCartForgottenItems(): boolean {
     return this._notifiedAboutCartForgottenItems;
   }
@@ -54,11 +67,12 @@ export class CartModel {
   set notifiedAboutCartForgottenItems(value: boolean) {
     this._notifiedAboutCartForgottenItems = value;
   }
-  get rows(): ProductCartRow {
+
+  get rows(): Array<ProductCartRow> {
     return this._rows;
   }
 
-  set rows(value: ProductCartRow) {
+  set rows(value: Array<ProductCartRow>) {
     this._rows = value;
   }
 

@@ -1,62 +1,25 @@
-import {AfterViewInit, Component, ElementRef, NgModule, OnInit, ViewChild} from '@angular/core';
-import {ICreateOrderRequest, IPayPalConfig, NgxPayPalModule} from 'ngx-paypal';
-import {OrderServiceService} from '../../services/order-service.service';
+import {Component, NgModule, OnInit} from '@angular/core';
+import { NgxPayPalModule, IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
 @Component({
-  selector: 'app-check-out-front',
-  templateUrl: './check-out-front.component.html',
-  styleUrls: ['./check-out-front.component.scss']
+  selector: 'app-paypal-checkout',
+  templateUrl: './paypal-checkout.component.html',
+  styleUrls: ['./paypal-checkout.component.scss']
 })
+
+
 @NgModule({
   imports: [
     NgxPayPalModule,
   ],
 })
 
-export class CheckOutFrontComponent implements OnInit, AfterViewInit {
-
+export class PaypalCheckoutComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
   private showSuccess: boolean;
-  private longitude;
-  private latitude;
-  private URL = 'https://maps.google.com/maps?q=15%20rue%20moez&t=&z=13&ie=UTF8&iwloc=&output=embed';
-  @ViewChild('gmap_canvas') gmap_canvas: ElementRef;
-
-  constructor(private service: OrderServiceService) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      sessionStorage.setItem('longitude', String(position.coords.longitude));
-      sessionStorage.setItem('latitude', String(position.coords.latitude));
-      return position.coords;
-    });
-    console.log(sessionStorage.getItem('longitude'));
-    console.log(sessionStorage.getItem('latitude'));
-    this.longitude = parseFloat(sessionStorage.getItem('longitude'));
-    this.latitude = parseFloat(sessionStorage.getItem('latitude'));
-    // Using the get nearest store service :
-
-
-  }
 
   ngOnInit(): void {
     this.initConfig();
-  }
-
-  ngAfterViewInit(): void {
-    this.service.getNearestStoreAddress(this.longitude, this.latitude).subscribe(e => {
-      console.log(e);
-      this.URL = 'https://maps.google.com/maps?q='
-        + e.address.latitude + ',' + e.address.longtitude +
-        '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
-      this.gmap_canvas.nativeElement.src = this.URL;
-    }, error => {
-      console.log('could not get nearest address');
-    });
-
-  }
-
-
-  handleClick() {
-    document.getElementById('offerCard').className = 'MyClass';
   }
 
   private initConfig(): void {
@@ -105,6 +68,7 @@ export class CheckOutFrontComponent implements OnInit, AfterViewInit {
         });
       },
       onClientAuthorization: (data) => {
+        //service JEE
         alert('Payment Success');
         this.showSuccess = true;
       },

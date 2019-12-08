@@ -1,5 +1,6 @@
 import {ProductModel} from './ProductModel';
 import {CartModel} from './CartModel';
+import {ReductionRatioModel} from './ReductionRatioModel';
 
 export class ProductCartRow {
 
@@ -10,6 +11,7 @@ export class ProductCartRow {
   private _usedFidelityPoints: number;
   private _totalPriceWNReduction: number;
   private _originalUnitPrice: number;
+  private _reductionRatio: ReductionRatioModel;
 
   get product(): ProductModel {
     return this._product;
@@ -65,5 +67,13 @@ export class ProductCartRow {
 
   set totalPriceWNReduction(value: number) {
     this._totalPriceWNReduction = value;
+  }
+
+  get reductionRatio(): ReductionRatioModel {
+    return this._reductionRatio;
+  }
+
+  set reductionRatio(value: ReductionRatioModel) {
+    this._reductionRatio = value;
   }
 }

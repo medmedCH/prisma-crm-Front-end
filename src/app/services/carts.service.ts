@@ -4,6 +4,7 @@ import {CartModel} from '../models/orderModule/CartModel';
 import {ProductCartRow} from '../models/orderModule/ProductCartRow';
 import {ProductModel} from '../models/orderModule/ProductModel';
 import {BehaviorSubject} from 'rxjs';
+import {ReductionRatioModel} from '../models/orderModule/ReductionRatioModel';
 
 @Injectable({
   providedIn: 'root'
@@ -27,16 +28,16 @@ export class CartsService {
   }
 
 
-  addProductToRow(productRow: ProductCartRow) {
+  addProductToRow(productRow: ProductCartRow, withReduction) {
     return this.http.post('http://localhost:9080/prisma-crm-web/main/cart/add-product-to-cart'
       + '?product=' + productRow.product.id + '&cart=' + productRow.cart.id + '&quantity=' + productRow.quantity
-      + '&points=' + 80
-      + '&reduction=' + 'true', null);
+      + '&points=' + productRow.usedFidelityPoints
+      + '&reduction=' + withReduction, null);
   }
 
   // works perfectly
-  getCartRows() {
-    return this.http.post<ProductCartRow[]>('http://localhost:9080/prisma-crm-web/main/cart/get-cart-rows/65', null);
+  getCartRows(cart: CartModel) {
+    return this.http.post<ProductCartRow[]>('http://localhost:9080/prisma-crm-web/main/cart/get-cart-rows/' + cart.id, null);
   }
 
   fetchProducts() {
@@ -49,6 +50,26 @@ export class CartsService {
 
   changeCurrentCart(cart: CartModel) {
     this.freshlyCreatedCart.next(cart);
+  }
+
+  getProductReductionRatio(product) {
+    return this.http.get<ReductionRatioModel>('http://localhost:9080/prisma-crm-web/main/cart/get-ReductionRatio/' + product);
+  }
+
+  getProductCartRow(product: ProductModel, cart: CartModel) {
+    return this.http.get<ProductCartRow>('http://localhost:9080/prisma-crm-web/main/cart/get-product-row/' + product.id + '/' + cart.id);
+  }
+
+  //
+  resetProductClientData(row: ProductCartRow) {
+    // tslint:disable-next-line:max-line-length
+    return this.http.get<ProductCartRow>('http://localhost:9080/' + 'prisma-crm-web/main/cart/reset-product-client-data/' +
+      row.product.id + '/' + row.quantity + '/' + row.cart.client.id + '/' + row.usedFidelityPoints + '/' + row.cart.id);
+  }
+
+  updateProductClientData(row: ProductCartRow, reduction) {
+    return this.http.get<ProductModel>('http://localhost:9080/prisma-crm-web/main/cart/update-cart-row/' + row.cart.id + '/' + row.product.id +
+      '/' + row.quantity + '/' + row.usedFidelityPoints + '/' + reduction);
   }
 
 }
