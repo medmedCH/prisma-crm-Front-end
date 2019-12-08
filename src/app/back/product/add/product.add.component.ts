@@ -143,6 +143,7 @@ export class ProductAddComponent implements OnInit {
     console.log(t);
   }
   deleteTariff(t) {
+    this.productService.deleteTariff(t.id).subscribe(data => data);
     this.indexTT = this.tariffList.indexOf(t);
     if (this.indexTT !== -1) {
       this.tariffList.splice(this.indexTT, 1);
