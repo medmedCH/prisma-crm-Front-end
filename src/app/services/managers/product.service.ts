@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {Product} from '../../models/Product';
+import {Tariff} from '../../models/Tariff';
 
 
 @Injectable()
@@ -34,32 +35,27 @@ export class ProductService {
 
     return this.http.post('http://localhost:9080/prisma-crm-web/product/uploads', file );
   }
-
- /* postFile(caption: string, fileToUpload: File) {
-    const endpoint = 'http://localhost:28101/api/UploadImage';
-    const formData: FormData = new FormData();
-    formData.append('Image', fileToUpload, fileToUpload.name);
-    formData.append('ImageCaption', caption);
-    return this.http
-      .post(endpoint, formData);
-  }
-
-
-  public uploadImage(image: File): Observable<Response> {
-    const formData = new FormData();
-
-    formData.append('image', image);
-
-    // @ts-ignore
-    return this.http.post('/api/v1/image-upload', formData);
-  }
-*/
   getProductById(id: number) {
     return this.http.get('http://localhost:9080/prisma-crm-web/product/' + id );
   }
 
   getProductTypes() {
     return this.http.get('http://localhost:9080/prisma-crm-web/product/types');
+  }
+  addTariff(t: Tariff) {
+    return this.http.post('http://localhost:9080/prisma-crm-web/product/tarif/add', t ) ;
+  }
+  editTariff(t: Tariff) {
+    return this.http.put('http://localhost:9080/prisma-crm-web/product/tarif', t ) ;
+  }
+  getTariffById(id: number) {
+    return this.http.get('http://localhost:9080/prisma-crm-web/product/tarif/' + id ) ;
+  }
+  deleteTariff(id: number) {
+    return this.http.delete('http://localhost:9080/prisma-crm-web/product/tarif/' + id) ;
+  }
+  assignTarifToProduct(idProduct: number, idTariff: number) {
+    return this.http.put('http://localhost:9080/prisma-crm-web/product?idProduct=' + idProduct + '&idTarif=' + idTariff , {} ) ;
   }
 
 
