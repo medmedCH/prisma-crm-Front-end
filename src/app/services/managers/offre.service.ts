@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Promotion} from '../../models/Promotion';
 import {Offre} from '../../models/Offre';
-import {Product} from '../../models/Product';
 
 
 @Injectable({

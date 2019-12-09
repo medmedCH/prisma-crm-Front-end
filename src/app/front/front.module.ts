@@ -8,6 +8,8 @@ import {AlertComponent} from './alerteJumbotron/alert.component';
 import {RouterModule} from '@angular/router';
 import {FrontRouting} from './front.routing';
 import {FaqModule} from './FAQ/faq.module';
+import {PromoModule} from './promo/promo.module';
+import {PacModule} from './pac/pac.module';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import {FaqModule} from './FAQ/faq.module';
     FaqModule,
     CommonModule,
     RouterModule,
+    PromoModule,
+    PacModule
   ],
-  declarations: [ FrontComponent, HomeComponent, AlertComponent ],
+  declarations: [ FrontComponent, HomeComponent, AlertComponent,   ],
 })
 export class FrontModule { }

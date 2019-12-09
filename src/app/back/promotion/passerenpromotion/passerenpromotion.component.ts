@@ -26,12 +26,6 @@ export class PasserenpromotionComponent implements OnInit {
   });
 
   ngOnInit() {
-   /* this.addProductPromotion = this.formBuilder.group({
-        produit: ['', Validators.required],
-        promotion: ['', Validators.required]
-      }
-    );*/
-
     this.promotionservice.getproduct().subscribe(data => this.prd = data);
     this.promotionservice.getpromotion().subscribe(data => this.promo = data);
   }
@@ -45,6 +39,8 @@ export class PasserenpromotionComponent implements OnInit {
     this.promotionservice.passerpromotion(this.addProductPromotion.value.promotion , this.addProductPromotion.value.produit )
       .subscribe(data => console.log('mrigul'));
     this.router.navigateByUrl('/promotion/produitpromotion');
+
+
   }
 
   onSubmit() {
