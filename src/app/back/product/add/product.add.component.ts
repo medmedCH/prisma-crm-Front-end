@@ -103,9 +103,6 @@ export class ProductAddComponent implements OnInit {
       imageUrl: this.typeInput.value === 'Mobile' ? this.myImage.img : ''
   };
 
-
-    console.log('my image ' + this.myImage.img);
-
     this.productService.addProduct(product).subscribe(data => {
       this.productAdded = data;
       if (product.type === 'ADSL') {

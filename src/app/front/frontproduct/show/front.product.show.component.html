@@ -1,1 +1,24 @@
-prod font
+<div class="prod-body">
+  <div class="prod-content">
+    <div class="prod-search">
+
+    </div>
+    <div class="prod-list-content">
+      <h1 class="product-main-title">Products</h1>
+
+
+      <div class="prod-list">
+        <div class="prod-item" *ngFor="let m of mobileList; let i = index">
+          <img src="assets/img/prods/{{m.imageUrl}}" alt="" width="100px" height="200px">
+
+          <h1>{{m.name}}</h1>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+
