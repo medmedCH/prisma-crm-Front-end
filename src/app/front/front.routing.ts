@@ -16,6 +16,7 @@ const routes: Routes = [
       {path: 'faq', component: AllFaqComponent},
       {path: 'faq/:id', component: DetailFaqComponent },
       {path: 'claim', loadChildren: './claim/claim.module#ClaimModule'},
+      {path: 'front/products', loadChildren: './frontproduct/front.product.module#FrontProductModule'},
     ]
   },
 ];
