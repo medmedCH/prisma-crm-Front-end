@@ -25,6 +25,7 @@ export class ProductAddComponent implements OnInit {
   tarifAdded;
   indexTT;
   productAdded;
+  myImage;
 
 
   constructor(private productService: ProductService, private http: HttpClient) {
@@ -85,6 +86,9 @@ export class ProductAddComponent implements OnInit {
     return this.productForm.get('priceT');
   }
   addProd() {
+    /*if (this.typeInput.value === 'Mobile') {
+      this.processFile(this.fileToUpload.name);
+    }*/
     const product = {
       reference : this.referenceInput.value,
       name : this.nameInput.value,
@@ -96,13 +100,12 @@ export class ProductAddComponent implements OnInit {
       memory: this.brandInput.value,
       resolution : this.resolutionInput.value,
       camera: this.cameraInput.value,
-      imageUrl: this.typeInput.value === 'Mobile' ? this.fileToUpload.name : ''
+      imageUrl: this.typeInput.value === 'Mobile' ? this.myImage.img : ''
   };
 
 
-    if (this.typeInput.value === 'Mobile') {
-      this.processFile(this.fileToUpload.name);
-    }
+    console.log('my image ' + this.myImage.img);
+
     this.productService.addProduct(product).subscribe(data => {
       this.productAdded = data;
       if (product.type === 'ADSL') {
@@ -161,17 +164,17 @@ export class ProductAddComponent implements OnInit {
     }
     reader.readAsDataURL(this.fileToUpload);
 
+    if (this.typeInput.value === 'Mobile') {
+      this.processFile(this.fileToUpload.name);
+    }
+
   }
-  processFile(path): void {
-    // console.log(e.target.value);
+  processFile(path) {
     this.productService.uploadImage(path).subscribe(
       (res) => {
         console.log('res');
         console.log(res);
-      },
-      (err) => {
-        console.log('err');
-        console.log(err);
+        this.myImage = res;
       });
   }
 

@@ -33,7 +33,7 @@ export class ProductService {
   }
   uploadImage(file: string) {
 
-    return this.http.post('http://localhost:9080/prisma-crm-web/product/uploads', file );
+    return this.http.get('http://localhost:9080/prisma-crm-web/product/uploads/' + file );
   }
   getProductById(id: number) {
     return this.http.get('http://localhost:9080/prisma-crm-web/product/' + id );

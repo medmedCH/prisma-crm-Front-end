@@ -84,7 +84,7 @@
       <div class="form-group row">
         <label for="inputCamera" class="col-sm-2 col-form-label">Camera</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputCamera" placeholder="Brand" formControlName="cameraInput">
+          <input type="text" class="form-control" id="inputCamera" placeholder="Camera" formControlName="cameraInput">
           <div *ngIf="cameraInput.invalid && cameraInput.touched" class="alert alert-danger">
             <div *ngIf=" cameraInput.touched && cameraInput.errors.required">Camera is required</div>
           </div>
@@ -107,7 +107,7 @@
         <label class="col-sm-2 col-form-label">Image</label>
         <div class="col-sm-10">
 
-          <img [src]="imageUrlSrc" style="width:250px;height:200px">
+          <img [src]="imageUrlSrc" style="width:120px;height:200px">
           <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
 
         </div>
@@ -176,11 +176,12 @@
 
     <div class="form-group row">
       <div class="col-sm-10">
-        <button type="button" (click)="addProd()" class="btn btn-primary"><!--[disabled]="!productForm.valid"--> Add
+        <button type="button" (click)="addProd()" class="btn btn-outline-danger"><!--[disabled]="!productForm.valid"--> Add
           Product
         </button>
       </div>
     </div>
+
 
 
   </form>
