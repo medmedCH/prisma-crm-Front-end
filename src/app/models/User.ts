@@ -6,8 +6,9 @@ export class User {
   public firstName: string;
   public lastName: string;
   public password: string;
-
   public email: string;
+  public accountState: string;
+  public role: string;
   public createdAt: Date;
   public lastAuthentificated: Date;
   public passwordLastChanged: Date;
@@ -15,6 +16,7 @@ export class User {
   public confirmationToken: string;
   public address: Address;
   public profileImage: string;
+
 
   constructor(firstName: string, lastName: string, password: string, email: string, phoneNumber: string, profileImage: string) {
     this.firstName = firstName;
@@ -24,4 +26,5 @@ export class User {
     this.phoneNumber = phoneNumber;
     this.profileImage = profileImage;
   }
+
 }

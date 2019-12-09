@@ -63,7 +63,7 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "argon-dashboard-angular:build:production",
+              "browserTarget": "argon-dashboard-angular:build:production"
             }
           }
         },
@@ -81,6 +81,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              "node_modules/angular-notifier/styles.css",
               "src/styles.css"
             ],
             "scripts": [],
