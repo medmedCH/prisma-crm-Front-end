@@ -8,11 +8,12 @@
 
 
       <div class="prod-list">
-        <div class="prod-item" *ngFor="let m of mobileList; let i = index">
+        <a class="prod-item" *ngFor="let m of mobileList; let i = index" routerLink="/front/products/details/{{m.id}}" >
+
           <img src="assets/img/prods/{{m.imageUrl}}" alt="" width="100px" height="200px">
 
           <h1>{{m.name}}</h1>
-        </div>
+        </a>
 
       </div>
 

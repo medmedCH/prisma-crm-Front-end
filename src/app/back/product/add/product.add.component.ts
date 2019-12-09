@@ -97,7 +97,7 @@ export class ProductAddComponent implements OnInit {
       price : this.priceInput.value,
       guarantee : this.guaranteeInput.value,
       brand: this.brandInput.value,
-      memory: this.brandInput.value,
+      memory: this.memoryInput.value,
       resolution : this.resolutionInput.value,
       camera: this.cameraInput.value,
       imageUrl: this.typeInput.value === 'Mobile' ? this.myImage.img : ''

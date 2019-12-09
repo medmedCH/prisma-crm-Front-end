@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FrontProductShowComponent} from './show/front.product.show.component';
 import {FrontProductRouting} from './front.product.routing';
+import {FrontProductDetailsComponent} from './details/front.product.details.component';
 
 
 
@@ -27,7 +28,7 @@ import {FrontProductRouting} from './front.product.routing';
     ReactiveFormsModule,
     FormsModule
   ],
-  declarations: [FrontProductShowComponent],
+  declarations: [FrontProductShowComponent, FrontProductDetailsComponent],
   providers: [ProductService],
 
 })
