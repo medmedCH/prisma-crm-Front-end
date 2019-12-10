@@ -1,0 +1,54 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {StorageService} from '../../services/security/storage.service';
+import {VehiculeRouting} from './vehicule.routing';
+import {VehiculeComponent} from './vehicule.component';
+import {DashboardLayoutModule} from '../dashboardLayout/dashboard.layout.module';
+import {VehiculeService} from '../../services/managers/vehicule.service';
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule, MatPaginatorModule, MatSortModule,
+  MatTableModule,
+  MatToolbarModule
+} from '@angular/material';
+import {AddDialogComponent} from './dialogs/add/add.dialog.component';
+import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
+import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
+@NgModule({
+  imports: [
+    VehiculeRouting,
+    ReactiveFormsModule,
+    CommonModule,
+    NgbModule,
+    DashboardLayoutModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
+  ],
+  declarations: [
+    VehiculeComponent,
+    AddDialogComponent,
+    EditDialogComponent,
+    DeleteDialogComponent
+  ],
+  providers: [VehiculeService, StorageService],
+  entryComponents: [AddDialogComponent,
+    EditDialogComponent,
+    DeleteDialogComponent
+  ],
+})
+export class VehiculeModule { }
