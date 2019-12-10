@@ -23,6 +23,9 @@ import {ErrorInterceptor} from './services/security/error.intercepter';
 import {ProductModule} from './back/product/product.module';
 
 
+
+
+
 @NgModule({
   imports: [
     FrontModule,
@@ -34,7 +37,8 @@ import {ProductModule} from './back/product/product.module';
     ProductModule,
     ROUTING,
     StorageServiceModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   declarations: [
     AppComponent,

@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FrontProductShowComponent} from './show/front.product.show.component';
 import {FrontProductRouting} from './front.product.routing';
 import {FrontProductDetailsComponent} from './details/front.product.details.component';
+import {FrontProductNearestStoreComponent} from './neareststore/front.product.neareststore.component';
 
 
 
@@ -28,7 +29,7 @@ import {FrontProductDetailsComponent} from './details/front.product.details.comp
     ReactiveFormsModule,
     FormsModule
   ],
-  declarations: [FrontProductShowComponent, FrontProductDetailsComponent],
+  declarations: [FrontProductShowComponent, FrontProductDetailsComponent, FrontProductNearestStoreComponent],
   providers: [ProductService],
 
 })

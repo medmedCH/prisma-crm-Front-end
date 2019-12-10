@@ -12,6 +12,8 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ProductAddComponent} from './add/product.add.component';
 import {ProductAddStoreComponent} from './addstore/product.addstore.component';
+import {MapsComponent} from '../../pages/maps/maps.component';
+
 
 
 
@@ -24,9 +26,9 @@ import {ProductAddStoreComponent} from './addstore/product.addstore.component';
     CommonModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
-  declarations: [ProductAllComponent, NgbdModalContent, ProductAddComponent, ProductAddStoreComponent],
+  declarations: [ProductAllComponent, NgbdModalContent, ProductAddComponent, ProductAddStoreComponent, MapsComponent],
   providers: [ProductService],
   exports: [ProductAllComponent],
   bootstrap: [ProductAllComponent],

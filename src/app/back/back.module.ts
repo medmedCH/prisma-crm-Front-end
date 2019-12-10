@@ -9,12 +9,13 @@ import {ClaimBackModule} from './claim/claim.back.module';
 import {ProductModule} from './product/product.module';
 
 
+
 @NgModule({
   imports: [
     BackRouting,
     DashboardLayoutModule,
     ClaimBackModule,
-    ProductModule
+    ProductModule,
   ],
   declarations: [ BackComponent, DashboardComponent],
   providers: [AuthGuard]
