@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from '../../../services/managers/product.service';
-import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-frontproduct-neareststore',
@@ -10,6 +10,10 @@ import {ActivatedRoute} from '@angular/router';
 
 
 export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit  {
+  myStore = {
+    name: '',
+    telephone: ''
+  };
   private longitude;
   private latitude;
   private URL = 'https://maps.google.com/maps?q=15%20rue%20moez&t=&z=13&ie=UTF8&iwloc=&output=embed';
@@ -30,10 +34,16 @@ export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit 
 
   }
   ngAfterViewInit(): void {
-    this.URL = 'https://maps.google.com/maps?q='
-      + 36.837504  + ',' + 10.244193 +
-      '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
-    this.gmap_canvas.nativeElement.src = this.URL;
+    this.productService.getNearestStore(this.longitude, this.latitude).subscribe(e => {
+       console.log(e);
+       this.myStore = e ;
+       this.URL = 'https://maps.google.com/maps?q='
+         + e.address.latitude + ',' + e.address.longtitude +
+         '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
+       this.gmap_canvas.nativeElement.src = this.URL;
+     }, error => {
+       console.log('could not get nearest address');
+     });
   }
 
   ngOnInit(): void {

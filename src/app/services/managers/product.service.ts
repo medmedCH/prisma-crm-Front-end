@@ -55,8 +55,11 @@ export class ProductService {
     return this.http.delete('http://localhost:9080/prisma-crm-web/product/tarif/' + id) ;
   }
   assignTarifToProduct(idProduct: number, idTariff: number) {
-    console.log('hi' + idProduct + ' ' + idTariff);
     return this.http.get('http://localhost:9080/prisma-crm-web/product/assignTarif/' + idProduct + '/' + idTariff ) ;
+  }
+
+  getNearestStore(longtitude , latitude) {
+    return this.http.get('http://localhost:9080/prisma-crm-web/store/getNearesAddress/' + longtitude + '/' + latitude ) ;
   }
 
 
