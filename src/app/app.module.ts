@@ -46,8 +46,10 @@ import {Toast, ToastrModule} from 'ngx-toastr';
     MatInputModule,
     MatButtonModule,
     MatInputModule,
-    ToastrModule.forRoot() // ToastrModule added
-
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-bottom-left'
+    })
   ],
   declarations: [
     AppComponent,

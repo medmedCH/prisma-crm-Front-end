@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserModule} from './User/user.module';
 import {VehiculeModule} from './vehicule/vehicule.module';
 import {ToastrModule} from 'ngx-toastr';
+import {RepairModule} from './repairs/repair.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {ToastrModule} from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     UserModule,
+    RepairModule,
     VehiculeModule
   ],
   declarations: [BackComponent, DashboardComponent, UserProfileComponent],
