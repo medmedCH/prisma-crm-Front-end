@@ -25,6 +25,10 @@ export class ClaimService {
     return this.http.get<Claim[]>(this.claimURL + '/dashboard/reclamation');
   }
 
+  getAllClaimsByUser(idU: number) {
+    return this.http.get<Claim[]>(this.claimURL + '/dashboard/reclamation/userId/' + idU);
+  }
+
   getClaimById(id: number) {
     return this.http.get<Claim>(this.claimURL + '/dashboard/reclamation/' + id);
   }
@@ -52,6 +56,10 @@ export class ClaimService {
   }
   archiverClaim(c: Claim) {
     return this.http.put(this.claimURL + '/dashboard/reclamation/archiver/' + c.id , httpOptions);
+  }
+
+  confirmerClaim(c: Claim) {
+    return this.http.put(this.claimURL + '/dashboard/reclamation/confirmer/' + c.id , httpOptions);
   }
 
 

@@ -1,9 +1,12 @@
 <div class="header"
      style="height: 150px; background: linear-gradient(87deg, #f5365c 0, #f56036 100%) !important; text-align: right;">
   <br>
+  <div class="col-md-11"  *ngIf="(c.createdById === idUserLogged) && (c.status == 'RESOLU')">
+    <button class="btn btn-success btn-sm" (click)="confirmer(c)">Valider</button>
+  </div>
   <div class=" col-md-11" *ngIf="idUserLogged == c.responsable.id">
     <button class="btn btn-facebook" (click)="setIsFaq(c)" *ngIf="c.isFaq != true">FAQ ?</button>
-    <button class="btn btn-default" (click)="deleguer(c)" *ngIf="(c.responsable.id == idUserLogged) && (c.status != 'RESOLU')">Déléguer</button>
+    <button class="btn btn-default" (click)="deleguer(c)" *ngIf="c.status != 'RESOLU'">Déléguer</button>
     <button class="btn btn-success" (click)="resolve(c)" *ngIf="c.status != 'RESOLU'">Résolut ?</button>
   </div>
 </div>

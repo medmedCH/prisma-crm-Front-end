@@ -4,10 +4,10 @@
   <ngb-tabset>
     <ngb-tab title="All">
       <ng-template ngbTabContent>
-        <div class="card shadow">
-          <div class="card-header border-0">
-            <h3 class="mb-0">Tout les réclamations</h3>
-          </div>
+        <h2 *ngIf="collection.data.length === 0" class="vide">
+          Vous n'avez pas de réclamation pour le moment</h2>
+
+        <div class="card shadow" *ngIf="collection.data.length !== 0">
           <div class="table-responsive">
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
@@ -16,6 +16,7 @@
                 <th scope="col">Code</th>
                 <th scope="col">Titre</th>
                 <th scope="col">Description</th>
+                <th scope="col">Priorité</th>
                 <th scope="col">État</th>
                 <th scope="col">Date de création</th>
                 <th scope="col" class="text-center">Actions</th>
@@ -33,10 +34,11 @@
                 <td>
                   <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
                 </td>
+                <td>{{c.value.priority}}</td>
                 <td>{{c.value.status}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
-                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]" >Afficher</a>
                   <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>
                   <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>
                 </td>
@@ -49,8 +51,8 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning" (click)="deleteSelectedClaims()"> Supprimer</button>
-              <button class="btn btn-facebook" (click)="archiverSelectedClaims()"> Archiver</button>
+              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()"  *ngIf="loggedUserRole != 'Client'"> Archiver</button>
             </div>
             <div class="col-md-8 text-right">
               <nav aria-label="...">
@@ -109,19 +111,18 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning" (click)="deleteSelectedClaims()"> Supprimer</button>
-              <button class="btn btn-facebook" (click)="archiverSelectedClaims()"> Archiver</button>
+              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
             </div>
             <div class="col-md-8 text-right">
               <nav aria-label="...">
-                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                <pagination-controls (pageChange)="pageChangedEnAttente($event)"></pagination-controls>
               </nav>
             </div>
           </div>
         </div>
       </ng-template>
     </ngb-tab>
-
 
     <ngb-tab title="En Cours">
       <ng-template ngbTabContent>
@@ -168,12 +169,12 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning" (click)="deleteSelectedClaims()"> Supprimer</button>
-              <button class="btn btn-facebook" (click)="archiverSelectedClaims()"> Archiver</button>
+              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
             </div>
             <div class="col-md-8 text-right">
               <nav aria-label="...">
-                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                <pagination-controls (pageChange)="pageChangedEnCours($event)"></pagination-controls>
               </nav>
             </div>
           </div>
@@ -181,8 +182,7 @@
       </ng-template>
     </ngb-tab>
 
-
-    <ngb-tab title="Résolut">
+    <ngb-tab title="Résolu(s)">
       <ng-template ngbTabContent>
         <h2 *ngIf="collection.dataResolu.length === 0"  class="vide">Pas de réclamation résolu pour le moment</h2>
         <div class="card shadow" *ngIf="collection.dataResolu.length !== 0">
@@ -216,6 +216,7 @@
                 <td class="text-center">
                   <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>
                   <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>
+                  <button class="btn btn-success btn-sm" (click)="confirmer(c.value)" *ngIf="c.value.createdById === loggedUserId">Valider</button>
                   <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>
                 </td>
               </tr>
@@ -227,12 +228,12 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning" (click)="deleteSelectedClaims()"> Supprimer</button>
-              <button class="btn btn-facebook" (click)="archiverSelectedClaims()"> Archiver</button>
+              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
             </div>
             <div class="col-md-8 text-right">
               <nav aria-label="...">
-                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                <pagination-controls (pageChange)="pageChangedResolu($event)"></pagination-controls>
               </nav>
             </div>
           </div>
@@ -240,8 +241,65 @@
       </ng-template>
     </ngb-tab>
 
+    <ngb-tab title="Confirmé(s)">
+      <ng-template ngbTabContent>
+        <h2 *ngIf="collection.dataConfirmed.length === 0"  class="vide">Pas de réclamation confirmée pour le moment</h2>
+        <div class="card shadow" *ngIf="collection.dataConfirmed.length !== 0">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Code</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">État</th>
+                <th scope="col">Date de création</th>
+                <th scope="col" class="text-center">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of collection.dataConfirmed | paginate: config ; let i =index">
+                <td>
+                  <label class="form-radio">
+                    <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
+                  </label>
+                </td>
+                <td>{{c.value.code}}</td>
+                <td>{{c.value.title}}</td>
+                <td>
+                  <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
+                </td>
+                <td>{{c.value.status}}</td>
+                <td>{{c.value.createdAt}}</td>
+                <td class="text-center">
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>
+                </td>
+              </tr>
 
-    <ngb-tab title="Fermée">
+              </tbody>
+            </table>
+
+          </div>
+          <div class="card-footer row">
+            <div class="col-md-4">
+              Par séléction multiple :
+              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
+            </div>
+            <div class="col-md-8 text-right">
+              <nav aria-label="...">
+                <pagination-controls (pageChange)="pageChangedConfirmed($event)"></pagination-controls>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Fermée(s)" *ngIf="loggedUserRole != 'Client'">
       <ng-template ngbTabContent>
         <h2 *ngIf="collection.dataFermee.length === 0" class="vide">
           Pas de réclamation férmée (Archivée) pour le moment</h2>
@@ -288,12 +346,12 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning" (click)="deleteSelectedClaims()"> Supprimer</button>
-              <button class="btn btn-facebook" (click)="desarchiverSelectedClaims()"> Désarchiver</button>
+              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="desarchiverSelectedClaims()"> Désarchiver</button>
             </div>
             <div class="col-md-8 text-right">
               <nav aria-label="...">
-                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                <pagination-controls (pageChange)="pageChangedFermee($event)"></pagination-controls>
               </nav>
             </div>
           </div>
@@ -302,60 +360,3 @@
     </ngb-tab>
   </ngb-tabset>
 </div>
-<!--<div class="col-md-12">-->
-<!--  <div class="card shadow">-->
-<!--    <div class="card-header border-0">-->
-<!--      <h3 class="mb-0">Tout les réclamations</h3>-->
-<!--    </div>-->
-<!--    <div class="table-responsive">-->
-<!--      <table class="table align-items-center table-flush">-->
-<!--        <thead class="thead-light">-->
-<!--        <tr>-->
-<!--          <th scope="col"></th>-->
-<!--          <th scope="col">Code</th>-->
-<!--          <th scope="col">Titre</th>-->
-<!--          <th scope="col">Description</th>-->
-<!--          <th scope="col">État</th>-->
-<!--          <th scope="col">Date de création</th>-->
-<!--          <th scope="col" class="text-center">Actions</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr *ngFor="let c of collection.data  | paginate: config ; let i =index">-->
-<!--          <td>-->
-<!--            <label class="form-radio">-->
-<!--              <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">-->
-<!--            </label>-->
-<!--          </td>-->
-<!--          <td>{{c.value.code}}</td>-->
-<!--          <td>{{c.value.title}}</td>-->
-<!--          <td>-->
-<!--            <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>-->
-<!--          </td>-->
-<!--          <td>{{c.value.status}}</td>-->
-<!--          <td>{{c.value.createdAt}}</td>-->
-<!--          <td class="text-center">-->
-<!--            <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>-->
-<!--            <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>-->
-<!--            <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>-->
-<!--          </td>-->
-<!--        </tr>-->
-
-<!--        </tbody>-->
-<!--      </table>-->
-
-<!--    </div>-->
-<!--    <div class="card-footer row">-->
-<!--      <div class="col-md-4">-->
-<!--        Par séléction multiple :-->
-<!--        <button class="btn btn-warning" (click)="deleteSelectedClaims()"> Supprimer</button>-->
-<!--        <button class="btn btn-facebook" (click)="archiverSelectedClaims()"> Archiver</button>-->
-<!--      </div>-->
-<!--      <div class="col-md-8 text-right">-->
-<!--        <nav aria-label="...">-->
-<!--          <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>-->
-<!--        </nav>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

@@ -4,7 +4,7 @@ import {RoleGuard} from '../../services/security/role.guard';
 import {AllClaimBackComponent} from './all/all.claim.back';
 import {ShowClaimBackComponent} from './show/show.claim.back.component';
 import {AllClaimsResolverService} from '../../services/resolvers/all.claims.resolver.service';
-import {ClaimDetailResolverService} from "../../services/resolvers/claim.detail.resolver.service";
+import {ClaimDetailResolverService} from '../../services/resolvers/claim.detail.resolver.service';
 
 const routes: Routes = [
   { path: '', component: AllClaimBackComponent , resolve : { listClaim: AllClaimsResolverService }/*, canActivate: [RoleGuard], data: { roles: ['Admin','financial'] } */ },

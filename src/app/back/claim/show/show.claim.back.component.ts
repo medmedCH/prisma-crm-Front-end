@@ -121,4 +121,16 @@ export class ShowClaimBackComponent implements OnInit {
         }
       );
   }
+
+  //par le client
+  confirmer(c: Claim) {
+    this.claimService.confirmerClaim(c).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 }

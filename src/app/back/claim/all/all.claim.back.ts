@@ -7,7 +7,6 @@ import {AlertService} from '../../../services/common/AlerteService';
 import {LoginService} from '../../../services/security/login.service';
 import {Claim} from '../../../models/Claim';
 import {EditClaimBackComponent} from '../editClaim/edit.claim.back.component';
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-all-claim-back',
@@ -16,16 +15,26 @@ import {forEach} from "@angular/router/src/utils/collection";
 })
 export class AllClaimBackComponent {
 
+  loggedUserId = StorageService.get('currentUser').userId;
+  loggedUserRole = StorageService.get('currentUser').role;
+
   allClaims: Claim[];
   tableChecked = new Array;
   claimToEdit: Claim;
   config = {itemsPerPage: 0, currentPage: 0, totalItems: 0};
+  configEnCours = {itemsPerPage: 0, currentPage: 0, totalItems: 0};
+  configEnAttente = {itemsPerPage: 0, currentPage: 0, totalItems: 0};
+  configFermee = {itemsPerPage: 0, currentPage: 0, totalItems: 0};
+  configConfirmed = {itemsPerPage: 0, currentPage: 0, totalItems: 0};
+  configResolu = {itemsPerPage: 0, currentPage: 0, totalItems: 0};
+
   collection = {
     count: 10,
     data: [],
     dataEnCours: [],
     dataEnAttente: [],
     dataFermee: [],
+    dataConfirmed: [],
     dataResolu: []
   };
 
@@ -40,7 +49,7 @@ export class AllClaimBackComponent {
     this.allClaims = this.route.snapshot.data['listClaim'];
   }
 
-  // tslint:disable-next-line:use-life-cycle-interface
+  // tslint:disable-next-line:use-life-cycle-interface use-lifecycle-interface
   ngOnInit() {
     // @ts-ignore
     this.fetchData();
@@ -48,51 +57,85 @@ export class AllClaimBackComponent {
 
   fetchData() {
     this.collection.count = this.allClaims.length;
-    for (var i = 0; i < this.collection.count; i++) {
-      const cl = this.allClaims.pop();
-      this.collection.data.push(
-        {
-          id: cl.id,
-          value: cl
-        }
-      );
-      if (cl.status === 'EN_ATTENTE') {
-        this.collection.dataEnAttente.push(
-          {
-            id: cl.id,
-            value: cl
-          }
-        );
-      }
-      if (cl.status === 'RESOLU') {
-        this.collection.dataResolu.push(
-          {
-            id: cl.id,
-            value: cl
-          }
-        );
-      }
-      if (cl.status === 'EN_COURS') {
-        this.collection.dataEnCours.push(
-          {
-            id: cl.id,
-            value: cl
-          }
-        );
-      }
-      if (cl.status === 'FERME_SANS_SOLUTION') {
-        this.collection.dataFermee.push(
-          {
-            id: cl.id,
-            value: cl
-          }
-        );
-      }
+    for (let i = 0; i < this.collection.count; i++) {
+        const cl = this.allClaims.pop();
 
-      this.config = {
+        this.collection.data.push(
+          {
+            id: cl.id,
+            value: cl
+          }
+        );
+        if (cl.status === 'EN_ATTENTE') {
+          this.collection.dataEnAttente.push(
+            {
+              id: cl.id,
+              value: cl
+            }
+          );
+        }
+        if (cl.status === 'RESOLU') {
+          this.collection.dataResolu.push(
+            {
+              id: cl.id,
+              value: cl
+            }
+          );
+        }
+        if (cl.status === 'EN_COURS') {
+          this.collection.dataEnCours.push(
+            {
+              id: cl.id,
+              value: cl
+            }
+          );
+        }
+        if (cl.status === 'FERME_SANS_SOLUTION') {
+          this.collection.dataFermee.push(
+            {
+              id: cl.id,
+              value: cl
+            }
+          );
+        }
+        if (cl.status === 'CONFIRMEE') {
+          this.collection.dataConfirmed.push(
+            {
+              id: cl.id,
+              value: cl
+            }
+          );
+        }
+
+        this.config = {
+          itemsPerPage: 5,
+          currentPage: 1,
+          totalItems: this.collection.count
+        };
+        this.configEnCours = {
+          itemsPerPage: 5,
+          currentPage: 1,
+          totalItems: this.collection.dataEnCours.length
+        };
+        this.configEnAttente = {
+          itemsPerPage: 5,
+          currentPage: 1,
+          totalItems: this.collection.dataEnAttente.length
+        };
+        this.configConfirmed = {
+          itemsPerPage: 5,
+          currentPage: 1,
+          totalItems: this.collection.dataConfirmed.length
+        };
+        this.configFermee = {
+          itemsPerPage: 5,
+          currentPage: 1,
+          totalItems: this.collection.dataFermee.length
+        };
+        this.configResolu = {
         itemsPerPage: 5,
         currentPage: 1,
-        totalItems: this.collection.count
+        totalItems: this.collection.dataResolu.length
       };
     }
   }
@@ -127,11 +170,11 @@ export class AllClaimBackComponent {
 
   deleteSelectedClaims() {
     if (confirm('Are you sure to delete those claims !!! ')) {
-      let tempChecked = [];
+      const tempChecked = [];
       this.tableChecked.forEach(e => tempChecked.push(e));
       for (let i = 0; i < tempChecked.length; i++) {
-        let tcv = tempChecked[i];
-        let index = this.collection.data.findIndex(item => item.id === tcv.id);
+        const tcv = tempChecked[i];
+        const index = this.collection.data.findIndex(item => item.id === tcv.id);
         this.claimService.deleteClaim(tcv).subscribe(
             response => {
             },
@@ -140,10 +183,10 @@ export class AllClaimBackComponent {
             }
           );
         this.collection.data.splice(index, 1);
-        let indexChecked = this.tableChecked.findIndex(item => item.id === tcv.id);
+        const indexChecked = this.tableChecked.findIndex(item => item.id === tcv.id);
         this.tableChecked.splice(indexChecked, 1);
       }
-      tempChecked.forEach(obj=> {
+      tempChecked.forEach(obj => {
         obj.checked = false;
       });
     }
@@ -151,11 +194,11 @@ export class AllClaimBackComponent {
 
   archiverSelectedClaims() {
     if (confirm('Are you sure to archive those claims !!! ')) {
-      let tempChecked = [];
+      const tempChecked = [];
       this.tableChecked.forEach(e => tempChecked.push(e));
       for (let i = 0; i < tempChecked.length; i++) {
-        let tcv = tempChecked[i];
-        let index = this.collection.data.findIndex(item => item.id === tcv.id);
+        const tcv = tempChecked[i];
+        const index = this.collection.data.findIndex(item => item.id === tcv.id);
         this.claimService.archiverClaim(tcv).subscribe(
             response => {
             },
@@ -166,26 +209,25 @@ export class AllClaimBackComponent {
         this.collection.dataEnCours.splice(index, 1);
         this.collection.dataEnAttente.splice(index, 1);
         this.collection.dataResolu.splice(index, 1);
-        let indexChecked = this.tableChecked.findIndex(item => item.id === tcv.id);
+        const indexChecked = this.tableChecked.findIndex(item => item.id === tcv.id);
         this.tableChecked.splice(indexChecked, 1);
       }
-      tempChecked.forEach(obj=> {
+      tempChecked.forEach(obj => {
         obj.checked = false;
-        obj.status = 'FERME_SANS_SOLUTION'
+        obj.status = 'FERME_SANS_SOLUTION';
       });
     }
   }
   desarchiverSelectedClaims() {
     if (confirm('Are you sure to archive those claims !!! ')) {
-      let tempChecked = [];
-      //selectionner que les réclamation FERME_SANS_SOLUTION
+      const tempChecked = [];
+      // selectionner que les réclamation FERME_SANS_SOLUTION
       this.tableChecked.forEach(e => {
-        if (e.status === 'FERME_SANS_SOLUTION')
-        { tempChecked.push(e); }
+        if (e.status === 'FERME_SANS_SOLUTION') { tempChecked.push(e); }
       });
       for (let i = 0; i < tempChecked.length; i++) {
-        let tcv = tempChecked[i];
-        let index = this.collection.dataFermee.findIndex(item => item.id === tcv.id);
+        const tcv = tempChecked[i];
+        const index = this.collection.dataFermee.findIndex(item => item.id === tcv.id);
         this.claimService.desarchiverClaim(tcv).subscribe(
             response => {
             },
@@ -194,12 +236,12 @@ export class AllClaimBackComponent {
             }
           );
         this.collection.dataFermee.splice(index, 1);
-        let indexChecked = this.tableChecked.findIndex(item => item.id === tcv.id);
+        const indexChecked = this.tableChecked.findIndex(item => item.id === tcv.id);
         this.tableChecked.splice(indexChecked, 1);
       }
-      tempChecked.forEach(obj=> {
+      tempChecked.forEach(obj => {
         obj.checked = false;
-        obj.status = 'EN_COURS'
+        obj.status = 'EN_COURS';
       });
     }
   }
@@ -207,5 +249,33 @@ export class AllClaimBackComponent {
 
   pageChanged(event) {
     this.config.currentPage = event;
+  }
+  pageChangedEnCours(event) {
+    this.configEnCours.currentPage = event;
+  }
+  pageChangedEnAttente(event) {
+    this.configEnAttente.currentPage = event;
+  }
+  pageChangedResolu(event) {
+    this.configResolu.currentPage = event;
+  }
+  pageChangedFermee(event) {
+    this.configFermee.currentPage = event;
+  }
+  pageChangedConfirmed(event) {
+    this.configConfirmed.currentPage = event;
+  }
+
+  confirmer(c: Claim) {
+    this.claimService.confirmerClaim(c).subscribe(
+      response => {
+          const index = this.collection.dataResolu.findIndex(item => item.id === c.id);
+          this.collection.dataResolu.splice(index, 1);
+          console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
