@@ -22,6 +22,7 @@ import {AlertService} from './services/common/AlerteService';
 import {ErrorInterceptor} from './services/security/error.intercepter';
 import {ProductModule} from './back/product/product.module';
 import {NotesClaimService} from './services/managers/notesClaim.service';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {NotesClaimService} from './services/managers/notesClaim.service';
     ProductModule,
     ROUTING,
     StorageServiceModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFontAwesomeModule
   ],
   declarations: [
     AppComponent,

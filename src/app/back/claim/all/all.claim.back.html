@@ -38,9 +38,9 @@
                 <td>{{c.value.status}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
-                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]" >Afficher</a>
-                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>
-                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]" ><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
 
@@ -51,7 +51,7 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
               <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()"  *ngIf="loggedUserRole != 'Client'"> Archiver</button>
             </div>
             <div class="col-md-8 text-right">
@@ -98,9 +98,9 @@
                 <td>{{c.value.status}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
-                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>
-                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>
-                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
 
@@ -111,7 +111,7 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
               <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
             </div>
             <div class="col-md-8 text-right">
@@ -156,9 +156,9 @@
                 <td>{{c.value.status}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
-                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>
-                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>
-                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
 
@@ -169,7 +169,7 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
               <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
             </div>
             <div class="col-md-8 text-right">
@@ -214,10 +214,10 @@
                 <td>{{c.value.status}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
-                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>
-                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>
-                  <button class="btn btn-success btn-sm" (click)="confirmer(c.value)" *ngIf="c.value.createdById === loggedUserId">Valider</button>
-                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-success btn-sm" (click)="confirmer(c.value)" *ngIf="c.value.createdById === loggedUserId"><i class="fas fa-check"></i> Valider</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
 
@@ -228,7 +228,7 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
               <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
             </div>
             <div class="col-md-8 text-right">
@@ -273,9 +273,9 @@
                 <td>{{c.value.status}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
-                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>
-                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>
-                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
 
@@ -286,7 +286,7 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
               <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
             </div>
             <div class="col-md-8 text-right">
@@ -333,9 +333,9 @@
                 <td>{{c.value.status}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
-                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]">Afficher</a>
-                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)">Modifier</button>
-                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)">Supprimer</button>
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
 
@@ -346,7 +346,7 @@
           <div class="card-footer row">
             <div class="col-md-4">
               Par séléction multiple :
-              <button class="btn btn-warning btn-sm" (click)="deleteSelectedClaims()"> Supprimer</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
               <button class="btn btn-facebook btn-sm" (click)="desarchiverSelectedClaims()"> Désarchiver</button>
             </div>
             <div class="col-md-8 text-right">
