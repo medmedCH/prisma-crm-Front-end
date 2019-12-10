@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ProductAddComponent} from './add/product.add.component';
+import {ProductAddStoreComponent} from './addstore/product.addstore.component';
 
 
 
@@ -25,7 +26,7 @@ import {ProductAddComponent} from './add/product.add.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  declarations: [ProductAllComponent, NgbdModalContent, ProductAddComponent],
+  declarations: [ProductAllComponent, NgbdModalContent, ProductAddComponent, ProductAddStoreComponent],
   providers: [ProductService],
   exports: [ProductAllComponent],
   bootstrap: [ProductAllComponent],
