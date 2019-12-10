@@ -62,5 +62,13 @@ export class ProductService {
     return this.http.get('http://localhost:9080/prisma-crm-web/store/getNearesAddress/' + longtitude + '/' + latitude ) ;
   }
 
+  getAllStores() {
+    return this.http.get('http://localhost:9080/prisma-crm-web/store/all') ;
+  }
+
+  getStoreById(id: number) {
+    return this.http.get('http://localhost:9080/prisma-crm-web/store/' + id) ;
+  }
+
 
 }

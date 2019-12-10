@@ -47,10 +47,11 @@
         </div>
         <div class="map-bloc">
           <div class="form-group" >
-            <label for="exampleFormControlSelect1">Choose a store</label>
+            <label for="exampleFormControlSelect1">Find a store</label>
             <div style="display: flex">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>-</option>
+              <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="selectedStr">
+                <option disabled></option>
+                <option *ngFor="let s of storeList" [value]="s.id"> {{s.name}}</option>
 
               </select>
               <button type="button" class="btn btn-outline-success" (click)="seacrhStore()">Search</button>

@@ -20,6 +20,8 @@ export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit 
       closeAt: new Date(),
     }]
   };
+  storeList ;
+  selectedStr;
   private longitude;
   private latitude;
   private URL = 'https://maps.google.com/maps?q=15%20rue%20moez&t=&z=13&ie=UTF8&iwloc=&output=embed';
@@ -46,11 +48,21 @@ export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit 
 
   seacrhStore() {
 
-    this.URL = 'https://maps.google.com/maps?q='
+   /* this.URL = 'https://maps.google.com/maps?q='
       + 36.827795 + ',' + 10.196342 +
       '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
-    this.gmap_canvas.nativeElement.src = this.URL;
+    this.gmap_canvas.nativeElement.src = this.URL;*/
+    console.log(this.selectedStr);
+    this.productService.getStoreById(this.selectedStr).subscribe(data => {
+      this.myStore = data ;
+      this.URL = 'https://maps.google.com/maps?q='
+        + data.address.latitude + ',' + data.address.longtitude +
+        '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
+      this.gmap_canvas.nativeElement.src = this.URL;
+    });
   }
+
+
   ngAfterViewInit(): void {
     this.productService.getNearestStore(this.longitude, this.latitude).subscribe(e => {
        console.log(e);
@@ -65,6 +77,9 @@ export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit 
   }
 
   ngOnInit(): void {
+    this.productService.getAllStores().subscribe(data =>{
+      this.storeList = data;
+    });
   }
 
 
