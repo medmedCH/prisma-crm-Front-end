@@ -10,10 +10,55 @@
           <img src="assets/img/store-icon.jpg" alt="" class="img-store">
           <h2>{{myStore.name}}</h2>
           <h2>Telephone: {{myStore.telephone}}</h2>
+          <h2>
+            Store Hours:
+          </h2>
+
+          <div class="table-responsive">
+            <!-- Projects table -->
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Open At</th>
+                <th scope="col">Close At</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let s of filterBy('id')">
+                <th scope="row" *ngIf=s.openAt>
+                  {{s.day}}
+                </th>
+                <td>
+                  {{s.openAt}}
+                </td>
+                <td>
+                 {{s.closeAt}}
+                </td>
+
+              </tr>
+
+              </tbody>
+            </table>
+          </div>
 
 
         </div>
         <div class="map-bloc">
+          <div class="form-group" >
+            <label for="exampleFormControlSelect1">Choose a store</label>
+            <div style="display: flex">
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>-</option>
+
+              </select>
+              <button type="button" class="btn btn-outline-success" (click)="seacrhStore()">Search</button>
+            </div>
+
+          </div>
+
+
           <!--   <img width="300"  height="200" src="https://api.mapbox.com/v4/mapbox.emerald/pin-s-heart+285A98(9.5375,33.8869),pin-s-heart+285A98(9.7,34.969)/9.5375,34.9111,7/600x300@2x.png?access_token=pk.eyJ1IjoiYXRlZmF5ZWRpIiwiYSI6ImNrM3MzOWlmYzAybTIzb21ubnBuOGVjbjcifQ.uk056W9dpiC61YzpZgpoWg" > -->
           <iframe #gmap_canvas  width="600" height="500" id="gmap_canvas" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
         </div>

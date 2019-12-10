@@ -12,7 +12,13 @@ import {ProductService} from '../../../services/managers/product.service';
 export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit  {
   myStore = {
     name: '',
-    telephone: ''
+    telephone: '',
+    storeHoursList: [{
+      id: 0,
+      day: '',
+      openAt: new Date(),
+      closeAt: new Date(),
+    }]
   };
   private longitude;
   private latitude;
@@ -33,6 +39,18 @@ export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit 
 
 
   }
+  filterBy(prop) {
+    return this.myStore.storeHoursList.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
+  }
+
+
+  seacrhStore() {
+
+    this.URL = 'https://maps.google.com/maps?q='
+      + 36.827795 + ',' + 10.196342 +
+      '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
+    this.gmap_canvas.nativeElement.src = this.URL;
+  }
   ngAfterViewInit(): void {
     this.productService.getNearestStore(this.longitude, this.latitude).subscribe(e => {
        console.log(e);
@@ -48,4 +66,6 @@ export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit 
 
   ngOnInit(): void {
   }
+
+
 }
