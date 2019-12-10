@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ProductModel} from '../../models/orderModule/ProductModel';
 import {CartsService} from '../../services/carts.service';
 import {CartModel} from '../../models/orderModule/CartModel';
@@ -9,7 +9,7 @@ import {ProductCartRow} from '../../models/orderModule/ProductCartRow';
   templateUrl: './products-index-front-content.component.html',
   styleUrls: ['./products-index-front-content.component.scss']
 })
-export class ProductsIndexFrontContentComponent implements OnInit {
+export class ProductsIndexFrontContentComponent implements OnInit, AfterViewInit {
 
   products: Array<ProductModel> = new Array<ProductModel>();
   carts: Array<CartModel> = new Array<CartModel>();
@@ -37,8 +37,8 @@ export class ProductsIndexFrontContentComponent implements OnInit {
         console.log('Cart already Exist');
         this.service.changeCurrentCart(this.currentCart);
         this.service.getCartRows(this.currentCart).subscribe(data => {
-        console.table(data);
-        this.currentCart.rows=data;
+          console.table(data);
+          this.currentCart.rows = data;
           sessionStorage.setItem('cart', JSON.stringify(this.currentCart));
         });
         sessionStorage.setItem('cart', JSON.stringify(this.currentCart));
@@ -51,8 +51,22 @@ export class ProductsIndexFrontContentComponent implements OnInit {
 
   }
 
+  ngAfterViewInit(): void {
+  }
   createCart() {
 
+  }
+
+  findProductInCart(PRODUCT: ProductModel) {
+    this.currentCart.rows = new Array<ProductCartRow>();
+    this.currentCart = <CartModel>JSON.parse(sessionStorage.getItem('cart'));
+    console.log(this.currentCart.rows);
+    for (const x of this.currentCart.rows) {
+      if (x.product.id === PRODUCT.id) {
+        return true;
+      }
+    }
+    return false;
   }
 
 
