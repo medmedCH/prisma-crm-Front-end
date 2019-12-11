@@ -22,6 +22,7 @@ import {AlertService} from './services/common/AlerteService';
 import {ErrorInterceptor} from './services/security/error.intercepter';
 import {ProductModule} from './back/product/product.module';
 
+// import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -38,6 +39,8 @@ import {ProductModule} from './back/product/product.module';
     ROUTING,
     StorageServiceModule,
     ReactiveFormsModule,
+    // MatAutocompleteModule,
+
 
   ],
   declarations: [

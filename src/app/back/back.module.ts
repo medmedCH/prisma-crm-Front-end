@@ -16,6 +16,9 @@ import {ProductModule} from './product/product.module';
     DashboardLayoutModule,
     ClaimBackModule,
     ProductModule,
+
+
+
   ],
   declarations: [ BackComponent, DashboardComponent],
   providers: [AuthGuard]

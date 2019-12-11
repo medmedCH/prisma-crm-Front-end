@@ -7,6 +7,7 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {BehaviorSubject} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../../../models/Product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-all',
@@ -86,7 +87,7 @@ export class ProductAllComponent implements OnInit {
   prod;
   s: BehaviorSubject<any> ;
 
-  constructor(private productService: ProductService, private modalService: NgbModal) {
+  constructor(private productService: ProductService, private modalService: NgbModal, private router: Router) {
     // this.getProds();
   }
   getProds() {
@@ -105,6 +106,7 @@ export class ProductAllComponent implements OnInit {
     // this.liste.splice(this.liste.indexOf(this.product), 1 );
     this.productService.deleteProduct(id).subscribe((Data) => {
     }) ;
+    this.router.navigate(['/dash/product/all']);
   }
 
 

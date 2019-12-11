@@ -88,5 +88,9 @@ export class ProductService {
     return this.http.put('http://localhost:9080/prisma-crm-web/store/hours?idStore=' + idStore + '&&idTime=' + idHour, {} ) ;
   }
 
+  addstockk(stock, idProd, idStore){
+    return this.http.post('http://localhost:9080/prisma-crm-web/stock/add?idStore=' + idStore + '&idProduct=' + idProd, stock ) ;
+
+  }
 
 }

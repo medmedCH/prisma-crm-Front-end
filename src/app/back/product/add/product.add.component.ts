@@ -5,6 +5,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../../../models/Product';
 import {HttpClient} from '@angular/common/http';
 import {Tariff} from '../../../models/Tariff';
+import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -28,7 +30,7 @@ export class ProductAddComponent implements OnInit {
   myImage;
 
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private toastr: ToastrService, private router: Router) {
   }
 
   productForm = new FormGroup({
@@ -173,6 +175,10 @@ export class ProductAddComponent implements OnInit {
         console.log(res);
         this.myImage = res;
       });
+  }
+
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
 
