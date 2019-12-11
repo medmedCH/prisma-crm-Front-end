@@ -1,5 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ProductService} from '../../../services/managers/product.service';
+import {Store} from '../../../models/Store';
 
 @Component({
   selector: 'app-product-addstore',
@@ -8,41 +10,33 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 
 
-export class ProductAddStoreComponent implements OnInit, AfterViewInit  {
-  private longitude;
-  private latitude;
-  private URL = 'https://maps.google.com/maps?q=15%20rue%20moez&t=&z=13&ie=UTF8&iwloc=&output=embed';
-  @ViewChild('gmap_canvas') gmap_canvas: ElementRef;
+export class ProductAddStoreComponent implements OnInit {
 
 
   storeForm = new FormGroup({
     nameInput: new FormControl('', [Validators.required]),
-     telInput: new FormControl('', [Validators.required]),
-     capacityInput: new FormControl('', [Validators.required]),
-     addressInput: new FormControl('', [Validators.required])
-   });
+    telInput: new FormControl('', [Validators.required]),
+    capacityInput: new FormControl('', [Validators.required]),
+    addressInput: new FormControl('', [Validators.required]),
+    dayInput: new FormControl('', [Validators.required]),
+    openInput: new FormControl('', [Validators.required]),
+    closeInput: new FormControl('', [Validators.required])
+  });
 
   daySt;
   openSt;
   closeSt;
   hoursList = [];
-  types = [];
+  addressList;
+  selectedAdr;
+  store;
+  hour;
+  indexTT;
+  str;
+  hr;
 
-  constructor() {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      sessionStorage.setItem('longitude', String(position.coords.longitude));
-      sessionStorage.setItem('latitude', String(position.coords.latitude));
-      return position.coords;
-    });
-    console.log(sessionStorage.getItem('longitude'));
-    console.log(sessionStorage.getItem('latitude'));
-    this.longitude = parseFloat(sessionStorage.getItem('longitude'));
-    this.latitude = parseFloat(sessionStorage.getItem('latitude'));
-    // Using the get nearest store service :
-
-
+  constructor(private productService: ProductService) {
   }
-
 
 
   get nameInput() {
@@ -52,42 +46,92 @@ export class ProductAddStoreComponent implements OnInit, AfterViewInit  {
   get telInput() {
     return this.storeForm.get('telInput');
   }
+
   get capacityInput() {
     return this.storeForm.get('capacityInput');
   }
+
   get addressInput() {
     return this.storeForm.get('addressInput');
   }
+  get dayInput() {
+    return this.storeForm.get('dayInput');
+  }
 
-  ngOnInit(): void {
+  get openInput() {
+    return this.storeForm.get('openInput');
+  }
+
+  get closeInput() {
+    return this.storeForm.get('closeInput');
   }
 
   addHour() {
+    this.hour = {
+      day: this.dayInput.value,
+      openAt: this.openInput.value,
+      closeAt: this.closeInput.value,
+      store: {}
+    };
+    this.daySt = '';
+    this.openSt = '';
+    this.closeSt = '';
+    this.hoursList.push(this.hour);
   }
 
   editHour() {
+    const hour = {
+      day: this.dayInput.value,
+      openAt: this.openInput.value,
+      closeAt: this.closeInput.value,
+      store: {}
+    };
+    this.hoursList[this.indexTT] = hour ;
   }
+
   showEditHour(t) {
+    this.daySt = t.day;
+    this.openSt = t.openAt;
+    this.closeSt = t.closeAt;
+    this.indexTT = this.hoursList.indexOf(t);
   }
+
   deleteHour(t) {
-  }
-  addStore(){
+    this.indexTT = this.hoursList.indexOf(t);
+    if (this.indexTT !== -1) {
+      this.hoursList.splice(this.indexTT, 1);
+    }
   }
 
-  ngAfterViewInit(): void {
-   /* this.service.getNearestStoreAddress(this.longitude, this.latitude).subscribe(e => {
-      console.log(e);
-      this.URL = 'https://maps.google.com/maps?q='
-        + e.address.latitude + ',' + e.address.longtitude +
-        '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
-      this.gmap_canvas.nativeElement.src = this.URL;
-    }, error => {
-      console.log('could not get nearest address');
-    });*/
+  addStore() {
 
-    this.URL = 'https://maps.google.com/maps?q='
-      + 36.837504  + ',' + 10.244193 +
-      '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
-    this.gmap_canvas.nativeElement.src = this.URL;
+    this.productService.getAddressById(this.selectedAdr).subscribe(data => {
+      this.store = {
+        name : this.nameInput.value,
+        telephone : this.telInput.value,
+        capacity : this.capacityInput.value,
+        address : data,
+        storeHoursList: this.hoursList
+      };
+      this.productService.addStore(this.store).subscribe(val => {
+        this.str = val ;
+        this.hoursList.forEach(h => {
+          this.productService.addHour(h).subscribe(e => {
+            this.hr = e ;
+            console.log(this.str.id + ' ' + this.hr.id);
+            this.productService.assignTimeToStore(this.str.id, this.hr.id).subscribe(r => r);
+          });
+        });
+      });
+    });
   }
+
+
+  ngOnInit(): void {
+    this.productService.getAllAddress().subscribe(data => {
+      this.addressList = data ;
+    });
+  }
+
+
 }

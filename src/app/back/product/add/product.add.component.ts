@@ -28,7 +28,7 @@ export class ProductAddComponent implements OnInit {
   myImage;
 
 
-  constructor(private productService: ProductService, private http: HttpClient) {
+  constructor(private productService: ProductService) {
   }
 
   productForm = new FormGroup({

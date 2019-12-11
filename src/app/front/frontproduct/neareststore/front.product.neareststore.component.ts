@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from '../../../services/managers/product.service';
+import {Store} from '../../../models/Store';
 
 
 @Component({
@@ -9,8 +10,8 @@ import {ProductService} from '../../../services/managers/product.service';
 })
 
 
-export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit  {
-  myStore = {
+export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit {
+  myStore: any = {
     name: '',
     telephone: '',
     storeHoursList: [{
@@ -18,9 +19,18 @@ export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit 
       day: '',
       openAt: new Date(),
       closeAt: new Date(),
-    }]
+    }],
+    address: {
+      'id': 0,
+      'longtitude': 0,
+      'latitude': 0,
+      'displayName': '',
+      'country': '',
+      'zipCode': 0
+    }
   };
-  storeList ;
+
+  storeList;
   selectedStr;
   private longitude;
   private latitude;
@@ -41,6 +51,7 @@ export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit 
 
 
   }
+
   filterBy(prop) {
     return this.myStore.storeHoursList.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
   }
@@ -48,15 +59,15 @@ export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit 
 
   seacrhStore() {
 
-   /* this.URL = 'https://maps.google.com/maps?q='
-      + 36.827795 + ',' + 10.196342 +
-      '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
-    this.gmap_canvas.nativeElement.src = this.URL;*/
+    /* this.URL = 'https://maps.google.com/maps?q='
+       + 36.827795 + ',' + 10.196342 +
+       '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
+     this.gmap_canvas.nativeElement.src = this.URL;*/
     console.log(this.selectedStr);
     this.productService.getStoreById(this.selectedStr).subscribe(data => {
-      this.myStore = data ;
+      this.myStore = data;
       this.URL = 'https://maps.google.com/maps?q='
-        + data.address.latitude + ',' + data.address.longtitude +
+        + this.myStore.address.latitude + ',' + this.myStore.address.longtitude +
         '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
       this.gmap_canvas.nativeElement.src = this.URL;
     });
@@ -65,19 +76,19 @@ export class FrontProductNearestStoreComponent implements OnInit, AfterViewInit 
 
   ngAfterViewInit(): void {
     this.productService.getNearestStore(this.longitude, this.latitude).subscribe(e => {
-       console.log(e);
-       this.myStore = e ;
-       this.URL = 'https://maps.google.com/maps?q='
-         + e.address.latitude + ',' + e.address.longtitude +
-         '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
-       this.gmap_canvas.nativeElement.src = this.URL;
-     }, error => {
-       console.log('could not get nearest address');
-     });
+      console.log(e);
+      this.myStore = e;
+      this.URL = 'https://maps.google.com/maps?q='
+        + this.myStore.address.latitude + ',' + this.myStore.address.longtitude +
+        '&t=&z=15&ie=UTF8&iwloc=&output=embed&maptype=satellite';
+      this.gmap_canvas.nativeElement.src = this.URL;
+    }, error => {
+      console.log('could not get nearest address');
+    });
   }
 
   ngOnInit(): void {
-    this.productService.getAllStores().subscribe(data =>{
+    this.productService.getAllStores().subscribe(data => {
       this.storeList = data;
     });
   }

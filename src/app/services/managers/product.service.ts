@@ -61,6 +61,9 @@ export class ProductService {
   getNearestStore(longtitude , latitude) {
     return this.http.get('http://localhost:9080/prisma-crm-web/store/getNearesAddress/' + longtitude + '/' + latitude ) ;
   }
+  addStore(s){
+      return this.http.post('http://localhost:9080/prisma-crm-web/store/add', s ) ;
+  }
 
   getAllStores() {
     return this.http.get('http://localhost:9080/prisma-crm-web/store/all') ;
@@ -68,6 +71,21 @@ export class ProductService {
 
   getStoreById(id: number) {
     return this.http.get('http://localhost:9080/prisma-crm-web/store/' + id) ;
+  }
+
+  getAllAddress() {
+    return this.http.get('http://localhost:9080/prisma-crm-web/store/Address/all') ;
+  }
+
+  getAddressById(id: number) {
+    return this.http.get('http://localhost:9080/prisma-crm-web/store/address/' + id) ;
+  }
+
+  addHour(h) {
+    return this.http.post('http://localhost:9080/prisma-crm-web/store/hours/add', h ) ;
+  }
+  assignTimeToStore(idStore, idHour) {
+    return this.http.put('http://localhost:9080/prisma-crm-web/store/hours?idStore=' + idStore + '&&idTime=' + idHour, {} ) ;
   }
 
 
