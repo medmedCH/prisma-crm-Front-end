@@ -1,0 +1,36 @@
+<br>
+<br>
+<div class="col-md-12">
+    <div class="card shadow">
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prenom</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Nb Réclam. Ouvert</th>
+                        <th scope="col">Nb Réclam. Résolut</th>
+                        <th scope="col">Nb Réclam. Ouvert et Résolu</th>
+                        <th scope="col">Nb Réclam. Confirmé </th>
+                        <th scope="col">Moy. Assiduité</th>
+                        <th scope="col">Moy. Réponse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of listAg">
+                        <td>{{a.firstName}}</td>
+                        <td>{{a.lastName}}</td>
+                        <td>{{a.role}}</td>
+                        <td>{{a.nbrClaimsOpened}}</td>
+                        <td>{{a.nbrClaimsResolved}}</td>
+                        <td>{{a.nbrClaimsOpenedAndResolved}}</td>
+                        <td>{{a.nbrClaimsConfirmed}}</td>
+                        <td>{{a.moyAssiduite * 1000 | date:'hh:mmaaa'}}</td>
+                        <td>{{a.moyReponse}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

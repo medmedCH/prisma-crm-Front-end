@@ -20,8 +20,8 @@ export class ShowClaimBackComponent implements OnInit {
   noteClaim: NoteClaim;
   notes: NoteClaim[];
   id = this.route.snapshot.params.id;
-  userLogged = StorageService.get('currentUser');
-  idUserLogged = this.userLogged.userId;
+  userLogged;
+  idUserLogged;
 
   constructor(private claimService: ClaimService,
               private notesClaimService: NotesClaimService,
@@ -33,6 +33,8 @@ export class ShowClaimBackComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userLogged = StorageService.get('currentUser');
+    this.idUserLogged = this.userLogged.userId;
     this.claimService.getClaimById(this.id)
       .subscribe(
         response => {

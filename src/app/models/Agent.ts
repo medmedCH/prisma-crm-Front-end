@@ -8,6 +8,7 @@ export class Agent extends User {
   public nbrClaimsOpenedAndResolved: number;
   public nbrClaimsOpened: number;
   public nbrClaimsResolved: number;
+  public nbrClaimsConfirmed: number;
   public moyAssiduite: number;
   public moyReponse: number;
   public dispoClaim: string;

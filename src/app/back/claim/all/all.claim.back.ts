@@ -278,4 +278,9 @@ export class AllClaimBackComponent {
       }
     );
   }
+
+  bipper(c: any) {
+    console.log('cp');
+    this.claimService.bipperAgent(c.responsable.id);
+  }
 }

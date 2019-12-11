@@ -9,11 +9,20 @@ import {Router} from '@angular/router';
 })
 export class FrontComponent {
   title = 'argon-dashboard-angular';
+  bool = false;
 
   constructor(private router: Router) {}
   userLogged = StorageService.get('currentUser');
   logout() {
-    this.router.navigateByUrl('/login');
+    this.router.navigate(['/login']);
     StorageService.clear('currentUser');
+  }
+
+  showDropdown() {
+    if (this.bool === false ) {
+      this.bool = true;
+    } else {
+      this.bool = false;
+    }
   }
 }

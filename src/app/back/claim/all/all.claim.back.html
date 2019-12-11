@@ -18,12 +18,14 @@
                 <th scope="col">Description</th>
                 <th scope="col">Priorité</th>
                 <th scope="col">État</th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Responsable</th>
                 <th scope="col">Date de création</th>
                 <th scope="col" class="text-center">Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let c of collection.data  | paginate: config ; let i =index">
+              <tr *ngFor="let c of collection.data | sort: 'priority' | paginate: config ; let i =index"
+                  [ngClass]="(c.value.status=='EN_ATTENTE')?'attente':''">
                 <td>
                   <label class="form-radio">
                     <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked" value="{{c.value.id}}">
@@ -34,8 +36,35 @@
                 <td>
                   <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
                 </td>
-                <td>{{c.value.priority}}</td>
-                <td>{{c.value.status}}</td>
+                <td *ngIf="c.value.priority == 'FAIBLE'">
+                  <span class="priority faible">Faible</span>
+                </td>
+                <td *ngIf="c.value.priority == 'MOYEN'">
+                  <span class="priority moyenne">Moyenne</span>
+                </td>
+                <td *ngIf="c.value.priority == 'ELEVEE'">
+                  <span class="priority elevee">Elevé</span>
+                </td>
+                <td *ngIf="c.value.priority == 'URGENT'">
+                  <span class="priority urgent">Urgent !</span>
+                </td>
+
+                <td *ngIf="c.value.status == 'EN_ATTENTE'">
+                  <span class="enAtt">En attente</span>
+                </td>
+                <td *ngIf="c.value.status == 'EN_COURS'">
+                  <span class="enC">En cours</span>
+                </td>
+                <td *ngIf="c.value.status == 'RESOLU'">
+                  <span class="resolu">Résolu</span>
+                </td>
+                <td *ngIf="c.value.status == 'CONFIRMEE'">
+                  <span class="confirmee">Confirmé</span>
+                </td>
+                <td *ngIf="c.value.status == 'FERME_SANS_SOLUTION'">
+                  <span class="fermee">Fermé sans solution</span>
+                </td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
                   <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]" ><i class="far fa-eye"></i></a>
@@ -77,14 +106,15 @@
                 <th scope="col"></th>
                 <th scope="col">Code</th>
                 <th scope="col">Titre</th>
-                <th scope="col">Description</th>
-                <th scope="col">État</th>
+                <th scope="col">Descirption</th>
+                <th scope="col">Priorité </th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Résponsable</th>
                 <th scope="col">Date de création</th>
                 <th scope="col" class="text-center">Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let c of collection.dataEnAttente | paginate: config ; let i =index">
+              <tr *ngFor="let c of collection.dataEnAttente | sort: 'priority' | paginate: configEnAttente ; let i =index">
                 <td>
                   <label class="form-radio">
                     <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
@@ -95,9 +125,22 @@
                 <td>
                   <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
                 </td>
-                <td>{{c.value.status}}</td>
+                <td *ngIf="c.value.priority == 'FAIBLE'">
+                  <span class="priority faible">Faible</span>
+                </td>
+                <td *ngIf="c.value.priority == 'MOYEN'">
+                  <span class="priority moyenne">Moyenne</span>
+                </td>
+                <td *ngIf="c.value.priority == 'ELEVEE'">
+                  <span class="priority elevee">Elevé</span>
+                </td>
+                <td *ngIf="c.value.priority == 'URGENT'">
+                  <span class="priority urgent">Urgent !</span>
+                </td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
+                  <button class="btn btn-success btn-sm" (click)="bipper(c.value)" *ngIf="loggedUserRole === 'Admin'">Poke</button>
                   <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
                   <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
                   <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
@@ -137,23 +180,25 @@
                 <th scope="col">Titre</th>
                 <th scope="col">Description</th>
                 <th scope="col">État</th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Responsable</th>
                 <th scope="col">Date de création</th>
                 <th scope="col" class="text-center">Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let c of collection.dataEnCours | paginate: config ; let i =index">
+              <tr *ngFor="let c of collection.dataEnCours | paginate: configEnCours ; let i =index">
                 <td>
                   <label class="form-radio">
                     <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
                   </label>
                 </td>
                 <td>{{c.value.code}}</td>
-                <td>{{c.value.title}}</td>
+                <td>En cours</td>
                 <td>
                   <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
                 </td>
                 <td>{{c.value.status}}</td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
                   <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
@@ -195,12 +240,13 @@
                 <th scope="col">Titre</th>
                 <th scope="col">Description</th>
                 <th scope="col">État</th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Responsable</th>
                 <th scope="col">Date de création</th>
                 <th scope="col" class="text-center">Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let c of collection.dataResolu | paginate: config ; let i =index">
+              <tr *ngFor="let c of collection.dataResolu | paginate: configResolu ; let i =index">
                 <td>
                   <label class="form-radio">
                     <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
@@ -211,7 +257,8 @@
                 <td>
                   <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
                 </td>
-                <td>{{c.value.status}}</td>
+                <td>Résolu</td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
                   <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
@@ -254,12 +301,13 @@
                 <th scope="col">Titre</th>
                 <th scope="col">Description</th>
                 <th scope="col">État</th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Responsable</th>
                 <th scope="col">Date de création</th>
                 <th scope="col" class="text-center">Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let c of collection.dataConfirmed | paginate: config ; let i =index">
+              <tr *ngFor="let c of collection.dataConfirmed | paginate: configConfirmed ; let i =index">
                 <td>
                   <label class="form-radio">
                     <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
@@ -270,7 +318,8 @@
                 <td>
                   <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
                 </td>
-                <td>{{c.value.status}}</td>
+                <td>Confirmé</td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
                   <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
@@ -314,12 +363,13 @@
                 <th scope="col">Titre</th>
                 <th scope="col">Description</th>
                 <th scope="col">État</th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Responsable</th>
                 <th scope="col">Date de création</th>
                 <th scope="col" class="text-center">Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let c of collection.dataFermee | paginate: config ; let i =index">
+              <tr *ngFor="let c of collection.dataFermee | paginate: configFermee ; let i =index">
                 <td>
                   <label class="form-radio">
                     <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
@@ -330,7 +380,8 @@
                 <td>
                   <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
                 </td>
-                <td>{{c.value.status}}</td>
+                <td>Fermé sans solution</td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
                 <td>{{c.value.createdAt}}</td>
                 <td class="text-center">
                   <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>

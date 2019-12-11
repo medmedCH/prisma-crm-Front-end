@@ -9,6 +9,7 @@ import {ClaimBackModule} from './claim/claim.back.module';
 import {ProductModule} from './product/product.module';
 import {PromotionModule} from './promotion/promotion.module';
 import {PromotionService} from '../services/managers/promotion.service';
+import { ScoringAgentComponent } from './scoringAgent/scoring.agent.component';
 
 @NgModule({
   imports: [
@@ -16,9 +17,10 @@ import {PromotionService} from '../services/managers/promotion.service';
     DashboardLayoutModule,
     ClaimBackModule,
     ProductModule,
-    PromotionModule
+    PromotionModule,
+    CommonModule
   ],
-  declarations: [BackComponent, DashboardComponent],
+  declarations: [BackComponent, DashboardComponent, ScoringAgentComponent],
   providers: [AuthGuard, PromotionService]
 })
 export class BackModule {

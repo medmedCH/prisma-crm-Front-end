@@ -4,6 +4,7 @@ import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Claim} from '../../models/Claim';
 import {StorageService} from '../security/storage.service';
+import {Agent} from "../../models/Agent";
 
 const httpOptions =  {
   headers: new HttpHeaders({
@@ -85,7 +86,19 @@ export class ClaimService {
     return this.http.get(this.claimURL + '/dashboard/reclamation/deleguer/' + id);
   }
 
+  getAllAgents() {
+    return this.http.get(this.claimURL + '/dashboard/reclamation/allAg/');
+  }
+
+
   desarchiverClaim(c: any) {
     return this.http.put(this.claimURL + '/dashboard/reclamation/desarchiver/' + c.id , httpOptions);
+  }
+
+  bipperAgent(id: number) {
+    console.log('serv');
+    console.log(id);
+
+    return this.http.post('http://localhost:9080/prisma-crm-web/claim/bipperAgent/' + id , httpOptions);
   }
 }

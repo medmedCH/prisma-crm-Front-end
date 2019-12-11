@@ -16,6 +16,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {EditNoteBackComponent} from './editNoteClaim/edit.note.claim.back.component';
 import {AllClaimsResolverService} from '../../services/resolvers/all.claims.resolver.service';
 import {ClaimDetailResolverService} from '../../services/resolvers/claim.detail.resolver.service';
+import {ArraySortPipe} from '../../services/common/ArraySortPipe';
 
 @NgModule({
   imports: [
@@ -24,8 +25,7 @@ import {ClaimDetailResolverService} from '../../services/resolvers/claim.detail.
     CommonModule,
     NgbModule,
     FormsModule,
-    NgxPaginationModule
-
+    NgxPaginationModule,
   ],
   declarations: [
     AllClaimBackComponent,
@@ -33,7 +33,8 @@ import {ClaimDetailResolverService} from '../../services/resolvers/claim.detail.
     ShowClaimBackComponent,
     AddNoteClaimComponent,
     AllNotesClaimComponent,
-    EditNoteBackComponent
+    EditNoteBackComponent,
+    ArraySortPipe
   ],
   providers: [
     ClaimService,
