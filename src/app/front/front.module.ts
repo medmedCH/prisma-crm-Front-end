@@ -10,6 +10,8 @@ import {FrontRouting} from './front.routing';
 import {FaqModule} from './FAQ/faq.module';
 import {AllFaqResolverService} from '../services/resolvers/all.faq.resolver.service';
 import {FrontProductModule} from './frontproduct/front.product.module';
+import {PromoModule} from './promo/promo.module';
+import {PacModule} from './pac/pac.module';
 
 
 @NgModule({
@@ -19,8 +21,10 @@ import {FrontProductModule} from './frontproduct/front.product.module';
     FaqModule,
     CommonModule,
     RouterModule,
-    FrontProductModule
+    FrontProductModule,
+    PromoModule,
+    PacModule
   ],
-  declarations: [ FrontComponent, HomeComponent, AlertComponent ],
+  declarations: [ FrontComponent, HomeComponent, AlertComponent,   ],
 })
 export class FrontModule { }

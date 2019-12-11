@@ -14,7 +14,10 @@ const routes: Routes = [
       {path: 'scoringAgent', component: ScoringAgentComponent},
       {path: 'claim', loadChildren: './claim/claim.back.module#ClaimBackModule'},
       {path: 'product', loadChildren: './product/product.module#ProductModule'},
-      {path: 'promotion', loadChildren: './promotion/promotion.module#PromotionModule'}
+      {path: 'promotion', loadChildren: './promotion/promotion.module#PromotionModule'},
+      {path: 'offre', loadChildren: './offre/offre.module#OffreModule'},
+      {path: 'pack', loadChildren: './pack/pack.module#PackModule'}
+
     ]
   },
 

@@ -1,4 +1,5 @@
 import {User} from './User';
+import {Promotion} from './Promotion';
 
 
 export class Product {
@@ -17,9 +18,14 @@ export class Product {
   public imageUrl: string;
   public createdAt: string;
   public agent: User;
-
-
-
+  public stock: number;
+  public promotion: Promotion;
+  /*public constructor(id: number, reference: string, name: string, description: string) {
+    this.id = id;
+    this.reference = reference;
+    this.name = name;
+    this.description = description;
+  }*/
 
 
 }

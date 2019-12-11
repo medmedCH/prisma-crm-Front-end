@@ -1,7 +1,7 @@
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
@@ -16,18 +16,21 @@ import {StorageServiceModule} from 'angular-webstorage-service';
 import {FrontModule} from './front/front.module';
 import {BackModule} from './back/back.module';
 import {AuthIntercepter} from './services/security/auth.intercepter';
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {RoleGuard} from './services/security/role.guard';
 import {AlertService} from './services/common/AlerteService';
-import {ErrorInterceptor} from './services/security/error.intercepter';
 import {ProductModule} from './back/product/product.module';
 import {NotesClaimService} from './services/managers/notesClaim.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 // import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
-
-
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   imports: [
@@ -42,6 +45,14 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     ReactiveFormsModule,
     AngularFontAwesomeModule
     // MatAutocompleteModule,
+    BrowserModule, HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     AppComponent,
@@ -63,7 +74,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     },
     NgbActiveModal
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
