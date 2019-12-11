@@ -16,12 +16,15 @@ import {StorageServiceModule} from 'angular-webstorage-service';
 import {FrontModule} from './front/front.module';
 import {BackModule} from './back/back.module';
 import {AuthIntercepter} from './services/security/auth.intercepter';
-import {ReactiveFormsModule} from '@angular/forms';
 import {RoleGuard} from './services/security/role.guard';
 import {AlertService} from './services/common/AlerteService';
 import {ProductModule} from './back/product/product.module';
 import {NotesClaimService} from './services/managers/notesClaim.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { ReactiveFormsModule } from '@angular/forms';
+import {CartsService} from './services/carts.service';
+import {NgxPayPalModule} from 'ngx-paypal';
+
 
 // import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
@@ -61,6 +64,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   declarations: [
     AppComponent,
+    AdminLayoutComponent,
+    AuthLayoutComponent,
+    NgxPayPalModule
   ],
   providers: [
     LoginService,

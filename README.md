@@ -124,8 +124,8 @@ argon-dashboard-angular
 │   │   │   ├── dashboard
 │   │   │   │   ├── dashboard.component.html
 │   │   │   │   ├── dashboard.component.scss
-│   │   │   │   ├── dashboard.component.spec.ts
-│   │   │   │   └── dashboard.component.ts
+│   │   │   │   ├── products.component.spec.ts
+│   │   │   │   └── products.component.ts
 │   │   │   ├── icons
 │   │   │   │   ├── icons.component.html
 │   │   │   │   ├── icons.component.scss

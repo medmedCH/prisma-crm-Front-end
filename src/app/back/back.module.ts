@@ -17,6 +17,14 @@ import {PackService} from '../services/managers/pack.service';
 import {Affiche1Component} from './pack/affiche1/affiche1.component';
 import {AppComponent} from '../app.component';
 import {MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatNativeDateModule, MatSliderModule} from '@angular/material';
+import { OrdersComponent } from './orders/orders.component';
+import { ProductsComponent } from './products/products.component';
+import { CartsComponent } from './carts/carts.component';
+import { QuotationsComponent } from './quotations/quotations.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { EditOrderComponent } from './edit-order/edit-order.component';
+import { ViewOrderComponent } from './view-order/view-order.component';
+
 
 @NgModule({
   imports: [
@@ -33,7 +41,17 @@ import {MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatNativeDateM
     MatSliderModule,
     CommonModule
   ],
-  declarations: [BackComponent, DashboardComponent, Affiche1Component , ScoringAgentComponent],
+  declarations: [BackComponent,
+    DashboardComponent,
+    Affiche1Component,
+    ScoringAgentComponent,
+    OrdersComponent,
+    ProductsComponent,
+    CartsComponent,
+    QuotationsComponent,
+    InvoicesComponent,
+    EditOrderComponent,
+    ViewOrderComponent],
   providers: [AuthGuard, PromotionService, OffreService, PackService, PromotionService],
   entryComponents: [Affiche1Component]
 })
