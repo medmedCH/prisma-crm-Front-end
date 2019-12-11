@@ -8,7 +8,10 @@ import {AfficheComponent} from './affiche/affiche.component';
 import {PackRouting} from './pack.routing';
 import {PackService} from '../../services/managers/pack.service';
 import {AddproductpackComponent} from './addproductpack/addproductpack.component';
-import {NgbdModalContent} from '../pack/affiche/affiche.component';
+
+import {Affiche1Component} from './affiche1/affiche1.component';
+import {DashboardComponent} from '../dashboard/dashboard.component';
+
 
 
 @NgModule({
@@ -21,12 +24,13 @@ import {NgbdModalContent} from '../pack/affiche/affiche.component';
     NgbModule,
 
   ],
-  declarations: [AddComponent, AfficheComponent, AddproductpackComponent, NgbdModalContent
+  declarations: [AddComponent, AfficheComponent, AddproductpackComponent
   ],
   providers: [PackService],
   exports: [AfficheComponent],
   bootstrap: [AfficheComponent],
-  entryComponents: [NgbdModalContent]
+
+
 })
 
 export class PackModule {

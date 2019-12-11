@@ -1,0 +1,15 @@
+{
+  "login": {
+    "title": "نموذج تسجيل الدخول",
+    "email.placeholder": "البريد الإلكتروني هنا",
+    "password.placeholder": "أدخل كلمة المرور",
+    "button.name": "تسجيل الدخول",
+    "forgotpassword.link": "هل نسيت كلمة المرور?",
+    "register.link": "انشاء حساب جديد",
+    "button.en": "الإنجليزية",
+    "button.zh": "الصينية",
+    "button.fr": "الفرنسية",
+    "button.ar": "العربية"
+
+  }
+}

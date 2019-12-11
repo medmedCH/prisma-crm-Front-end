@@ -1,8 +1,9 @@
+
 <div>
 
   <div class="modal-header">
     <h4 class="modal-title">Détails</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <button type="button" class="close" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -21,9 +22,9 @@
 
         </tr>
         </thead>
-        <tbody *ngFor="let x of prd " >
+        <tbody>
 
-        <tr >
+        <tr *ngFor="let x of prd ">
 
           <td>{{x.name}}</td>
           <td>{{x.description}}</td>
@@ -44,7 +45,8 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-dark">Close</button>
   </div>
 
 </div>
+

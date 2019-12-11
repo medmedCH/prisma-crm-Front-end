@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {PromotionService} from '../../services/managers/promotion.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ShowprodenpromotionComponent } from './showprodenpromotion/showprodenpromotion.component';
+import {MatDatepickerModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 
 
 
@@ -20,6 +21,9 @@ import { ShowprodenpromotionComponent } from './showprodenpromotion/showprodenpr
     HttpClientModule,
     FormsModule,
     NgbModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
 
   ],
   declarations: [

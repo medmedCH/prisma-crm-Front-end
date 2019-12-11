@@ -28,7 +28,7 @@ export class PackService {
     return this.http.get('http://localhost:9080/prisma-crm-web/pack/allProduct/' + id);
   }
   getPackprdd(id) {
-    return this.http.get('http://localhost:9080/prisma-crm-web/pack/allPrt/' + id);
+    return this.http.get<Product[]>('http://localhost:9080/prisma-crm-web/pack/allPrt/' + id);
   }
   deleteprd(id, id1) {
     return this.http.delete('http://localhost:9080/prisma-crm-web/pack/deleteproductpack/' + id + '/' + id1);

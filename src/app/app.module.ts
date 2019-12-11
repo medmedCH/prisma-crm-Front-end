@@ -16,14 +16,13 @@ import {StorageServiceModule} from 'angular-webstorage-service';
 import {FrontModule} from './front/front.module';
 import {BackModule} from './back/back.module';
 import {AuthIntercepter} from './services/security/auth.intercepter';
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {RoleGuard} from './services/security/role.guard';
 import {AlertService} from './services/common/AlerteService';
-import {ErrorInterceptor} from './services/security/error.intercepter';
 import {ProductModule} from './back/product/product.module';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -41,7 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     BrowserModule, HttpClientModule,
     TranslateModule.forRoot({
-              loader: {
+      loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
@@ -62,7 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     },
     NgbActiveModal
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

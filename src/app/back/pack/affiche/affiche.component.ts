@@ -2,32 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PackService} from '../../../services/managers/pack.service';
 import {Pack} from '../../../models/Pack';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-
-@Component({
-  selector: 'app-show',
-  templateUrl: './prd.html'
-})
-
-// tslint:disable-next-line:component-class-suffix
-export class NgbdModalContent {
-  @Input() prd;
-
-  constructor(public activeModal: NgbActiveModal, private packservice: PackService) {
-  }
-
-  deleteprdd(id, id1) {
-    this.packservice.deleteprd(id, id1).subscribe(data => 'ok');
-
-    /*
-        window.location.reload();
-    */
-  }
-}
-
-/*
---------------------------------------------------------
-*/
-
+import {Product} from '../../../models/Product';
+import {Offre} from '../../../models/Offre';
+import {Affiche1Component} from '../affiche1/affiche1.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-affiche',
@@ -36,9 +14,10 @@ export class NgbdModalContent {
 })
 export class AfficheComponent implements OnInit {
   pa: Pack[] = [];
-  prd;
+  @Input()
+  index: number;
 
-  constructor(private packservice: PackService, private modalService: NgbModal) {
+  constructor(private packservice: PackService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -50,14 +29,13 @@ export class AfficheComponent implements OnInit {
 
   }
 
-  open(id: number) {
-    const modalRef = this.modalService.open(NgbdModalContent);
-    this.packservice.getPackprdd(id).subscribe(data => {
-      this.prd = data;
-      console.log('data = ');
-      console.log(data);
-      modalRef.componentInstance.prd = data;
-    });
-
+  open(id) {
+    const dialogREf1 = this.dialog.open(Affiche1Component);
+    this.index = id;
+    console.log(this.index);
+    dialogREf1.componentInstance.index = this.index;
+    console.log(dialogREf1.componentInstance.index = this.index);
+    dialogREf1.afterClosed().subscribe(data => this.packservice.getPack().subscribe(data1 => this.pa = data1));
   }
+
 }

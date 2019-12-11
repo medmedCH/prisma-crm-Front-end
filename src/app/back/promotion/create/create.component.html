@@ -1,6 +1,4 @@
 
-
-
 <div class="card m-3">
   <h5 class="card-header">Ajouter Promotion</h5>
   <div class="card-body">
@@ -31,21 +29,26 @@
 
 
       <div class="form-group">
-        <label>Date début</label>
+        <label>Date début: </label>
+        <br>
 
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="choisir une date">
+          <mat-datepicker-toggle matSuffix [for]="picker"  [(ngModel)]="promotion.s_date" >
+
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+<!--
+     [ngClass]="{ 'is-invalid': submitted && f.dd.errors }
         <input type="text" placeholder="choisir une date" formControlName="dd" class="form-control" name="s_date"
                [(ngModel)]="promotion.s_date"
-               [ngClass]="{ 'is-invalid': submitted && f.dd.errors }">
-        <div *ngIf="submitted && f.dd.errors" class="invalid-feedback">
+               [ngClass]="{ 'is-invalid': submitted && f.dd.errors }">-->
+        <!--<div *ngIf="submitted && f.dd.errors" class="invalid-feedback">
 
           <div *ngIf="f.dd.errors.required">Date début obligatoire</div>
-        </div>
+        </div>-->
       </div>
-
-
-
-
-
       <div class="form-group">
         <label>pourcentage</label>
         <input type="text" formControlName="pourcentage" name="percentage" class="form-control"
@@ -81,6 +84,11 @@
         <button class="btn btn-primary mr-1" (click)="addPromotion(promotion)">Ajouter</button>
         <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
       </div>
+      <button class="btn btn-icon btn-2" style="background-color:#172b4d;color: white " type="button"
+              [routerLink]="['/promotion/show']">
+        <span><i class="ni ni-bag-17"></i></span>
+        <span class="btn-inner--text">Liste Promotion</span>
+      </button>
     </form>
   </div>
 </div>

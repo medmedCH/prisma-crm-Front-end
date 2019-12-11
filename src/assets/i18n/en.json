@@ -3,8 +3,12 @@
     "title": "Login Form",
     "email.placeholder": "email Here",
     "password.placeholder": "Enter Password",
-    "button.name": "Signin",
+    "button.name": "Sign in",
+    "forgotpassword.link": "Forgot Password ?",
+    "register.link": "Create New Account",
     "button.en": "English",
-    "button.zh": "Chinese"
+    "button.zh": "Chinese",
+    "button.fr": "French",
+    "button.ar": "Arabic"
   }
 }

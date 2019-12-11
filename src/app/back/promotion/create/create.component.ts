@@ -13,17 +13,16 @@ export class CreateComponent implements OnInit {
   ajoutForm: FormGroup;
   submitted = false;
   promotion: Promotion = new Promotion();
+  prm: Promotion[] = [];
 
   constructor(private formBuilder: FormBuilder, private promotionservice: PromotionService, private router: Router) {
   }
 
   ngOnInit() {
     this.ajoutForm = this.formBuilder.group({
-
-        dd: ['', Validators.required],
+        df: ['', Validators.required],
         pourcentage: ['', Validators.required],
         pd: ['', Validators.required],
-        df: ['', Validators.required],
         nm: ['', Validators.required]
 
       },
@@ -32,8 +31,7 @@ export class CreateComponent implements OnInit {
 
   addPromotion(p) {
     this.promotionservice.addPromotion(p).subscribe(data => 'ok');
-
-
+    this.promotionservice.getpromotion().subscribe(data => this.prm = data);
   }
 
 
@@ -49,15 +47,9 @@ export class CreateComponent implements OnInit {
     if (this.ajoutForm.invalid) {
       return;
     }
-
     // display form values on success
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.ajoutForm.value, null, 4));
 
-    this.router.navigateByUrl('/promotion/show');
-/*
-    window.location.reload();
-*/
-    this.promotionservice.getpromotion().subscribe(data => 'ok');
   }
 
   onReset() {

@@ -32,6 +32,8 @@ export class AddproductpackComponent implements OnInit {
   sub() {
     this.packservice.addproductpack(this.addProductPack.value.produit, this.addProductPack.value.pack)
       .subscribe(data => console.log('mrigul'));
+    this.packservice.getPack().subscribe(data => this.pa = data);
+    this.router.navigateByUrl('/pack/affiche');
   }
 
   onReset() {

@@ -13,6 +13,9 @@ import {OffreModule} from './offre/offre.module';
 import {OffreService} from '../services/managers/offre.service';
 import {PackModule} from './pack/pack.module';
 import {PackService} from '../services/managers/pack.service';
+import {Affiche1Component} from './pack/affiche1/affiche1.component';
+import {AppComponent} from '../app.component';
+import {MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatNativeDateModule, MatSliderModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -22,10 +25,15 @@ import {PackService} from '../services/managers/pack.service';
     ProductModule,
     PromotionModule,
     OffreModule,
-    PackModule
+    PackModule, MatDialogModule, CommonModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatSliderModule
   ],
-  declarations: [BackComponent, DashboardComponent,],
-  providers: [AuthGuard, PromotionService, OffreService, PackService]
+  declarations: [BackComponent, DashboardComponent, Affiche1Component ],
+  providers: [AuthGuard, PromotionService, OffreService, PackService],
+  entryComponents: [Affiche1Component]
 })
 export class BackModule {
 }
