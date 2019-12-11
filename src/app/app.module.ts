@@ -24,6 +24,10 @@ import {ProductModule} from './back/product/product.module';
 import {NotesClaimService} from './services/managers/notesClaim.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
+// import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
+
 
 @NgModule({
   imports: [
@@ -37,6 +41,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     StorageServiceModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule
+    // MatAutocompleteModule,
   ],
   declarations: [
     AppComponent,

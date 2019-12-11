@@ -2,7 +2,10 @@
 
 <div>
   <br>
-
+<div style="margin-left: 900px">
+  <button class="btn btn-success" routerLink="/dash/product/new/">Add Product</button>
+  <button class="btn btn-success" routerLink="/dash/product/store/new/" >Add Store</button>
+</div>
 <h1>Products:</h1> <br>
   <table class="table table-striped">
     <thead>
@@ -27,7 +30,7 @@
       <th scope="row">{{i + 1}}</th>
       <td>{{p.reference}}</td>
       <td>{{p.name}}</td>
-      <td>{{p.description}}</td>
+      <td ><div style="width: 50px;  overflow:hidden;"> {{p.description}}</div></td>
       <td>{{p.type}}</td>
       <td>{{p.guarantee}}</td>
       <td>{{p.price}}</td>

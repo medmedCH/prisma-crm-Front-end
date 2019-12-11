@@ -1,0 +1,194 @@
+<div class="container-add">
+  <h1>Add Product</h1>
+
+  <form [formGroup]="productForm">
+
+    <div class="form-group row">
+      <label for="inputGuarantee" class="col-sm-2 col-form-label">Type</label>
+      <div class="col-sm-10">
+        <div class="form-group">
+
+          <select class="form-control" id="exampleFormControlSelect1" formControlName="typeInput">
+            <option disabled>Choose a type</option>
+            <option *ngFor="let type of types" [ngValue]="type"> {{type}} </option>
+          </select>
+          <div *ngIf="typeInput.invalid && typeInput.touched" class="alert alert-danger">
+            <div *ngIf=" typeInput.touched && typeInput.errors.required">Type is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputRef" class="col-sm-2 col-form-label">Reference</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputRef" placeholder="Reference" formControlName="referenceInput">
+        <div *ngIf="referenceInput.invalid && referenceInput.touched" class="alert alert-danger">
+          <div *ngIf=" referenceInput.touched && referenceInput.errors.required">Reference is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputName" placeholder="Name" formControlName="nameInput">
+        <div *ngIf="nameInput.invalid && nameInput.touched" class="alert alert-danger">
+          <div *ngIf=" nameInput.touched && nameInput.errors.required">Name is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputDescription" placeholder="Description"
+               formControlName="descriptionInput">
+        <div *ngIf="descriptionInput.invalid && descriptionInput.touched" class="alert alert-danger">
+          <div *ngIf=" descriptionInput.touched && descriptionInput.errors.required">Description is required</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mobile-bloc" *ngIf="typeInput.value === 'Mobile'">
+
+      <div class="form-group row">
+        <label for="inputBrand" class="col-sm-2 col-form-label">Brand</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputBrand" placeholder="Brand" formControlName="brandInput">
+          <div *ngIf="brandInput.invalid && brandInput.touched" class="alert alert-danger">
+            <div *ngIf=" brandInput.touched && brandInput.errors.required">Brand is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputMemory" class="col-sm-2 col-form-label">Memory</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputMemory" placeholder="Memory" formControlName="memoryInput">
+          <div *ngIf="memoryInput.invalid && memoryInput.touched" class="alert alert-danger">
+            <div *ngIf=" memoryInput.touched && memoryInput.errors.required">Memory is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputResolution" class="col-sm-2 col-form-label">Resolution</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputResolution" placeholder="Resolution"
+                 formControlName="resolutionInput">
+          <div *ngIf="resolutionInput.invalid && resolutionInput.touched" class="alert alert-danger">
+            <div *ngIf=" resolutionInput.touched && resolutionInput.errors.required">Resolution is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputCamera" class="col-sm-2 col-form-label">Camera</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputCamera" placeholder="Camera" formControlName="cameraInput">
+          <div *ngIf="cameraInput.invalid && cameraInput.touched" class="alert alert-danger">
+            <div *ngIf=" cameraInput.touched && cameraInput.errors.required">Camera is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputGuarantee" class="col-sm-2 col-form-label">Guarantee</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="inputGuarantee" placeholder="Guarantee"
+                 formControlName="guaranteeInput">
+          <div *ngIf="guaranteeInput.invalid && guaranteeInput.touched" class="alert alert-danger">
+            <div *ngIf=" guaranteeInput.touched && guaranteeInput.errors.required">Guarantee is required</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Image</label>
+        <div class="col-sm-10">
+
+          <img [src]="imageUrlSrc" style="width:120px;height:200px">
+          <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="form-group row" *ngIf="typeInput.value != 'ADSL'">
+      <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="inputPrice" placeholder="Price" formControlName="priceInput">
+        <div *ngIf="priceInput.invalid && priceInput.touched" class="alert alert-danger">
+          <div *ngIf=" priceInput.touched && priceInput.errors.required">Price is required</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group row" *ngIf="typeInput.value === 'ADSL'">
+      <label class="col-sm-2 col-form-label">Tariff</label>
+      <div class="col-sm-10">
+
+        <div class="tariff-bloc">
+          <input type="number" class="form-control" placeholder="Connexion speed" formControlName="cnxT" [(ngModel)]="cnxTT">
+          <input type="number" class="form-control" placeholder="Price" formControlName="priceT"  [(ngModel)]="priceTT">
+          <button type="button" class="btn btn-outline-success" (click)="addTariff()">Add Tariff</button>
+          <button *ngIf="tariffList.length" type="button" class="btn btn-outline-warning" (click)="editTariff()">Edit Tariff</button>
+        </div>
+
+
+
+        <div *ngIf="tariffList.length">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Connexion Speed</th>
+                <th scope="col">Price</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let t of tariffList; let i = index">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{t.cnxSpeed}}</td>
+                <td>{{t.priceT}}</td>
+                <td>
+                  <button class="btn btn-outline-primary" (click)="showEditTariff(t)"><i class="far fa-edit"></i></button>
+                  <button class="btn btn-outline-danger" (click)="deleteTariff(t)" ><i class="far fa-trash-alt"></i></button>
+                </td>
+
+
+
+              </tr>
+
+              </tbody>
+            </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="button" (click)="addProd()" class="btn btn-outline-primary"><!--[disabled]="!productForm.valid"--> Add
+          Product
+        </button>
+        <button type="button" class="btn btn-primary" routerLink="/dash/product/all/">
+          Show all Products
+        </button>
+      <!--  <button type="button" (click)="showSuccess()" class="btn btn-outline-primary"> Add
+          show
+        </button> -->
+      </div>
+    </div>
+
+
+
+  </form>
+</div>

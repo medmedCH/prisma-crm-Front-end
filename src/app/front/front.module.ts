@@ -8,7 +8,8 @@ import {AlertComponent} from './alerteJumbotron/alert.component';
 import {RouterModule} from '@angular/router';
 import {FrontRouting} from './front.routing';
 import {FaqModule} from './FAQ/faq.module';
-import {AllFaqResolverService} from "../services/resolvers/all.faq.resolver.service";
+import {AllFaqResolverService} from '../services/resolvers/all.faq.resolver.service';
+import {FrontProductModule} from './frontproduct/front.product.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {AllFaqResolverService} from "../services/resolvers/all.faq.resolver.serv
     FaqModule,
     CommonModule,
     RouterModule,
+    FrontProductModule
   ],
   declarations: [ FrontComponent, HomeComponent, AlertComponent ],
 })

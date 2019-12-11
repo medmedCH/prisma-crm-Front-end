@@ -18,12 +18,7 @@ export class Product {
   public createdAt: string;
   public agent: User;
 
-  /*public constructor(id: number, reference: string, name: string, description: string) {
-    this.id = id;
-    this.reference = reference;
-    this.name = name;
-    this.description = description;
-  }*/
+
 
 
 

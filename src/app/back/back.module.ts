@@ -11,6 +11,7 @@ import {PromotionModule} from './promotion/promotion.module';
 import {PromotionService} from '../services/managers/promotion.service';
 import { ScoringAgentComponent } from './scoringAgent/scoring.agent.component';
 
+
 @NgModule({
   imports: [
     BackRouting,
