@@ -1,7 +1,7 @@
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
@@ -21,7 +21,12 @@ import {RoleGuard} from './services/security/role.guard';
 import {AlertService} from './services/common/AlerteService';
 import {ErrorInterceptor} from './services/security/error.intercepter';
 import {ProductModule} from './back/product/product.module';
-
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {BrowserModule} from '@angular/platform-browser';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   imports: [
@@ -33,7 +38,15 @@ import {ProductModule} from './back/product/product.module';
     ProductModule,
     ROUTING,
     StorageServiceModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserModule, HttpClientModule,
+    TranslateModule.forRoot({
+              loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     AppComponent,

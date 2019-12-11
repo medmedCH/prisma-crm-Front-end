@@ -2,8 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PackService} from '../../../services/managers/pack.service';
 import {Pack} from '../../../models/Pack';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Product} from '../../../models/Product';
-import {Offre} from '../../../models/Offre';
 
 @Component({
   selector: 'app-show',
@@ -19,7 +17,10 @@ export class NgbdModalContent {
 
   deleteprdd(id, id1) {
     this.packservice.deleteprd(id, id1).subscribe(data => 'ok');
-    window.location.reload();
+
+    /*
+        window.location.reload();
+    */
   }
 }
 
@@ -51,11 +52,12 @@ export class AfficheComponent implements OnInit {
 
   open(id: number) {
     const modalRef = this.modalService.open(NgbdModalContent);
-    this.packservice.getPackprd(id).subscribe(data => {
+    this.packservice.getPackprdd(id).subscribe(data => {
       this.prd = data;
       console.log('data = ');
       console.log(data);
       modalRef.componentInstance.prd = data;
     });
+
   }
 }

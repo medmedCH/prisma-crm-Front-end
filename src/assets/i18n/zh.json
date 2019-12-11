@@ -1,0 +1,10 @@
+{
+  "login": {
+    "title": "登录的形式",
+    "email.placeholder": "用户名",
+    "password.placeholder": "输入密码",
+    "button.name": "签到",
+    "button.en": "英语",
+    "button.zh": "中文"
+  }
+}

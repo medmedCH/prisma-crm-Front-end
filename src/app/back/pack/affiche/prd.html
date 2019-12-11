@@ -23,16 +23,16 @@
         </thead>
         <tbody *ngFor="let x of prd " >
 
-        <tr *ngFor="let y of x ">
+        <tr  >
 
-          <td>{{y.name}}</td>
-          <td>{{y.description}}</td>
-          <td>{{y.price}} </td>
-          <td>{{y.new_price}}</td>
+          <td>{{x.name}}</td>
+          <td>{{x.description}}</td>
+          <td>{{x.price}} </td>
+          <td>{{x.new_price}}</td>
 
 
           <td>
-            <button class="btn btn-danger" (click)="deleteprdd(y.id,y.id)"><i class="far fa-trash-alt"></i>
+            <button class="btn btn-danger" (click)="deleteprdd(x.id,x)"><i class="far fa-trash-alt"></i>
             </button>
             <!--  (click)="deleteoffre(x.id)"-->
           </td>

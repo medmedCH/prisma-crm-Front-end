@@ -1,0 +1,10 @@
+{
+  "login": {
+    "title": "Login Form",
+    "email.placeholder": "email Here",
+    "password.placeholder": "Enter Password",
+    "button.name": "Signin",
+    "button.en": "English",
+    "button.zh": "Chinese"
+  }
+}
