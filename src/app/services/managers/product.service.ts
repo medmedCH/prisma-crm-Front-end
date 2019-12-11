@@ -92,5 +92,9 @@ export class ProductService {
     return this.http.post('http://localhost:9080/prisma-crm-web/stock/add?idStore=' + idStore + '&idProduct=' + idProd, stock ) ;
 
   }
+  checkStockk(idStore, idProduct){
+    return this.http.get('http://localhost:9080/prisma-crm-web/stock/check_stock?idStore=' + idStore + '&idProduct=' + idProduct) ;
+
+  }
 
 }

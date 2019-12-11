@@ -7,6 +7,7 @@ import {ProductAddStoreComponent} from './addstore/product.addstore.component';
 import {MapsComponent} from '../../pages/maps/maps.component';
 import {ProductAddStockComponent} from './addstock/product.addstock.component';
 import {ProductShowStoreComponent} from './showstore/product.showstore.component';
+import {ProductShowStockComponent} from './showstock/product.showstock.component';
 
 
 
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'store/new', component: ProductAddStoreComponent},
   { path: 'mymap', component: MapsComponent},
   { path: 'addstock', component: ProductAddStockComponent},
-  { path: 'showstore', component: ProductShowStoreComponent}
+  { path: 'showstore', component: ProductShowStoreComponent},
+  { path: 'showstock', component: ProductShowStockComponent}
 ];
 
 @NgModule({

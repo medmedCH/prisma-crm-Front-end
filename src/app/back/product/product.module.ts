@@ -17,6 +17,7 @@ import {MapsComponent} from '../../pages/maps/maps.component';
 import { ToastrModule } from 'ngx-toastr';
 import {ProductAddStockComponent} from './addstock/product.addstock.component';
 import {ProductShowStoreComponent} from './showstore/product.showstore.component';
+import {ProductShowStockComponent} from './showstock/product.showstock.component';
 
 
 
@@ -32,7 +33,9 @@ import {ProductShowStoreComponent} from './showstore/product.showstore.component
     ToastrModule.forRoot()
 
   ],
-  declarations: [ProductAllComponent, NgbdModalContent, ProductAddComponent, ProductAddStoreComponent, MapsComponent, ProductAddStockComponent, ProductShowStoreComponent],
+  declarations: [ProductAllComponent, NgbdModalContent,
+    ProductAddComponent, ProductAddStoreComponent, MapsComponent, ProductAddStockComponent,
+    ProductShowStoreComponent, ProductShowStockComponent],
   providers: [ProductService],
   exports: [ProductAllComponent],
   bootstrap: [ProductAllComponent],
