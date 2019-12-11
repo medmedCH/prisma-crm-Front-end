@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {StorageService} from '../../services/security/storage.service';
 import {VehiculeRouting} from './vehicule.routing';
@@ -20,6 +20,12 @@ import {AddDialogComponent} from './dialogs/add/add.dialog.component';
 import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
 import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
 import {MaintenanceComponent} from './Maintaince/maintenance.component';
+import {MaintenanceService} from '../../services/managers/maintenance.service';
+import {FullCalendarModule} from '@fullcalendar/angular';
+import {MaintainceResolver} from '../../services/resolvers/maintainceResolver';
+import {AssignDDialogComponent} from './dialogs/assignD/assignD.dialog.component';
+import {UsersService} from '../../services/managers/users.service';
+
 @NgModule({
   imports: [
     VehiculeRouting,
@@ -37,18 +43,22 @@ import {MaintenanceComponent} from './Maintaince/maintenance.component';
     MatIconModule,
     MatPaginatorModule,
     MatSortModule,
+    FullCalendarModule,
   ],
   declarations: [
     VehiculeComponent,
     MaintenanceComponent,
     AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    AssignDDialogComponent
   ],
-  providers: [VehiculeService, StorageService],
+  providers: [VehiculeService, StorageService, MaintenanceService , UsersService],
   entryComponents: [AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    AssignDDialogComponent
   ],
 })
-export class VehiculeModule { }
+export class VehiculeModule {
+}

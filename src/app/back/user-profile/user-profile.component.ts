@@ -14,7 +14,7 @@ export class UserProfileComponent implements OnInit {
   logged: User;
   selectedFile: File;
 
-  constructor(private UserService: UsersService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private UserService: UsersService, private router: Router) {
 
   }
 
@@ -47,8 +47,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   edit() {
-    console.log('click');
-    console.log(this.logged);
     if (this.editForm.value.email) {
       this.logged.email = this.editForm.value.email;
 
@@ -65,6 +63,7 @@ export class UserProfileComponent implements OnInit {
       this.logged.phoneNumber = this.editForm.value.phoneNumber;
     }
     this.logged.profileImage = this.selectedFile.name;
+    console.log(this.logged);
     this.UserService.EditUser(this.logged).subscribe(
       response => {
         console.log('edit sucessfullaaay');

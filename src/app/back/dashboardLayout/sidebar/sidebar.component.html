@@ -79,7 +79,8 @@
       <!-- Form -->
       <form class="mt-4 mb-3 d-md-none">
         <div class="input-group input-group-rounded input-group-merge">
-          <input aria-label="Search" class="form-control form-control-rounded form-control-prepended" placeholder="Search"
+          <input aria-label="Search" class="form-control form-control-rounded form-control-prepended"
+                 placeholder="Search"
                  type="search">
           <div class="input-group-prepend">
             <div class="input-group-text">
@@ -96,6 +97,32 @@
             {{menuItem.title}}
           </a>
         </li>
+
+        <li class="nav-item">
+          <a [routerLink]="['/vehicules']" class="nav-link active" data-toggle="ngbCollapse" role="button"
+             aria-expanded="true" aria-controls="navbar-tables">
+            <i class="ni ni-delivery-fast"></i>
+            <span class="nav-link-text">vehicules</span>
+          </a>
+          <div class="collapse show" id="navbar-tables" style="">
+            <ul class="nav nav-sm flex-column">
+
+              <li class="nav-item">
+                <a [routerLink]="['/vehicules/maintenance']" class="nav-link">vehicules maintenance</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/repaires']">
+            <i class="ni ni-settings"></i>
+            Repair Requests
+          </a></li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/users/list-user']">
+            <i class="ni ni-user-run"></i>
+            Users list
+          </a></li>
       </ul>
     </div>
   </div>

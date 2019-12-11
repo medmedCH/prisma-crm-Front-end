@@ -12,6 +12,7 @@ import {UserModule} from './User/user.module';
 import {VehiculeModule} from './vehicule/vehicule.module';
 import {ToastrModule} from 'ngx-toastr';
 import {RepairModule} from './repairs/repair.module';
+import {FullCalendarModule} from '@fullcalendar/angular';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {RepairModule} from './repairs/repair.module';
     ReactiveFormsModule,
     UserModule,
     RepairModule,
-    VehiculeModule
+    VehiculeModule,
+    FullCalendarModule
   ],
   declarations: [BackComponent, DashboardComponent, UserProfileComponent],
   providers: [AuthGuard]

@@ -3,6 +3,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {Repairrequest} from '../../models/Repairrequest';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {RepairService} from '../../services/managers/repair.service';
+import {Router} from '@angular/router';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -16,7 +17,7 @@ export class EditModalComponent implements OnInit {
   repair: Repairrequest;
 
 
-  constructor(public activeModal: NgbActiveModal, private repairService: RepairService) {
+  constructor(public activeModal: NgbActiveModal, private repairService: RepairService, private  router: Router) {
   }
 
   editForm = new FormGroup({
@@ -31,6 +32,7 @@ export class EditModalComponent implements OnInit {
 
 
   }
+
   edit() {
     this.repair.statusRep = this.editForm.value.statusRep;
     this.repair.notes = this.editForm.value.notes;
@@ -38,6 +40,7 @@ export class EditModalComponent implements OnInit {
     (
       response => {
         console.log('edit sucessfullaaay');
+        this.router.navigateByUrl('repaires');
       },
       error => {
         console.log(error);

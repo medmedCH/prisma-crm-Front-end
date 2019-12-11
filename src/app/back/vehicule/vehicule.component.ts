@@ -11,6 +11,8 @@ import {DataSource} from '@angular/cdk/collections';
 import {map} from 'rxjs/operators';
 import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {ToastrService} from 'ngx-toastr';
+import {AssignDDialogComponent} from './dialogs/assignD/assignD.dialog.component';
+import {User} from '../../models/User';
 
 @Component({
   selector: 'app-vehicule',
@@ -23,7 +25,6 @@ export class VehiculeComponent implements OnInit {
   index: number;
   id: number;
   show = true;
-
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
               public dataService: VehiculeService,
@@ -102,6 +103,7 @@ export class VehiculeComponent implements OnInit {
 
     this.paginator._changePageSize(this.paginator.pageSize);
   }
+
   public loadData() {
     this.exampleDatabase = new VehiculeService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
@@ -114,6 +116,13 @@ export class VehiculeComponent implements OnInit {
         }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
+  }
+
+  AssignD(idV: number, plate :string) {
+    const assindDialog = this.dialog.open(AssignDDialogComponent, {
+      data: {idv: idV, idd: 0, plate: plate}
+    });
+
   }
 }
 

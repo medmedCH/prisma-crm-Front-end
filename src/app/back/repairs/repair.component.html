@@ -127,8 +127,12 @@
                    class="btn btn-sm btn-primary btn-round btn-icon" (click)="deleteRep(c)">
                   <i class="fas fa-trash"></i>
                 </a>
-                <a type="button" class="btn btn-primary btn-sm" (click)="clientSatisfaction(c.review)">satisfaction
-                  degree</a>
+                <a class="btn btn-sm btn-primary btn-round btn-icon" data-toggle="tooltip"
+                   data-original-title="Edit product" (click)="clientSatisfaction(c.review)">
+                  <span class="btn-inner--icon"><i class="fas fa-user-edit"></i></span>
+                  <span class="btn-inner--text">satisfaction</span>
+                </a>
+
 
               </td>
 

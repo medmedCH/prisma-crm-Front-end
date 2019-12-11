@@ -21,10 +21,10 @@
           </select>
         </div>
       </div>
-      <button (click)="edit()" [disabled]="!editForm.valid" class="btn btn-primary my-4">Add Notes</button>
+      <button (click)="edit()" [disabled]="!editForm.valid" class="btn btn-primary my-4" >Add Notes</button>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-darks" (click)="activeModal.close('Close click')">Fermer</button>
+    <a type="button" class="btn btn-outline-darks" [routerLink]="['/repaires']" >Fermer</a>
   </div>
 </div>

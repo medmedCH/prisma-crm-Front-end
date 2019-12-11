@@ -85,4 +85,18 @@ export class VehiculeService {
     );
   }
 
+  assignD(idd: number, idv: number) {
+    console.log(idd, idv);
+    this.http.get(this.API_URL + 'assign/' + idd + '/' + idv).subscribe
+    (
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );;
+
+  }
+
 }
