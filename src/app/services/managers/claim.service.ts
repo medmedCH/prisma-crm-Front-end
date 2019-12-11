@@ -4,12 +4,13 @@ import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Claim} from '../../models/Claim';
 import {StorageService} from '../security/storage.service';
-import {Agent} from "../../models/Agent";
+import {Agent} from '../../models/Agent';
 
-const httpOptions =  {
+const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT'}),
+    'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT'
+  }),
   responseType: 'text' as 'text'
 };
 
@@ -19,7 +20,8 @@ export class ClaimService {
 
   constructor(private http: HttpClient) {
   }
-  claimURL = 'http://localhost:9080/prisma-crm-web'
+
+  claimURL = 'http://localhost:9080/prisma-crm-web';
 
 
   getAllClaims() {

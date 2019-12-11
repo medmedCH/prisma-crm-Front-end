@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+
 import {BackRouting} from './back.routing';
 import {BackComponent} from './back.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -24,6 +25,13 @@ import { QuotationsComponent } from './quotations/quotations.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { EditOrderComponent } from './edit-order/edit-order.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserModule} from './User/user.module';
+import {VehiculeModule} from './vehicule/vehicule.module';
+import {ToastrModule} from 'ngx-toastr';
+import {RepairModule} from './repairs/repair.module';
+import {FullCalendarModule} from '@fullcalendar/angular';
 
 
 @NgModule({
@@ -39,9 +47,16 @@ import { ViewOrderComponent } from './view-order/view-order.component';
     MatFormFieldModule,
     MatNativeDateModule,
     MatSliderModule,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    UserModule,
+    RepairModule,
+    VehiculeModule,
+    FullCalendarModule
   ],
-  declarations: [BackComponent,
+  declarations: [
+    BackComponent,
     DashboardComponent,
     Affiche1Component,
     ScoringAgentComponent,
@@ -51,7 +66,9 @@ import { ViewOrderComponent } from './view-order/view-order.component';
     QuotationsComponent,
     InvoicesComponent,
     EditOrderComponent,
-    ViewOrderComponent],
+    ViewOrderComponent,
+    UserProfileComponent
+  ],
   providers: [AuthGuard, PromotionService, OffreService, PackService, PromotionService],
   entryComponents: [Affiche1Component]
 })

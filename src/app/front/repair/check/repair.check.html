@@ -1,0 +1,6 @@
+
+        <form [formGroup]="getStatusFrom">
+          <input type="text" formControlName="repairCode" placeholder="Enter your service request number to check the status of your repair." class="form-control form-control-alternative">
+
+          <button (click)="getRepairStatus()" [disabled]="!getStatusFrom.valid" class="btn btn-primary my-4" >Check</button>
+        </form>

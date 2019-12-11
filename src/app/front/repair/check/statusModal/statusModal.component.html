@@ -1,0 +1,28 @@
+<div class="modal-content bg-gradient-green">
+
+  <div class="modal-header">
+    <h4 class="modal-title"></h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Your repair status :
+      <button type="button" class="btn btn-secondary btn-lg btn-block">{{status}}</button>
+
+    </p>
+  </div>
+  <form [formGroup]="addNoteFrom" *ngIf="status == 'Completed' || status == 'Rejected' ">
+    <div class="form-group">
+      <label>Thank You for contributing to our after sale service by Adding a review:</label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend"><span class="input-group-text"><i class="ni ni-email-83"></i></span></div>
+        <input class="form-control ng-pristine ng-invalid ng-touched" formControlName="review" placeholder="Product Ref"
+               type="text"></div>
+    </div>
+    <button (click)="addRepair()" [disabled]="!addNoteFrom.valid" class="btn btn-primary my-4">Add Review</button>
+  </form>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-darks" (click)="activeModal.close('Close click')">Fermer</button>
+  </div>
+</div>

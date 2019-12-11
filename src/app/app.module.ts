@@ -8,35 +8,42 @@ import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.componen
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import * as $ from 'jquery';
 import {ROUTING} from './app.routing';
-// import {ComponentsModule} from './components/components.module';
 import {LoginService} from './services/security/login.service';
 import {StorageServiceModule} from 'angular-webstorage-service';
 import {FrontModule} from './front/front.module';
 import {BackModule} from './back/back.module';
 import {AuthIntercepter} from './services/security/auth.intercepter';
 import {RoleGuard} from './services/security/role.guard';
-import {AlertService} from './services/common/AlerteService';
 import {ProductModule} from './back/product/product.module';
 import {NotesClaimService} from './services/managers/notesClaim.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
-import { ReactiveFormsModule } from '@angular/forms';
 import {CartsService} from './services/carts.service';
 import {NgxPayPalModule} from 'ngx-paypal';
-
-
 // import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ErrorInterceptor} from './services/security/error.intercepter';
-
+import {ReactiveFormsModule} from '@angular/forms';
+import {AlertService} from './services/common/AlerteService';
+import {UsersService} from './services/managers/users.service';
+import {Toast, ToastrModule} from 'ngx-toastr';
+import {RecaptchaModule} from 'angular-google-recaptcha';
+import {DatePipe} from '@angular/common';
+import {
+  MatTableModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule
+} from '@angular/material';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+// @ts-ignore
 // @ts-ignore
 // @ts-ignore
 @NgModule({
@@ -45,6 +52,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BackModule,
     BrowserAnimationsModule,
     FormsModule,
+    BrowserModule,
+    HttpClientModule,
     NgbModule,
     ProductModule,
     ROUTING,
@@ -59,8 +68,19 @@ export function HttpLoaderFactory(http: HttpClient) {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }
-    })
+      },
+    MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    RecaptchaModule.forRoot({
+      siteKey: '6LdD64gUAAAAAA2j1DVXp60KSuqPkb-ggK4GxWQs',
+    }),
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-bottom-left'
+    }),
   ],
   declarations: [
     AppComponent,
@@ -73,6 +93,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoleGuard,
     AlertService,
     NotesClaimService,
+    UsersService,
+    Toast,
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthIntercepter,

@@ -8,6 +8,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginComponent} from '../../pages/login/login.component';
 import {RegisterComponent} from '../../pages/register/register.component';
 import {TranslateModule} from '@ngx-translate/core';
+import {RegisterService} from '../../services/managers/register.service';
+import {RecaptchaModule} from 'angular-google-recaptcha';
 
 @NgModule({
   imports: [
@@ -15,11 +17,16 @@ import {TranslateModule} from '@ngx-translate/core';
     RouterModule.forChild(AuthLayoutRoutes),
     FormsModule,
     TranslateModule,
+    ReactiveFormsModule,
+    RecaptchaModule,
     // NgbModule
   ],
   declarations: [
     LoginComponent,
     RegisterComponent
+  ],
+  providers: [
+    RegisterService
   ]
 })
 export class AuthLayoutModule {

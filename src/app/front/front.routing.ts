@@ -30,11 +30,11 @@ const routes: Routes = [
       {path: 'products', component: ProductsIndexFrontContentComponent},
       {path: 'details/:id', component: ProductProfilePageFrontComponent},
       {path: 'auth', loadChildren: '../layouts/auth-layout/auth-layout.module#AuthLayoutModule'},
-      {path: 'claim', loadChildren: './claim/claim.module#ClaimModule'},
       {path: 'cart', component: ClientCartContentFrontComponent},
       {path: 'checkout', component: CheckOutFrontComponent},
       {path: 'paypal', component: PaypalCheckoutComponent},
       {path: '**', component: HomeComponent},
+      {path: 'repair', loadChildren: './repair/repair.module#RepairModule'}
     ]
   },
 ];

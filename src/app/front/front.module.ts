@@ -23,6 +23,7 @@ import { OnlineInvoiceFrontComponent } from './online-invoice-front/online-invoi
 import {FormsModule} from '@angular/forms';
 import { PaypalCheckoutComponent } from './paypal-checkout/paypal-checkout.component';
 import {NgxPayPalModule} from 'ngx-paypal';
+import {RepairModule} from './repair/repair.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {NgxPayPalModule} from 'ngx-paypal';
     PacModule,
     CommonModule,
     FormsModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    RepairModule
   ],
   declarations: [ FrontComponent,
     HomeComponent,
