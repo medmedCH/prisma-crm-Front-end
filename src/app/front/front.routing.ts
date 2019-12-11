@@ -7,6 +7,7 @@ import {ProductProfilePageFrontComponent} from './product-profile-page-front/pro
 import {ClientCartContentFrontComponent} from './client-cart-content-front/client-cart-content-front.component';
 import {CheckOutFrontComponent} from './check-out-front/check-out-front.component';
 import {PaypalCheckoutComponent} from './paypal-checkout/paypal-checkout.component';
+import {ClientOrdersFrontComponent} from './client-orders-front/client-orders-front.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       {path: 'cart', component: ClientCartContentFrontComponent},
       {path: 'checkout', component: CheckOutFrontComponent},
       {path: 'paypal', component: PaypalCheckoutComponent},
+      {path: 'orders/:id', component: ClientOrdersFrontComponent},
       {path: '**', component: HomeComponent},
     ]
   },

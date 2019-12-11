@@ -137,5 +137,6 @@
     "@schematics/angular:component": {
       "styleext": "scss"
     }
-  }
+  },
+
 }

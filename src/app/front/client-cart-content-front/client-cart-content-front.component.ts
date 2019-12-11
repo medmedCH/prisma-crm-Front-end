@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CartModel} from '../../models/orderModule/CartModel';
 import {APISService} from '../../services/apis.service';
+import {CartsService} from '../../services/carts.service';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-client-cart-content-front',
@@ -8,6 +10,8 @@ import {APISService} from '../../services/apis.service';
   styleUrls: ['./client-cart-content-front.component.scss']
 })
 export class ClientCartContentFrontComponent implements OnInit {
+
+  @ViewChild('tableData') data;
   private cart: CartModel = new CartModel();
   private date: Date;
   private total = 0;
@@ -17,7 +21,7 @@ export class ClientCartContentFrontComponent implements OnInit {
   private totalInDollars = 0;
   private reductionSum;
 
-  constructor(private api: APISService) {
+  constructor(private api: APISService, private service: CartsService) {
     this.cart = <CartModel>JSON.parse(sessionStorage.getItem('cart'));
     this.date = new Date(this.cart.createdAt);
     for (let x of this.cart.rows) {
@@ -42,8 +46,32 @@ export class ClientCartContentFrontComponent implements OnInit {
     this.reductionSum = Number.parseFloat(z).toFixed(2);
   }
 
+  clearCart() {
+    this.service.deleteEntireCart(this.cart).subscribe(e => {
+        console.log(e);
+      },
+      error => {
+        console.log('error have been occured');
+      });
+  }
 
   ngOnInit() {
+  }
+
+  getQuotation() {
+    const doc = new jsPDF();
+    const specialElementHandlers = {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    };
+    const content = this.data.nativeElement;
+    doc.fromHTML(content.innerHTML, 15, 15, {
+      'width': 500,
+      'elementHandlers': specialElementHandlers
+    });
+    doc.save('quotation.pdf');
+
   }
 
 }

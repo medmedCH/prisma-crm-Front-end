@@ -5,6 +5,7 @@ import {ProductCartRow} from '../models/orderModule/ProductCartRow';
 import {ProductModel} from '../models/orderModule/ProductModel';
 import {BehaviorSubject} from 'rxjs';
 import {ReductionRatioModel} from '../models/orderModule/ReductionRatioModel';
+import {ClientOrderModel} from '../models/orderModule/ClientOrderModel';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +71,19 @@ export class CartsService {
   updateProductClientData(row: ProductCartRow, reduction) {
     return this.http.get<ProductModel>('http://localhost:9080/prisma-crm-web/main/cart/update-cart-row/' + row.cart.id + '/' + row.product.id +
       '/' + row.quantity + '/' + row.usedFidelityPoints + '/' + reduction);
+  }
+
+  deleteEntireCart(cart: CartModel) {
+    return this.http.post<ProductModel>('http://localhost:9080/prisma-crm-web/main/cart/delete-cart/' + cart.id, null);
+  }
+
+  deleteCartRow(row: ProductCartRow) {
+    return this.http.post<ProductModel>('http://localhost:9080/prisma-crm-web/main/cart/delete-product-from-cart/' + row.product.id + '/' + row.cart.id, null);
+  }
+
+  getClientOrders(client) {
+    return this.http.post<ClientOrderModel[]>('http://localhost:9080/prisma-crm-web/main/cart/get-client-orders/' + client, null);
+
   }
 
 }

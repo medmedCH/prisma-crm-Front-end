@@ -16,6 +16,7 @@ import { OnlineInvoiceFrontComponent } from './online-invoice-front/online-invoi
 import {FormsModule} from '@angular/forms';
 import { PaypalCheckoutComponent } from './paypal-checkout/paypal-checkout.component';
 import {NgxPayPalModule} from 'ngx-paypal';
+import { ClientOrdersFrontComponent } from './client-orders-front/client-orders-front.component';
 
 
 @NgModule({
@@ -24,8 +25,8 @@ import {NgxPayPalModule} from 'ngx-paypal';
     ClaimModule,
     CommonModule,
     FormsModule,
-    NgxPayPalModule
+    NgxPayPalModule,
   ],
-  declarations: [ FrontComponent, HomeComponent, HeaderFrontComponent, FooterFrontComponent, ProductsIndexFrontContentComponent, ProductProfilePageFrontComponent, ClientCartContentFrontComponent, CheckOutFrontComponent, TmpinvoiceFrontComponent, OnlineInvoiceFrontComponent, PaypalCheckoutComponent ],
+  declarations: [ FrontComponent, HomeComponent, HeaderFrontComponent, FooterFrontComponent, ProductsIndexFrontContentComponent, ProductProfilePageFrontComponent, ClientCartContentFrontComponent, CheckOutFrontComponent, TmpinvoiceFrontComponent, OnlineInvoiceFrontComponent, PaypalCheckoutComponent, ClientOrdersFrontComponent ],
 })
 export class FrontModule { }

@@ -13,12 +13,14 @@ import { QuotationsComponent } from './quotations/quotations.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { EditOrderComponent } from './edit-order/edit-order.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
+import {BrowserModule} from '@angular/platform-browser';
 
 
 @NgModule({
   imports: [
     BackRouting,
-    DashboardLayoutModule
+    DashboardLayoutModule,
+    BrowserModule
   ],
   // tslint:disable-next-line:max-line-length
   declarations: [ BackComponent, DashboardComponent, OrdersComponent, ProductsComponent, CartsComponent, QuotationsComponent, InvoicesComponent, EditOrderComponent, ViewOrderComponent],

@@ -53,6 +53,7 @@ export class ProductsIndexFrontContentComponent implements OnInit, AfterViewInit
 
   ngAfterViewInit(): void {
   }
+
   createCart() {
 
   }
@@ -67,6 +68,22 @@ export class ProductsIndexFrontContentComponent implements OnInit, AfterViewInit
       }
     }
     return false;
+  }
+
+  deleteProductFromCart(row: ProductModel) {
+    this.currentCart = <CartModel>JSON.parse(sessionStorage.getItem('cart'));
+    console.log(this.currentCart.rows);
+    let rr: ProductCartRow = new ProductCartRow();
+    for (const x of this.currentCart.rows) {
+      if (x.product.id === row.id) {
+        rr = x;
+      }
+    }
+    this.service.deleteCartRow(rr).subscribe(h => {
+      console.log(h);
+    }, error => {
+      console.log('an error have been occured');
+    });
   }
 
 

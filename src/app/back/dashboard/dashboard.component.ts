@@ -1,13 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import Chart from 'chart.js';
-
 // core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2
-} from "../../variables/charts";
+import {OrderServiceService} from '../../services/order-service.service';
+import {ProductModel} from '../../models/orderModule/ProductModel';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,8 +10,13 @@ import {
 })
 export class DashboardComponent implements OnInit {
 
+  bestProduct: ProductModel = new ProductModel();
 
-  constructor() {
+  constructor(private service: OrderServiceService) {
+    this.service.getBestProductOfAllTime().subscribe(e => {
+      this.bestProduct = e;
+      console.log(e);
+    });
   }
 
   ngOnInit() {

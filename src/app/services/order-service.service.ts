@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {StoreModel} from '../models/orderModule/StoreModel';
+import {ClientOrderModel} from '../models/orderModule/ClientOrderModel';
+import {ProductModel} from '../models/orderModule/ProductModel';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,24 @@ export class OrderServiceService {
   }
 
   // ------------------------------------Back office -----------------------------------------------//
+  getAllOrders() {
+    return this.http.post<ClientOrderModel[]>('http://localhost:9080/prisma-crm-web/main/orderAd/back/fetch-orders', null);
+  }
+
+  getOrderCart() {
+  }
+
+  getPercentageWinLossBetweenTwoDays() {
+  }
+
+  getTodayCarts() {
+  }
+
+  validateTemporaryOrder(orderId) {
+    return this.http.post('http://localhost:9080/prisma-crm-web/main/orderAd/validateOrder/' + orderId + '/2', null);
+  }
+
+
   // ------------------------------------End back office-------------------------------------------//
   // ------------------------------------front office -----------------------------------------------//
   getNearestStoreAddress(longtitude, latitude) {
@@ -23,13 +43,35 @@ export class OrderServiceService {
       + '/' + client + '/' + distance + '/' + store, null);
   }
 
-  passToCashOrder() {
+  passToPayPalOrder(cart, client, distance, store) {
+    return this.http.post<number>('http://localhost:9080/prisma-crm-web/main/cart/checkOutOrderOnline/' + cart
+      + '/' + client + '/' + distance + '/' + store, null);
+  }
+
+
+  getBestProductOfAllTime() {
+    return this.http.post<ProductModel>('http://localhost:9080/prisma-crm-web/main/orderAd/back/product-of-allTime', null);
+  }
+
+  getBestClientOfAllTime() {
+    return this.http.post<ProductModel>('http://localhost:9080/prisma-crm-web/main/orderAd/back/client-of-all-time', null);
+  }
+
+  getOrdersTotal() {
+  }
+
+  getMostActiveStire()
+  {
 
   }
 
-  passToPayPalOrder() {
+  getTotalNumberOfOrders()
+  {
 
   }
+
+  get
+
 
 
   // ------------------------------------End front office-------------------------------------------//

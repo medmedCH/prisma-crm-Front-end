@@ -6,7 +6,7 @@ export class ClientOrderModel {
   private _reductionRatio: number;
   private _orderNature: string;
   private _totale: number;
-  private _isValid: boolean;
+  public valid: boolean;
 
 
   get id(): number {
@@ -49,11 +49,4 @@ export class ClientOrderModel {
     this._totale = value;
   }
 
-  get isValid(): boolean {
-    return this._isValid;
-  }
-
-  set isValid(value: boolean) {
-    this._isValid = value;
-  }
 }

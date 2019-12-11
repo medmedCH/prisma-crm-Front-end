@@ -64,7 +64,7 @@
                   <span class="btn-inner--text">Add to cart</span>
                 </button>
                 <button *ngIf="findProductInCart(row)"   class="btn btn-icon btn-3 btn-danger"
-                        type="button" [routerLink]="['/front/details',row.id]">
+                        type="button" (click)="deleteProductFromCart(row)">
                   <span><i class="ni ni-bag-17"></i></span>
                   <span class="btn-inner--text"> x cart</span>
                 </button>

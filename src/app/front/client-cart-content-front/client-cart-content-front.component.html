@@ -5,7 +5,7 @@
       Cart created at
       <strong>{{date.getFullYear()}}/{{date.getMonth()}}/{{date.getDay()}}&nbsp;</strong>
     </div>
-    <div class="card-body" id="content">
+    <div class="card-body" id="content" #tableData>
 
       <div class="card-body">
         <div class="row mb-4">
@@ -101,10 +101,10 @@
             </tr>
             <tr>
               <td class="left">
-                <button  type="button" class="btn btn-success" >Quotation</button>
+                <button  type="button" class="btn btn-success" (click)="getQuotation()" >Quotation</button>
               </td>
               <td class="right">
-                <button  type="button" class="btn btn-warning">Clear cart</button>
+                <button  type="button" class="btn btn-warning" (click)="clearCart()" [routerLink]="'/front/products'">Clear cart</button>
               </td>
             </tr>
             </tbody>

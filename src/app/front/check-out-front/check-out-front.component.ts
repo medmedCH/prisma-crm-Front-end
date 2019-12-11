@@ -1,11 +1,12 @@
 import {AfterViewInit, Component, ElementRef, NgModule, OnInit, ViewChild} from '@angular/core';
-import {ICreateOrderRequest, IPayPalConfig, NgxPayPalModule} from 'ngx-paypal';
+import {ICreateOrderRequest, IPayPalConfig, ITransactionItem, NgxPayPalModule} from 'ngx-paypal';
 import {OrderServiceService} from '../../services/order-service.service';
 import {CartModel} from '../../models/orderModule/CartModel';
 import {StoreModel} from '../../models/orderModule/StoreModel';
 import {Address} from '../../models/Address';
 import {APISService} from '../../services/apis.service';
 import {ClientOrderModel} from '../../models/orderModule/ClientOrderModel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-check-out-front',
@@ -34,14 +35,17 @@ export class CheckOutFrontComponent implements OnInit, AfterViewInit {
   needed_time_walking = 0;
   needed_time_driving = 0;
   totalInDinars = 0;
+  totalInDollars = 0;
+  totalInEuros = 0;
   reduction = 0;
   isOnlinePayment = false;
+  onlineOrder: ITransactionItem[] = [];
   percentageReduction = 0;
   usedFidelityPoints = 0;
   private URL = 'https://maps.google.com/maps?q=15%20rue%20moez&t=&z=13&ie=UTF8&iwloc=&output=embed';
   @ViewChild('gmap_canvas') gmap_canvas: ElementRef;
 
-  constructor(private service: OrderServiceService, private api: APISService) {
+  constructor(private service: OrderServiceService, private api: APISService, private router: Router) {
 
   }
 
@@ -60,6 +64,17 @@ export class CheckOutFrontComponent implements OnInit, AfterViewInit {
       this.totalInDinars += single.totalPriceWNReduction;
       this.reduction += single.finalPrice;
       this.usedFidelityPoints += single.usedFidelityPoints;
+      const item: ITransactionItem = {
+          name: single.product.reference,
+          quantity: String(single.quantity),
+          category: 'DIGITAL_GOODS',
+          unit_amount: {
+            currency_code: 'EUR',
+            value: String(single.product.price),
+          },
+        }
+      ;
+      this.onlineOrder.push(item);
     }
     console.log(sessionStorage.getItem('longitude'));
     console.log(sessionStorage.getItem('latitude'));
@@ -122,25 +137,15 @@ export class CheckOutFrontComponent implements OnInit, AfterViewInit {
           {
             amount: {
               currency_code: 'EUR',
-              value: '9.99',
+              value: String(this.totalInDinars),
               breakdown: {
                 item_total: {
                   currency_code: 'EUR',
-                  value: '9.99'
+                  value: String(this.totalInDinars)
                 }
               }
             },
-            items: [
-              {
-                name: 'Enterprise Subscription',
-                quantity: '1',
-                category: 'DIGITAL_GOODS',
-                unit_amount: {
-                  currency_code: 'EUR',
-                  value: '9.99',
-                },
-              }
-            ]
+            items: this.onlineOrder
           }
         ]
       },
@@ -155,6 +160,11 @@ export class CheckOutFrontComponent implements OnInit, AfterViewInit {
         console.log('onApprove - transaction was approved, but not authorized', data, actions);
         actions.order.get().then(details => {
           console.log('onApprove - you can get full order details inside onApprove: ', details);
+        });
+        this.service.passToPayPalOrder(this.currentCart.id, this.currentCart.client.id, this.distance, this.store.id).subscribe(e => {
+          const x = ((e / 1000) / this.TIME_WALKING) * 60;
+          alert('Time to get your order ' + x);
+          sessionStorage.setItem('orderTime', String(x));
         });
       },
       onClientAuthorization: (data) => {
@@ -177,10 +187,13 @@ export class CheckOutFrontComponent implements OnInit, AfterViewInit {
   }
 
   checkoutFromCashPayment() {
-    // cart, client, distance, store
+
     this.service.passTemporaryOrder(this.currentCart.id, this.currentCart.client.id, this.distance, this.store.id).subscribe(e => {
       const x = ((e / 1000) / this.TIME_WALKING) * 60;
-      alert('Time to get your order ' + x);
+      sessionStorage.setItem('orderTime', String(x));
+      console.log('Time to get your order ' + x);
+      this.router.navigate(['/front/orders', this.currentCart.client.id]);
     });
+
   }
 }
