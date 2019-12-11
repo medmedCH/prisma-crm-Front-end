@@ -28,10 +28,14 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {ErrorInterceptor} from './services/security/error.intercepter';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+// @ts-ignore
+// @ts-ignore
 @NgModule({
   imports: [
     FrontModule,
@@ -45,7 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     AngularFontAwesomeModule
     // MatAutocompleteModule,
-    BrowserModule, HttpClientModule,
+    BrowserModule,
+    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
