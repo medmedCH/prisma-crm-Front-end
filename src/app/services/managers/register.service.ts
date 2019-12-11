@@ -21,6 +21,7 @@ export class RegisterService {
   user = 'http://localhost:9080/prisma-crm-web/users';
 
   addUser(u: User) {
+    console.log(u);
     const body = JSON.stringify(u);
     return this.http.post(this.user + '/register', body, httpOptions);
   }

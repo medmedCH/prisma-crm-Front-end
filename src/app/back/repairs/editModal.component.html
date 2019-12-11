@@ -1,6 +1,4 @@
-
-    <div class="modal-content bg-gradient-green">
-
+<div class="modal-content bg-gradient-green">
       <div class="modal-header">
         <h4 class="modal-title"></h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -23,11 +21,9 @@
           </select>
         </div>
       </div>
-      <button (click)="edit()" [disabled]="!editForm.valid" class="btn btn-primary my-4">Add Review</button>
+      <button (click)="edit()" [disabled]="!editForm.valid" class="btn btn-primary my-4">Add Notes</button>
     </form>
   </div>
-
-
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-darks" (click)="activeModal.close('Close click')">Fermer</button>
   </div>

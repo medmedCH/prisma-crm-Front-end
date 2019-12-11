@@ -8,12 +8,15 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginComponent} from '../../pages/login/login.component';
 import {RegisterComponent} from '../../pages/register/register.component';
 import {RegisterService} from '../../services/managers/register.service';
+import {RecaptchaModule} from 'angular-google-recaptcha';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AuthLayoutRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    RecaptchaModule,
     // NgbModule
   ],
   declarations: [

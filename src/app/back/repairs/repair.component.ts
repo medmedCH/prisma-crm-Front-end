@@ -18,10 +18,8 @@ import {SentimentComponent} from './sentiments/sentiment.component';
 export class RepairComponent implements OnInit {
   title = 'Repair Request';
   focus: any;
-  focus1: any;
   allRepairs: Repairrequest[];
   repair: Repairrequest;
-  sentiments: SentimentResult;
   score: number;
 
   constructor(private repairService: RepairService, private modalService: NgbModal, private azureSentiment: AzureSentiment) {
@@ -29,7 +27,6 @@ export class RepairComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-
 
   }
 
@@ -47,8 +44,9 @@ export class RepairComponent implements OnInit {
 
   }
 
+
+
   deleteRep(u: Repairrequest) {
-    console.log(u.id);
     if (confirm('Are you sure to delete this repair request')) {
       this.repairService.deleteRep(u).subscribe(
         response => {

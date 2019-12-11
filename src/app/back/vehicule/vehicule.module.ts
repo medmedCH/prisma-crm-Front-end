@@ -19,8 +19,7 @@ import {
 import {AddDialogComponent} from './dialogs/add/add.dialog.component';
 import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
 import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ToastrModule} from 'ngx-toastr';
+import {MaintenanceComponent} from './Maintaince/maintenance.component';
 @NgModule({
   imports: [
     VehiculeRouting,
@@ -41,6 +40,7 @@ import {ToastrModule} from 'ngx-toastr';
   ],
   declarations: [
     VehiculeComponent,
+    MaintenanceComponent,
     AddDialogComponent,
     EditDialogComponent,
     DeleteDialogComponent

@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {PasswordValidation} from './PasswordValidation';
-import {StorageService} from '../../services/security/storage.service';
-import {AlertService} from '../../services/common/AlerteService';
+import {MustMatch} from './MustMatch';
 import {User} from '../../models/User';
 import {RegisterService} from '../../services/managers/register.service';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -13,65 +12,59 @@ import {RegisterService} from '../../services/managers/register.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  ErrorMsg = '';
-  imageURL = '/assets/img/profile.jpg';
-  fileToUpload: File = null;
-  var = false;
+  registerForm: FormGroup;
+  submitted = false;
+  imageURL = 'user.png';
+  u: User;
+  myRecaptcha: boolean;
 
   constructor(private registerService: RegisterService,
-              private storageService: StorageService,
-              private alertService: AlertService,
-              private router: Router) {
+              private formBuilder: FormBuilder,
+              private router: Router, private toast: ToastrService) {
   }
-
-  passwordType = 'password';
-  passwordSeen = false;
-  confirmType = 'password';
-  confirmSeen = false;
-  icone = 'icon-eye';
-  iconeC = 'icon-eye';
-  model: any = {};
-
-  u: User;
-  addClaimFrom = new FormGroup({
-    email: new FormControl('', [Validators.required]),
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('',),
-    phoneNumber: new FormControl('', [Validators.required]),
-
-  });
 
   ngOnInit() {
-    this.imageURL = '/assets/images/user.png';
+
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required, Validators.max(99999999), Validators]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+    });
   }
 
-  addUser() {
-    this.u = new User(this.addClaimFrom.value.email, this.addClaimFrom.value.firstName,
-      this.addClaimFrom.value.lastName, this.addClaimFrom.value.password,
-      this.addClaimFrom.value.phoneNumber, this.imageURL);
+
+  get f() {
+    return this.registerForm.controls;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.registerForm.invalid) {
+      return;
+    }
+    this.toast.success('Success');
+
+    this.u = new User(this.registerForm.value.firstName,
+      this.registerForm.value.lastName,
+      this.registerForm.value.password,
+      this.registerForm.value.email,
+      this.registerForm.value.phoneNumber,
+      this.imageURL);
     this.registerService.addUser(this.u)
       .subscribe(
         response => {
+          this.router.navigate(['/login']);
         },
         error => {
           console.log(error);
         }
       );
+
   }
-
-  handleFileInput(file: FileList) {
-    this.fileToUpload = file.item(0);
-    const reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.imageURL = event.target.result;
-      console.log('imageeeeeeeeeeeeeeeee' + event.target.result);
-
-    };
-    reader.readAsDataURL(this.fileToUpload);
-    console.log('fileeeeeeeee' + this.fileToUpload);
-  }
-
 }
-

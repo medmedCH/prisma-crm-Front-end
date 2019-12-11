@@ -8,7 +8,7 @@ import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.componen
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import * as $ from 'jquery';
 import {ROUTING} from './app.routing';
 import {LoginService} from './services/security/login.service';
 import {StorageServiceModule} from 'angular-webstorage-service';
@@ -28,6 +28,9 @@ import {
   MatButtonModule
 } from '@angular/material';
 import {Toast, ToastrModule} from 'ngx-toastr';
+import {RecaptchaModule} from 'angular-google-recaptcha';
+import {DatePipe} from '@angular/common';
+
 @NgModule({
   imports: [
     FrontModule,
@@ -46,6 +49,10 @@ import {Toast, ToastrModule} from 'ngx-toastr';
     MatInputModule,
     MatButtonModule,
     MatInputModule,
+    RecaptchaModule.forRoot({
+      siteKey: '6LdD64gUAAAAAA2j1DVXp60KSuqPkb-ggK4GxWQs',
+    }),
+
     ToastrModule.forRoot({
       timeOut: 1000,
       positionClass: 'toast-bottom-left'
@@ -53,7 +60,6 @@ import {Toast, ToastrModule} from 'ngx-toastr';
   ],
   declarations: [
     AppComponent,
-
     AdminLayoutComponent,
     AuthLayoutComponent,
   ],
@@ -63,6 +69,7 @@ import {Toast, ToastrModule} from 'ngx-toastr';
     AlertService,
     UsersService,
     Toast,
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthIntercepter,
