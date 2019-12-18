@@ -2,6 +2,7 @@ import {Component, OnInit, ElementRef} from '@angular/core';
 import {ROUTES} from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {Router} from '@angular/router';
+import {StorageService} from "../../../services/security/storage.service";
 
 @Component({
   selector: 'app-navbar',
@@ -35,4 +36,8 @@ export class NavbarComponent implements OnInit {
     return 'Dashboard';
   }
 
+  logout() {
+    this.router.navigate(['/login']);
+    StorageService.clear('currentUser');
+  }
 }

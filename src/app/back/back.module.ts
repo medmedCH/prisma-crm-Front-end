@@ -7,7 +7,9 @@ import { DashboardLayoutModule } from './dashboardLayout/dashboard.layout.module
 import {AuthGuard} from '../services/security/auth.guard';
 import {ClaimBackModule} from './claim/claim.back.module';
 import {ProductModule} from './product/product.module';
-
+import {PromotionModule} from './promotion/promotion.module';
+import {PromotionService} from '../services/managers/promotion.service';
+import { ScoringAgentComponent } from './scoringAgent/scoring.agent.component';
 
 
 @NgModule({
@@ -16,11 +18,11 @@ import {ProductModule} from './product/product.module';
     DashboardLayoutModule,
     ClaimBackModule,
     ProductModule,
-
-
-
+    PromotionModule,
+    CommonModule
   ],
-  declarations: [ BackComponent, DashboardComponent],
-  providers: [AuthGuard]
+  declarations: [BackComponent, DashboardComponent, ScoringAgentComponent],
+  providers: [AuthGuard, PromotionService]
 })
-export class BackModule { }
+export class BackModule {
+}

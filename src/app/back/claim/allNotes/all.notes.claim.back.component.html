@@ -1,0 +1,14 @@
+<div class="card col-md-10 offset-md-1 notes" *ngFor="let n of notes">
+<!--  <span class="avatar avatar-sm rounded-circle" *ngIf="n.createdBy.profileImage != null"><img src="./../../../../assets/img/theme/team-2-800x800.jpg" ></span>-->
+<!--  <span class="avatar avatar-sm rounded-circle" *ngIf="n.createdBy.profileImage == null"><img src="./../../../../assets/img/theme/team-1-800x800.jpg" ></span>-->
+  {{n.description}} <br>
+  {{n.createdAt}}
+  <br>
+  <br>
+  <span style="font-size: 13px" >Crée par : {{n.createdBy.firstName}} {{n.createdBy.lastName}}</span>
+  <div class="row offset-md-10" *ngIf="n.createdBy.id == userLogged">
+    <button class="btn btn-sm btn-danger"  (click)="deleteNote(n)" >Supprimer</button>
+    <button class="btn btn-sm btn-success" (click)="editNote(n)">Editer</button>
+  </div>
+</div>
+<!--(click)="deleteNote(n)"-->

@@ -1,0 +1,16 @@
+.claimCard {
+  margin-top: -100px !important;
+  padding: 50px;
+  border-radius: 5px;
+  margin-bottom: 50px;
+}
+
+.claimCard h2 {
+  font-weight: bold;
+}
+
+.claimCard span {
+  font-weight: 100;
+  font-size: 13px;
+  text-align: left;
+}

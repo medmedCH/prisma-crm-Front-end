@@ -1,0 +1,32 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+.vide {
+  padding-top: 100px;
+  text-align: center;
+}
+.attente {
+  font-weight: bold ;
+  background: rgba(208, 208, 208, 0.39) ;
+}
+td, th {
+  text-align: center;
+}
+.priority  {
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 4px 6px;
+  color: black;
+}
+.moyenne {
+  background: rgba(0, 130, 27, 0.52);
+}
+
+.faible {
+  background: rgba(226, 218, 11, 0.72);
+}
+
+.elevee {
+  background: rgba(215, 96, 32, 0.85);
+}
+.urgent {
+  background: rgba(215, 12, 19, 0.83);
+}

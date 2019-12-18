@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {ClaimService} from 'src/app/services/managers/claim.service';
+import { ClaimService } from 'src/app/services/managers/claim.service';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {StatusModalComponent} from './statusModal/statusModal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-claim-check',
@@ -14,14 +14,18 @@ export class ClaimCheckComponent {
 
   title = 'Consul Claim';
   status;
-
-  constructor(private claimService: ClaimService, private router: Router, private modalService: NgbModal) {
+  claim;
+  constructor(private claimService: ClaimService, private router: Router , private modalService: NgbModal) {
   }
 
 
   getStatusFrom = new FormGroup({
     claimCode: new FormControl('', [Validators.required]),
   });
+
+  ngOnInit() {
+
+  }
   /*this.claimService.getFaqById(1)
     .subscribe(
       response => {
@@ -50,4 +54,5 @@ export class ClaimCheckComponent {
         }
       );
   }
+
 }

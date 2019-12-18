@@ -1,0 +1,8 @@
+<div class="card col-md-10 offset-md-1 notes">
+  <form [formGroup]="addNoteForm">
+    <input type="text" formControlName="description" class="form-control form-control-alternative">
+
+    <button (click)="addNoteFromChild()" class="btn btn-primary my-4 " >Commenter</button>
+  </form>
+</div>
+

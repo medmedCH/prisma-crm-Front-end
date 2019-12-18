@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(
         (response: any) => {
               if (this.returnUrl) {this.router.navigateByUrl(this.returnUrl);
-              } else {this.router.navigateByUrl('/dash'); }
+              } else {this.router.navigate(['/dash/claim']); }
             } ,
       error => console.log(error)
     );

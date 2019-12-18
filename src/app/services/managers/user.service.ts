@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
 @Injectable()
-export class ClaimService {
+export class UserService {
 
   constructor(private http: HttpClient) {
   }

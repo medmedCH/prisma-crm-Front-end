@@ -1,7 +1,48 @@
-<h1>Products List</h1>
+<style>
+  li {
+    list-style: circle;
+  }
+</style>
+<div class="header"
+     style="background: url('../../../../assets/img/bandeau-faq.jpg') !important; height: 250px ">
 
-<!--<ul>-->
-<!--  <li *ngFor="let product of products">-->
-<!--    <a [routerLink]="['/product',product.id]"></a>-->
-<!--  </li>-->
-<!--</ul>-->
+</div>
+<div class="container">
+  <div class="row">
+    <h1>FAQ !</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Problémes technique</h2>
+      <ul>
+        <a *ngFor="let c of claims; let index = index" [routerLink]="['/faq/',index+1]">
+          <li *ngIf="c.type == 'TECHNIQUE'" >
+            <span > {{c.title}}</span>
+          </li>
+        </a>
+
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h3>Relation client</h3>
+      <ul>
+        <a *ngFor="let c of claims; let index = index" [routerLink]="['/faq/',index+1]">
+          <li *ngIf="c.type == 'RELATIONNELLE'" >
+            <span > {{c.title}}</span>
+          </li>
+        </a>
+
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h3>Paiement / Factures</h3>
+      <ul>
+        <a *ngFor="let c of claims; let index = index" [routerLink]="['/faq/',index+1]">
+          <li *ngIf="c.type == 'FINANCIERE'" >
+            <span > {{c.title}}</span>
+          </li>
+        </a>
+      </ul>
+    </div>
+  </div>
+</div>
