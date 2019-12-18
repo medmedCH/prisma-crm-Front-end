@@ -1,0 +1,60 @@
+<div class="card m-3">
+  <h5 class="card-header">Ajouter Offre</h5>
+  <div class="card-body">
+    <form [formGroup]="offreajout" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Nom Offre</label>
+        <input type="text" formControlName="nm" name="name" class="form-control" [(ngModel)]="offre.name"
+               [ngClass]="{ 'is-invalid': submitted && f.nm.errors }"/>
+        <div *ngIf="submitted && f.nm.errors" class="invalid-feedback">
+          <div *ngIf="f.nm.errors.required">Nom obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" formControlName="ds" name="description" class="form-control" [(ngModel)]="offre.description"
+               [ngClass]="{ 'is-invalid': submitted && f.ds.errors }"/>
+        <div *ngIf="submitted && f.ds.errors" class="invalid-feedback">
+          <div *ngIf="f.ds.errors.required">Description obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label>Type offre</label>
+        <select class="form-control" name="offtype"  [(ngModel)]="offre.offtype" formControlName="ot" [ngClass]="{ 'is-invalid': submitted && f.ot.errors }">
+          <option>Offres_à_carte</option>
+          <option>Offres_à_facture</option>
+
+        </select>
+        <div *ngIf="submitted && f.ot.errors" class="invalid-feedback">
+          <div *ngIf="f.ot.errors.required">type obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Avantages</label>
+        <input type="text" formControlName="av" name="avantages" class="form-control"
+               [(ngModel)]="offre.avantages"
+               [ngClass]="{ 'is-invalid': submitted && f.av.errors }"/>
+        <div *ngIf="submitted && f.av.errors" class="invalid-feedback">
+          <div *ngIf="f.av.errors.required">aventages obligatoire</div>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Tarifaction</label>
+        <textarea class="form-control" formControlName="tr" name="tarification" [(ngModel)]="offre.tarification"
+                  [ngClass]="{ 'is-invalid': submitted && f.tr.errors }"></textarea>
+        <div *ngIf="submitted && f.tr.errors" class="invalid-feedback">
+          <div *ngIf="f.tr.errors.required">Tarification obligatoire</div>
+
+        </div>
+      </div>
+
+
+      <div class="text-center">
+        <button class="btn btn-primary mr-1" (click)="addOffre(offre)">Ajouter</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

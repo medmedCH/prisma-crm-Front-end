@@ -1,0 +1,33 @@
+
+
+<div class="card m-3">
+  <h2 class="card-header">Ajouter  un produit  Pack</h2>
+  <div class="card-body">
+    <form [formGroup]="addProductPack"  >
+
+
+      <div class="form-group col" >
+        <label>Packs</label>
+        <select formControlName="pack" class="form-control" [(ngModel)]="pa.id">
+          <option *ngFor="let j of pa" value="{{j.id}}"   >{{j.name}}</option>
+
+        </select>
+
+      </div>
+      <br><br><br>
+      <div class="form-group col" >
+        <label>Produits</label>
+        <select formControlName="produit" class="form-control"  [(ngModel)]="prd.id">
+          <option *ngFor="let x of prd  "  value="{{x.id}}"   >{{x.name}}|{{x.price}}dt</option>
+
+        </select>
+
+      </div>
+      <br><br><br> <br><br><br>
+      <div class="text-center">
+        <button class="btn btn-primary mr-1" (click)="sub()" >Passer</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

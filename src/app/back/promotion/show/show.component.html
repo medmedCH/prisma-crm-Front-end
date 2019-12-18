@@ -1,7 +1,4 @@
 
-<div class="hello">
-
-</div>
 
 <div>
 
@@ -14,21 +11,23 @@
       <th scope="col">Période</th>
       <th scope="col">Pourcentage</th>
       <th scope="col">Date fin</th>
+      <th scope="col">Modifier</th>
+
     </tr>
     </thead>
-    <tbody *ngFor="let x of pr ">
-    <tr>
+    <tbody>
+    <tr *ngFor="let x of pr ">
 
       <td>{{x.s_date}}</td>
       <td>{{x.name}}</td>
       <td>{{x.period}}</td>
       <td>{{x.percentage}}</td>
       <td>{{x.e_date}}</td>
-      <td><a routerLink="update" > <input type="button" value="Modifier" class="btn btn-primary mr-1"> </a><td>
+      <td> <button class="btn btn-primary" (click)="open(x.id)"><i class="far fa-edit"></i></button></td>
 
     </tr>
 
     </tbody>
   </table>
 </div>
-
+<h4 *ngIf="pr.length==0">Pas de produit pour le moment</h4>

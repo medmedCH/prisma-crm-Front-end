@@ -3,6 +3,7 @@ import {PromotionService} from '../../../services/managers/promotion.service';
 import {Product} from '../../../models/Product';
 import {FormBuilder, Validators, FormGroup, FormControl} from '@angular/forms';
 import {Promotion} from '../../../models/Promotion';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-passerenpromotion',
@@ -15,7 +16,7 @@ export class PasserenpromotionComponent implements OnInit {
   passer: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private promotionservice: PromotionService) {
+  constructor(private formBuilder: FormBuilder, private promotionservice: PromotionService, private router: Router) {
 
   }
 
@@ -25,12 +26,6 @@ export class PasserenpromotionComponent implements OnInit {
   });
 
   ngOnInit() {
-   /* this.addProductPromotion = this.formBuilder.group({
-        produit: ['', Validators.required],
-        promotion: ['', Validators.required]
-      }
-    );*/
-
     this.promotionservice.getproduct().subscribe(data => this.prd = data);
     this.promotionservice.getpromotion().subscribe(data => this.promo = data);
   }
@@ -43,6 +38,9 @@ export class PasserenpromotionComponent implements OnInit {
   sub() {
     this.promotionservice.passerpromotion(this.addProductPromotion.value.promotion , this.addProductPromotion.value.produit )
       .subscribe(data => console.log('mrigul'));
+    this.router.navigateByUrl('/promotion/produitpromotion');
+
+
   }
 
   onSubmit() {

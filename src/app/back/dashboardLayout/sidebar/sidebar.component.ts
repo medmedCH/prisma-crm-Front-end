@@ -12,7 +12,9 @@ export const ROUTES: RouteInfo[] = [
   {path: '/', title: 'Home', icon: 'ni-tv-2 text-primary', class: ''},
   {path: '/dash/claim', title: 'Réclamations', icon: 'ni-planet text-blue', class: ''},
   {path: '/dash/scoringAgent', title: 'Scoring agents', icon: 'ni-pin-3 text-orange', class: ''},
-];
+  {path: '/promotion/create', title: 'Promotion', icon: 'ni-tv-2 text-primary', class: ''},
+  {path: '/pack/create', title: 'Pack', icon: 'ni-tv-2 text-primary', class: ''},
+  ];
 
 @Component({
   selector: 'app-sidebar',
