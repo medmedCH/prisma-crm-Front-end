@@ -11,7 +11,7 @@ import {FrontProductModule} from './frontproduct/front.product.module';
 import {AllFaqResolverService} from '../services/resolvers/all.faq.resolver.service';
 import {PromoModule} from './promo/promo.module';
 import {PacModule} from './pac/pac.module';
-
+import {RepairModule} from './repair/repair.module';
 
 @NgModule({
   imports: [
@@ -22,7 +22,8 @@ import {PacModule} from './pac/pac.module';
     RouterModule,
     FrontProductModule,
     PromoModule,
-    PacModule
+    PacModule,
+    RepairModule
   ],
   declarations: [ FrontComponent, HomeComponent, AlertComponent],
 })

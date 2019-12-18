@@ -21,6 +21,7 @@ const routes: Routes = [
       {path: 'front/products', loadChildren: './frontproduct/front.product.module#FrontProductModule'},
       {path: 'promo', loadChildren: './promo/promo.module#PromoModule'},
       {path: 'pac', loadChildren: './pac/pac.module#PacModule'},
+      {path: 'repair', loadChildren: './repair/repair.module#RepairModule'}
     ]
   },
 ];

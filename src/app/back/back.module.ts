@@ -17,6 +17,11 @@ import {PackService} from '../services/managers/pack.service';
 import {Affiche1Component} from './pack/affiche1/affiche1.component';
 import {AppComponent} from '../app.component';
 import {MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatNativeDateModule, MatSliderModule} from '@angular/material';
+import {FullCalendarModule} from '@fullcalendar/angular';
+import {UserModule} from './User/user.module';
+import {RepairModule} from './repairs/repair.module';
+import {VehiculeModule} from './vehicule/vehicule.module';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -31,7 +36,11 @@ import {MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatNativeDateM
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatSliderModule
+    UserModule,
+    RepairModule,
+    MatSliderModule,
+    VehiculeModule,
+    FullCalendarModule
   ],
   declarations: [BackComponent, DashboardComponent, ScoringAgentComponent, Affiche1Component],
   providers: [AuthGuard, PromotionService, OffreService, PackService],

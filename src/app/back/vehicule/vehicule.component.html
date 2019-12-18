@@ -1,0 +1,114 @@
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <br><br>
+          <h6 class="h2 text-white d-inline-block mb-0"></h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card card-body">
+  <!-- Card header -->
+  <div class="card-header">
+    <!-- Title -->
+    <h5 class="h3 mb-0">Vehicules List</h5>
+  </div>
+  <!-- Card body -->
+  <div class="card-body p-0">
+    <button mat-icon-button (click)="refresh()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+
+    <div class="container mat-elevation-z11">
+
+      <div class="form">
+        <mat-form-field floatPlaceholder="never" color="accent">
+          <input matInput #filter placeholder="Filter vehicules">
+        </mat-form-field>
+      </div>
+
+      <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="plate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>plate</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.plate}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="odometer">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>odometer</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.odometer}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fuelType">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>fuelType</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.fuelType}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="driver">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>driver</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <div *ngIf="row.driver != null; else vide">
+              {{row.driver.firstName}}</div>
+            <ng-template #vide>
+              No Driver Assigned
+            </ng-template>
+
+          </mat-cell>
+        </ng-container>
+
+        <!-- actions -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>
+            <button class="btn btn-info" (click)="addNew()">
+              <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+            </button>
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let row; let i=index;">
+            <a class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete vehicule"
+               (click)="startEdit(i, row.id, row.plate, row.odometer, row.fuelType)">
+              <i class="fas fa-user-edit"></i>
+            </a>
+
+
+            <a  class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete vehicule"
+               (click)="deleteItem(i, row.id, row.plate, row.odometer, row.fuelType)">
+              <i class="fas fa-trash"></i>
+            </a>
+            <button class="btn btn-sm btn-neutral" (click)="AssignD(row.id,row.plate)">
+              Assign driver            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+
+      <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+        No results
+      </div>
+
+      <mat-paginator #paginator
+                     [length]="dataSource.filteredData.length"
+                     [pageIndex]="0"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+
+<br><br><br>

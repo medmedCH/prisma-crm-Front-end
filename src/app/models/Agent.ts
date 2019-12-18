@@ -12,5 +12,4 @@ export class Agent extends User {
   public moyAssiduite: number;
   public moyReponse: number;
   public dispoClaim: string;
-
 }

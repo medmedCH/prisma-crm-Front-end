@@ -20,9 +20,20 @@ import {NotesClaimService} from './services/managers/notesClaim.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 // import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {
+  MatTableModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule
+} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ErrorInterceptor} from './services/security/error.intercepter';
+import {RecaptchaModule} from 'angular-google-recaptcha';
+import {Toast, ToastrModule} from 'ngx-toastr';
+import {UsersService} from './services/managers/users.service';
+import {DatePipe} from '@angular/common';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,6 +50,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     ROUTING,
     StorageServiceModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatInputModule,
     AngularFontAwesomeModule,
     BrowserModule,
     HttpClientModule,
@@ -48,6 +65,14 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
+    }),
+    RecaptchaModule.forRoot({
+      siteKey: '6LdD64gUAAAAAA2j1DVXp60KSuqPkb-ggK4GxWQs',
+    }),
+
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-bottom-left'
     })
   ],
   declarations: [
@@ -58,6 +83,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoleGuard,
     AlertService,
     NotesClaimService,
+    UsersService,
+    Toast,
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthIntercepter,
