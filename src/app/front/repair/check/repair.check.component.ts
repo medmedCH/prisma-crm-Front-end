@@ -27,7 +27,7 @@ export class CheckRepairComponent {
     this.repairService.getRepId(this.getStatusFrom.value.repairCode)
       .subscribe(
         response => {
-          this.status = response['statusRep']['status'];
+          this.status = response['statusRep'];
           this.id = response['id'];
           const modalRef = this.modalService.open(StatusModalComponent);
           modalRef.componentInstance.status = this.status;

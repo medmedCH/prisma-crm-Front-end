@@ -25,6 +25,7 @@ export class VehiculeComponent implements OnInit {
   index: number;
   id: number;
   show = true;
+
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
               public dataService: VehiculeService,
@@ -108,8 +109,6 @@ export class VehiculeComponent implements OnInit {
     this.exampleDatabase = new VehiculeService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     fromEvent(this.filter.nativeElement, 'keyup')
-      // .debounceTime(150)
-      // .distinctUntilChanged()
       .subscribe(() => {
         if (!this.dataSource) {
           return;
@@ -118,7 +117,7 @@ export class VehiculeComponent implements OnInit {
       });
   }
 
-  AssignD(idV: number, plate :string) {
+  AssignD(idV: number, plate: string) {
     const assindDialog = this.dialog.open(AssignDDialogComponent, {
       data: {idv: idV, idd: 0, plate: plate}
     });

@@ -4,6 +4,7 @@ import {UsersService} from '../../services/managers/users.service';
 import {StorageService} from '../../services/security/storage.service';
 import {User} from '../../models/User';
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,7 +15,7 @@ export class UserProfileComponent implements OnInit {
   logged: User;
   selectedFile: File;
 
-  constructor(private UserService: UsersService, private router: Router) {
+  constructor(private UserService: UsersService, private router: Router, public Toast: ToastrService) {
 
   }
 
@@ -44,6 +45,7 @@ export class UserProfileComponent implements OnInit {
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile);
+    this.Toast.success('photo changed');
   }
 
   edit() {
@@ -66,6 +68,8 @@ export class UserProfileComponent implements OnInit {
     console.log(this.logged);
     this.UserService.EditUser(this.logged).subscribe(
       response => {
+        this.Toast.success('edit succes');
+
         console.log('edit sucessfullaaay');
       },
       error => {

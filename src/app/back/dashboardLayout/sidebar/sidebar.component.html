@@ -97,7 +97,11 @@
             {{menuItem.title}}
           </a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/user-profile']">
+            <i class="ni ni-user-run"></i>
+            Profile
+          </a></li>
         <li class="nav-item">
           <a [routerLink]="['/vehicules']" class="nav-link active" data-toggle="ngbCollapse" role="button"
              aria-expanded="true" aria-controls="navbar-tables">

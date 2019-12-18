@@ -5,7 +5,7 @@ import {SentimentComponent} from './sentiments/sentiment.component';
 
 const routes: Routes = [
   {path: '', component: RepairComponent},
-  {path: 'sentiment', component: SentimentComponent}
+  {path: 'sentiment', component: SentimentComponent /*, canActivate: [RoleGuard], data: { roles: ['Admin'] } */}
 
 ];
 
