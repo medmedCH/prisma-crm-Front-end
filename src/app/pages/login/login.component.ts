@@ -16,8 +16,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   errorMessage: string;
 
-  // , @Inject(LOCAL_STORAGE) private storage: WebStorageService
-  constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute, private translate: TranslateService) {
+  constructor(private loginService: LoginService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private translate: TranslateService
+  ) {
     translate.setDefaultLang('en');
     if (this.loginService.currentUserValue) {
       this.router.navigate(['/']);

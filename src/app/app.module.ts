@@ -39,8 +39,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ROUTING,
     StorageServiceModule,
     ReactiveFormsModule,
-    AngularFontAwesomeModule
-    BrowserModule, HttpClientModule,
+    AngularFontAwesomeModule,
+    BrowserModule,
+    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
