@@ -1,0 +1,20 @@
+<div class="container">
+  <h3 mat-dialog-title>Vehicule plate: {{data.plate}} </h3>
+
+  <form [formGroup]="editForm">
+
+    <div class="form-group">
+      <label >Prisma Agents</label>
+      <label>
+        <select class="form-control" [(ngModel)]="data.idd" formControlName="id">
+          <option *ngFor="let opt of x" [value]="opt.id" [selected]="data.idd">{{opt.id }}-{{ opt.firstName}}</option>
+        </select>
+      </label>
+    </div>
+
+    <div mat-dialog-actions>
+      <button (click)="submit()" [disabled]="!editForm.valid" class="btn btn-primary my-4" >Add Notes</button>
+    </div>
+  </form>
+</div>
+<br><br>
