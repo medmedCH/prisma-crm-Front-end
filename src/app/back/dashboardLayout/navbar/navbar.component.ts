@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-
+  userLogged = StorageService.get('currentUser');
   constructor(location: Location, private element: ElementRef, private router: Router) {
     this.location = location;
   }

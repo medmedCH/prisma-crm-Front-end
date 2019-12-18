@@ -14,8 +14,8 @@ export class FrontComponent {
   constructor(private router: Router) {}
   userLogged = StorageService.get('currentUser');
   logout() {
-    this.router.navigate(['/login']);
     StorageService.clear('currentUser');
+    this.router.navigate(['/login']);
   }
 
   showDropdown() {

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {StorageService} from "../../../services/security/storage.service";
 
 declare interface RouteInfo {
   path: string;
@@ -11,7 +12,7 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   {path: '/', title: 'Home', icon: 'ni-tv-2 text-primary', class: ''},
   {path: '/dash/claim', title: 'Réclamations', icon: 'ni-planet text-blue', class: ''},
-  {path: '/dash/scoringAgent', title: 'Scoring agents', icon: 'ni-pin-3 text-orange', class: ''},
+  // {path: '/dash/scoringAgent', title: 'Scoring agents', icon: 'ni-pin-3 text-orange', class: ''},
 ];
 
 @Component({
@@ -21,6 +22,7 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
 
+  userLoggedRole = StorageService.get('currentUser').role;
   public menuItems: any[];
   public isCollapsed = true;
 

@@ -1,6 +1,5 @@
-import {Component} from "@angular/core";
+import {Component} from '@angular/core';
 import {ClaimService} from 'src/app/services/managers/claim.service';
-import { Agent } from "http";
 
 
 @Component({
@@ -15,11 +14,12 @@ export class ScoringAgentComponent {
   constructor(private claimService: ClaimService) {
   }
 
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
     this.claimService.getAllAgents()
       .subscribe(
         response => {
-          console.log("hey");
+          console.log('hey');
           this.listAg = response;
           console.log(response);
        } ,

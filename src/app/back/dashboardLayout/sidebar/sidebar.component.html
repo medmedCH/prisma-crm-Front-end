@@ -96,6 +96,12 @@
             {{menuItem.title}}
           </a>
         </li>
+        <li *ngIf="userLoggedRole === 'Admin'">
+          <a [routerLink]="['/dash/scoringAgent']" class="nav-link" routerLinkActive="active">
+            <i class="ni ni-pin-3 text-orange"></i>
+            Scoring Agent
+          </a>
+        </li>
       </ul>
     </div>
   </div>

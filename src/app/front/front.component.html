@@ -74,7 +74,7 @@
               </div>
             </li>
             <li class="nav-item" *ngIf="userLogged != null">
-              <a class="nav-link nav-link-icon" (click)="logout()">Se déconnecter </a>
+              <a class="nav-link nav-link-icon" routerLink="/login" (click)="logout()">Se déconnecter </a>
             </li>
             <li class="nav-item" *ngIf="userLogged == null">
               <a class="nav-link nav-link-icon"  routerLink="/login">Se connecter </a>
