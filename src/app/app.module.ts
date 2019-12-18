@@ -7,6 +7,7 @@ import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.componen
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ROUTING} from './app.routing';
+import * as $ from 'jquery';
 import {LoginService} from './services/security/login.service';
 import {StorageServiceModule} from 'angular-webstorage-service';
 import {FrontModule} from './front/front.module';

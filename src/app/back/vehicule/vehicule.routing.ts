@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: 'maintenance',
     component: MaintenanceComponent,
-    resolve: {listMaint: MaintainceResolver}/*, canActivate: [RoleGuard], data: { roles: ['Admin'] } */
+    resolve: {listM: MaintainceResolver}/*, canActivate: [RoleGuard], data: { roles: ['Admin'] } */
   },
   {path: '', component: VehiculeComponent}
 ];

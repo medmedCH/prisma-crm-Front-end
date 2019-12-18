@@ -14,8 +14,8 @@ import {Repairrequest} from '../../../../models/Repairrequest';
 export class StatusModalComponent implements OnInit {
 
   @Input()
-  status = '';
-  id = '';
+  status;
+  id;
   R: Repairrequest;
   addNoteFrom = new FormGroup({
     review: new FormControl('', [Validators.required]),
@@ -25,7 +25,7 @@ export class StatusModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.status);
+    console.log(this.status, this.id);
   }
 
   addRepair() {

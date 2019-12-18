@@ -22,6 +22,8 @@ import {UserModule} from './User/user.module';
 import {RepairModule} from './repairs/repair.module';
 import {VehiculeModule} from './vehicule/vehicule.module';
 import {ToastrModule} from 'ngx-toastr';
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -32,7 +34,9 @@ import {ToastrModule} from 'ngx-toastr';
     PromotionModule,
     CommonModule,
     OffreModule,
-    PackModule, MatDialogModule, CommonModule,
+    PackModule,
+    MatDialogModule,
+    CommonModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
@@ -40,9 +44,10 @@ import {ToastrModule} from 'ngx-toastr';
     RepairModule,
     MatSliderModule,
     VehiculeModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ReactiveFormsModule
   ],
-  declarations: [BackComponent, DashboardComponent, ScoringAgentComponent, Affiche1Component],
+  declarations: [BackComponent, DashboardComponent, ScoringAgentComponent, Affiche1Component, UserProfileComponent],
   providers: [AuthGuard, PromotionService, OffreService, PackService],
   entryComponents: [Affiche1Component]
 })

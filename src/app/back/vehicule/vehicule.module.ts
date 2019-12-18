@@ -53,7 +53,7 @@ import {UsersService} from '../../services/managers/users.service';
     DeleteDialogComponent,
     AssignDDialogComponent
   ],
-  providers: [VehiculeService, StorageService, MaintenanceService , UsersService],
+  providers: [VehiculeService, StorageService, MaintenanceService , UsersService, MaintainceResolver],
   entryComponents: [AddDialogComponent,
     EditDialogComponent,
     DeleteDialogComponent,
