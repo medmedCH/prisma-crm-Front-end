@@ -2,11 +2,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
-
 import {AppComponent} from './app.component';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
-
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import * as $ from 'jquery';
 import {ROUTING} from './app.routing';
@@ -36,6 +34,11 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
+// import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
+
 
 @NgModule({
   imports: [
@@ -73,6 +76,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     })
+    // MatAutocompleteModule,
+
+
   ],
   declarations: [
     AppComponent,

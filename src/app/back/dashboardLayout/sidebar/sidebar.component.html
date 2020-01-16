@@ -7,7 +7,7 @@
     </button>
     <!-- Brand -->
     <a [routerLink]="['/dashboard']" class="navbar-brand pt-0" routerLinkActive="active">
-      <img alt="..." class="navbar-brand-img" src="./assets/img/brand/red.png">
+      <h1></h1>
     </a>
     <!-- User -->
     <ul class="nav align-items-center d-md-none">
@@ -51,7 +51,7 @@
             <span>Support</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#!">
+          <a class="dropdown-item" routerLink="/login">
             <i class="ni ni-user-run"></i>
             <span>Logout</span>
           </a>
@@ -101,7 +101,8 @@
           <a class="nav-link" [routerLink]="['/user-profile']">
             <i class="ni ni-user-run"></i>
             Profile
-          </a></li>
+          </a>
+        </li>
         <li class="nav-item">
           <a [routerLink]="['/vehicules']" class="nav-link active" data-toggle="ngbCollapse" role="button"
              aria-expanded="true" aria-controls="navbar-tables">

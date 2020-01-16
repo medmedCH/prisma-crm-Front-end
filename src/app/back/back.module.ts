@@ -26,6 +26,7 @@ import {Affiche1Component} from './pack/affiche1/affiche1.component';
 import {AppComponent} from '../app.component';
 import {MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatNativeDateModule, MatSliderModule} from '@angular/material';
 
+
 @NgModule({
   imports: [
     BackRouting,

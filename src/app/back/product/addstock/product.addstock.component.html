@@ -1,0 +1,80 @@
+<div class="container-add">
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Store</label>
+    <div class="col-sm-10">
+      <div class="form-group">
+
+        <select class="form-control" [(ngModel)]="storeSelect">
+          <option disabled></option>
+          <option *ngFor="let s of storeList" [value]="s.id"> {{s.name}}</option>
+
+        </select>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Product</label>
+    <div class="col-sm-10">
+      <div class="form-group">
+
+        <select class="form-control"  [(ngModel)]="productSelect">
+          <option disabled></option>
+          <option *ngFor="let p of productList" [value]="p.id"> {{p.name}}</option>
+
+        </select>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Quantity</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control"  placeholder="Quantity" [(ngModel)]="quantitySelect" >
+
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Quantity Min</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control"  placeholder="Quantity Min" [(ngModel)]="quantityMinSelect" >
+
+    </div>
+  </div>
+
+  <button class="btn btn-success" (click)="addStockk()">Add Stock</button>
+
+
+<div style="margin-top: 50px;" *ngIf="test">
+  <table class="table table-striped" >
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Quantity Min</th>
+      <th scope="col">Recent Quantity</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>{{quantitySelect}}</td>
+      <td>{{quantityMinSelect}}</td>
+      <td>{{recentQuantity}}</td>
+      <td><button class="btn btn-primary" (click)="checkStockk()">Check Stock</button></td>
+
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>
+
+

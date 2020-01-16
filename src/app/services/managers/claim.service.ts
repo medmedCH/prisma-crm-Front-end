@@ -4,7 +4,7 @@ import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Claim} from '../../models/Claim';
 import {StorageService} from '../security/storage.service';
-import {Agent} from "../../models/Agent";
+import {Agent} from '../../models/Agent';
 
 const httpOptions =  {
   headers: new HttpHeaders({

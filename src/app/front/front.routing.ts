@@ -18,7 +18,7 @@ const routes: Routes = [
       {path: 'faq/:id', component: DetailFaqComponent },
       {path: 'promo', loadChildren: './promo/promo.module#PromoModule'},
       {path: 'pac', loadChildren: './pac/pac.module#PacModule'},
-
+      {path: 'front/products', loadChildren: './frontproduct/front.product.module#FrontProductModule'},
     ]
   },
 ];
