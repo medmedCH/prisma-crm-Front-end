@@ -16,6 +16,9 @@ export const ROUTES: RouteInfo[] = [
   {path: '/pack/affiche', title: 'Pack', icon: 'ni-tv-2 text-primary', class: ''},
   {path: '/offre/show', title: 'Offre', icon: 'ni-tv-2 text-primary', class: ''},
   {path: '/dash/claim', title: 'Réclamations', icon: 'ni-planet text-blue', class: ''},
+  {path: '/back/productsBack', title: 'Products', icon: 'ni-app text-blue', class: ''},
+  {path: '/back/orders', title: 'Orders', icon: 'ni-basket text-orange', class: ''},
+  {path: '/back/Recettes', title: 'Recettes', icon: 'ni-single-copy-04 text-info', class: ''}
   // {path: '/dash/scoringAgent', title: 'Scoring agents', icon: 'ni-pin-3 text-orange', class: ''},
 ];
 

@@ -27,12 +27,14 @@ import {AppComponent} from '../app.component';
 import {MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatNativeDateModule, MatSliderModule} from '@angular/material';
 
 import { ScoringAgentComponent } from './scoringAgent/scoring.agent.component';
+import { AtefModule } from './atef/atef.module';
 
 @NgModule({
   imports: [
     BackRouting,
     DashboardLayoutModule,
     FormsModule,
+    AtefModule,
     ReactiveFormsModule,
     UserModule,
     RepairModule,
@@ -47,7 +49,7 @@ import { ScoringAgentComponent } from './scoringAgent/scoring.agent.component';
     MatFormFieldModule,
     MatNativeDateModule,
     MatSliderModule,
-    CommonModule
+    CommonModule,
   ],
   declarations: [BackComponent, DashboardComponent, UserProfileComponent, Affiche1Component, ScoringAgentComponent],
   providers: [AuthGuard, PromotionService, OffreService, PackService],

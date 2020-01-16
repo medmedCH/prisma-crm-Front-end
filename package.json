@@ -47,13 +47,16 @@
     "ngx-clipboard": "11.1.9",
     "ngx-image-cropper": "^2.0.2",
     "ngx-toastr": "^9.1.2",
+    "html2pdf.js": "^0.9.1",
     "font-awesome": "^4.7.0",
+    "jspdf": "^1.5.3",
     "ngx-pagination": "^5.0.0",
     "nouislider": "13.1.1",
     "rxjs": "6.4.0",
     "save": "^2.4.0",
     "rxjs-compat": "^6.5.3",
-    "zone.js": "0.8.29"
+    "zone.js": "0.8.29",
+    "ngx-paypal": "^5.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.13.1",

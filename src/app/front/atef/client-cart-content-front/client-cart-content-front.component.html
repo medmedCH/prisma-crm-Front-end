@@ -1,0 +1,119 @@
+
+<div class="container" style="margin-top: 3em;">
+  <div class="card" id="cardElement" #cardElement>
+    <div class="card-header">
+      Cart created at
+      <strong>{{date.getFullYear()}}/{{date.getMonth()}}/{{date.getDay()}}&nbsp;</strong>
+    </div>
+    <div class="card-body" id="content" #tableData>
+
+      <div class="card-body">
+        <div class="row mb-4">
+          <div class="col-sm-6">
+            <div>
+              <strong>Company</strong>
+            </div>
+            <div>Level Up</div>
+            <div>71-101 nahej el bodgen, Tunis</div>
+            <div>Email: info@levelup.tn</div>
+            <div>Phone: +53 444 666 3333</div>
+          </div>
+
+          <div class="col-sm-6">
+            <div>
+              <strong>Client</strong>
+            </div>
+            <div>{{cart.client.firstName}} {{cart.client.lastName}}</div>
+            <div></div>
+            <div>Email: {{cart.client.email}}</div>
+            <div>Phone: {{cart.client.phoneNumber}}</div>
+          </div>
+        </div>
+
+      <div class="table-responsive-sm">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th class="center">#</th>
+            <th class="center">Item</th>
+            <th class="center">Description</th>
+            <th class="center">Unit Cost</th>
+            <th class="center">Qty</th>
+            <th class="center">Reduction</th>
+            <th class="center">Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of cart.rows">
+            <td class="center">{{row.product.id}}</td>
+            <td class="center">{{row.product.reference}}</td>
+            <td class="center">{{row.product.description}}</td>
+            <td class="center">{{row.product.price}} Dinars</td>
+            <td class="center">{{row.quantity}}</td>
+            <td class="center">-{{row.totalPriceWNReduction - row.finalPrice}} Dinars</td>
+            <td class="center">{{row.finalPrice}} Dinars</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-sm-5">
+        </div>
+
+        <div class="col-lg-4 col-sm-5 ml-auto">
+          <table class="table table-clear">
+            <tbody>
+            <tr>
+              <td class="left">
+                <strong>Subtotal</strong>
+              </td>
+              <td class="right">{{total}} Dinars</td>
+            </tr>
+            <tr>
+              <td class="left">
+                <strong>Discount ({{reductionSum}} %)</strong>
+              </td>
+              <td class="right">{{reduction}}</td>
+            </tr>
+            <tr>
+              <td class="left">
+                <strong>Total in dinar</strong>
+              </td>
+              <td class="right">
+                <strong>TND {{total}}</strong>
+              </td>
+            </tr>
+            <tr>
+              <td class="left">
+                <strong>Total in euro</strong>
+              </td>
+              <td class="right">
+                <strong>€ {{totalInEuro}}</strong>
+              </td>
+            </tr>
+            <tr>
+              <td class="left">
+                <strong>Total in dollar</strong>
+              </td>
+              <td class="right">
+                <strong>$ {{totalInDollars}}</strong>
+              </td>
+            </tr>
+            <tr>
+              <td class="left">
+                <button  type="button" class="btn btn-success" *ngIf="total>0" [routerLink]="['/quotation',cart.id]"  >Quotation</button>
+              </td>
+              <td class="right">
+                <button  type="button" class="btn btn-warning" (click)="clearCart()" [routerLink]="'/products'" *ngIf="total>0">Clear cart</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-default btn-round btn-block btn-lg" type="button" [routerLink]="'/checkout'" *ngIf="total>0">Checkout</button>
+</div>
+</div>
+

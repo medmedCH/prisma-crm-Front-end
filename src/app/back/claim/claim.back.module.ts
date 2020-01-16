@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClaimBackRouting } from './claim.back.routing'
+import { ClaimBackRouting } from './claim.back.routing';
 import { ClaimService } from 'src/app/services/managers/claim.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';

@@ -4,17 +4,12 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AllFaqComponent} from './FAQ/show/all.faq.component';
 import {DetailFaqComponent} from './FAQ/detail/detail.faq.component';
-import {RoleGuard} from '../services/security/role.guard';
-import {AllClaimsResolverService} from '../services/resolvers/all.claims.resolver.service';
-import {AllFaqResolverService} from '../services/resolvers/all.faq.resolver.service';
-import {FaqDetailResolverService} from '../services/resolvers/faq.detail.resolver.service';
 
 const routes: Routes = [
   {
     path: '',
     component: FrontComponent,
     children: [
-      {path: '', component: HomeComponent},
       {path: '', loadChildren: '../layouts/auth-layout/auth-layout.module#AuthLayoutModule'},
       {path: 'claim', loadChildren: './claim/claim.module#ClaimModule'},
       {path: 'repair', loadChildren: './repair/repair.module#RepairModule'/*, canActivate: [RoleGuard], data: { roles: ['Admin'] } */},
@@ -23,6 +18,7 @@ const routes: Routes = [
       {path: 'promo', loadChildren: './promo/promo.module#PromoModule'},
       {path: 'pac', loadChildren: './pac/pac.module#PacModule'},
       {path: 'front/products', loadChildren: './frontproduct/front.product.module#FrontProductModule'},
+      {path: '', loadChildren: './atef/atef.module#AtefModule'},
     ]
   },
 ];

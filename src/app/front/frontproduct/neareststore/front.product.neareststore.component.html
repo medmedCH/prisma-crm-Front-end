@@ -49,12 +49,12 @@
           <div class="form-group" >
             <label for="exampleFormControlSelect1">Find a store</label>
             <div style="display: flex">
-              <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="selectedStr">
+              <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="selectedStr" (change)="seacrhStore()">
                 <option disabled></option>
                 <option *ngFor="let s of storeList" [value]="s.id"> {{s.name}}</option>
 
               </select>
-              <button type="button" class="btn btn-outline-success" (click)="seacrhStore()">Search</button>
+<!--              <button type="button" class="btn btn-outline-success" (click)="seacrhStore()">Search</button>-->
             </div>
 
           </div>
