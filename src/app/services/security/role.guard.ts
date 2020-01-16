@@ -10,27 +10,27 @@ export class RoleGuard implements CanActivate {
   constructor(
     private router: Router,
   ) {}
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    if (localStorage.getItem('userToken') != null) {
-      const roles = next.data['roles'] as Array<string>;
-      if (roles) {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (!StorageService.get('userToken')) {
+        const rolesAllowed = next.data.roles as Array<string>;
         const user = StorageService.get('currentUser');
-
-        const match = roles.indexOf(user.role);
-        if (match != null) {
-          this.router.navigate(['/faq']);
+        if (rolesAllowed) {
+            // check if user is allowed
+            const match = rolesAllowed.find(ob => ob === user.role);
+            if (match != null) {
+              console.log('maatch true' + match);
+              return true;
+            } else {
+              console.log('maatch false');
+              this.router.navigate(['/']);
+              return false;
+            }
         } else {
-          this.router.navigate(['/faq']);
-          return false;
+          this.router.navigate(['/']);
         }
-      } else {
-        return true;
-      }
+    } else {
+      this.router.navigate(['/login']);
     }
-    this.router.navigate(['/login']);
     return false;
   }
 }

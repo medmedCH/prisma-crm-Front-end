@@ -12,6 +12,8 @@ import {StorageService} from '../services/security/storage.service';
 export class FrontComponent implements OnInit {
   title = 'argon-dashboard-angular';
   logged: User;
+  bool = false;
+  userLogged = StorageService.get('currentUser');
 
   constructor(private UserService: UsersService, private router: Router) {
 
@@ -29,6 +31,18 @@ export class FrontComponent implements OnInit {
           console.log(error);
         }
       );
+  }
 
+  logout() {
+    StorageService.clear('currentUser');
+    this.router.navigate(['/login']);
+  }
+
+  showDropdown() {
+    if (this.bool === false ) {
+      this.bool = true;
+    } else {
+      this.bool = false;
+    }
   }
 }

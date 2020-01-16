@@ -34,10 +34,10 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-
 // import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
-
+import {NotesClaimService} from './services/managers/notesClaim.service';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {ErrorInterceptor} from './services/security/error.intercepter';
 
 
 @NgModule({
@@ -75,10 +75,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
     // MatAutocompleteModule,
-
-
+    AngularFontAwesomeModule
   ],
   declarations: [
     AppComponent,
@@ -90,9 +89,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     UsersService,
     Toast,
     DatePipe,
+    NotesClaimService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthIntercepter,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     },
     NgbActiveModal

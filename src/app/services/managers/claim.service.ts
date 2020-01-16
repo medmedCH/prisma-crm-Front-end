@@ -19,7 +19,7 @@ export class ClaimService {
 
   constructor(private http: HttpClient) {
   }
-  claimURL = 'http://localhost:9080/prisma-crm-web'
+  claimURL = 'http://localhost:9080/prisma-crm-web';
 
 
   getAllClaims() {

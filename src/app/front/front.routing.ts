@@ -4,6 +4,10 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AllFaqComponent} from './FAQ/show/all.faq.component';
 import {DetailFaqComponent} from './FAQ/detail/detail.faq.component';
+import {RoleGuard} from '../services/security/role.guard';
+import {AllClaimsResolverService} from '../services/resolvers/all.claims.resolver.service';
+import {AllFaqResolverService} from '../services/resolvers/all.faq.resolver.service';
+import {FaqDetailResolverService} from '../services/resolvers/faq.detail.resolver.service';
 
 const routes: Routes = [
   {

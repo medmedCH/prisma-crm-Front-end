@@ -12,6 +12,7 @@ import {FaqModule} from './FAQ/faq.module';
 import {PromoModule} from './promo/promo.module';
 import {PacModule} from './pac/pac.module';
 import {FrontProductModule} from './frontproduct/front.product.module';
+import {AllFaqResolverService} from '../services/resolvers/all.faq.resolver.service';
 
 @NgModule({
   imports: [

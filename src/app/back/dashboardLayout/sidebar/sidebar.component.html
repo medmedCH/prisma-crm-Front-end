@@ -127,7 +127,14 @@
           <a class="nav-link" [routerLink]="['/users/list-user']">
             <i class="ni ni-user-run"></i>
             Users list
-          </a></li>
+          </a>
+        </li>
+        <li *ngIf="userLoggedRole === 'Admin'">
+          <a [routerLink]="['/dash/scoringAgent']" class="nav-link" routerLinkActive="active">
+            <i class="ni ni-pin-3 text-orange"></i>
+            Scoring Agent
+          </a>
+        </li>
       </ul>
     </div>
   </div>

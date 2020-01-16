@@ -26,6 +26,7 @@ import {Affiche1Component} from './pack/affiche1/affiche1.component';
 import {AppComponent} from '../app.component';
 import {MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatNativeDateModule, MatSliderModule} from '@angular/material';
 
+import { ScoringAgentComponent } from './scoringAgent/scoring.agent.component';
 
 @NgModule({
   imports: [
@@ -45,9 +46,10 @@ import {MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatNativeDateM
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatSliderModule
+    MatSliderModule,
+    CommonModule
   ],
-  declarations: [BackComponent, DashboardComponent, UserProfileComponent, Affiche1Component],
+  declarations: [BackComponent, DashboardComponent, UserProfileComponent, Affiche1Component, ScoringAgentComponent],
   providers: [AuthGuard, PromotionService, OffreService, PackService],
   entryComponents: [Affiche1Component]
 })

@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   errorMessage: string;
 
   // , @Inject(LOCAL_STORAGE) private storage: WebStorageService
+  // tslint:disable-next-line:max-line-length
   constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute, private translate: TranslateService) {
     translate.setDefaultLang('en');
     if (this.loginService.currentUserValue) {
@@ -39,13 +40,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginService.login(this.model.email, this.model.password)
       .subscribe(
         (response: any) => {
-          if (this.returnUrl) {
-            this.router.navigateByUrl(this.returnUrl);
-          } else {
-            this.router.navigateByUrl('/dash');
-          }
-        },
-        error => console.log(error)
-      );
+              if (this.returnUrl) {this.router.navigateByUrl(this.returnUrl);
+              } else {this.router.navigate(['/dash/claim']); }
+            } ,
+      error => console.log(error)
+    );
   }
 }

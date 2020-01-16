@@ -1,116 +1,413 @@
-<div *ngFor="let c of allClaims">
-<!--  {{c.title}}-->
-</div>
+<br>
+<br>
+<div class="col-md-12">
+  <ngb-tabset>
+    <ngb-tab title="All">
+      <ng-template ngbTabContent>
+        <h2 *ngIf="collection.data.length === 0" class="vide">
+          Vous n'avez pas de réclamation pour le moment</h2>
 
+        <div class="card shadow" *ngIf="collection.data.length !== 0">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Code</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">Priorité</th>
+                <th scope="col">État</th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Responsable</th>
+                <th scope="col">Date de création</th>
+                <th scope="col" class="text-center">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of collection.data | sort: 'priority' | paginate: config ; let i =index"
+                  [ngClass]="(c.value.status=='EN_ATTENTE')?'attente':''">
+                <td>
+                  <label class="form-radio">
+                    <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked" value="{{c.value.id}}">
+                  </label>
+                </td>
+                <td>{{c.value.code}}</td>
+                <td>{{c.value.title}}</td>
+                <td>
+                  <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
+                </td>
+                <td *ngIf="c.value.priority == 'FAIBLE'">
+                  <span class="priority faible">Faible</span>
+                </td>
+                <td *ngIf="c.value.priority == 'MOYEN'">
+                  <span class="priority moyenne">Moyenne</span>
+                </td>
+                <td *ngIf="c.value.priority == 'ELEVEE'">
+                  <span class="priority elevee">Elevé</span>
+                </td>
+                <td *ngIf="c.value.priority == 'URGENT'">
+                  <span class="priority urgent">Urgent !</span>
+                </td>
 
-<div class="row">
-  <div class="col">
-    <div class="card shadow">
-      <div class="card-header border-0">
-        <h3 class="mb-0">Tout les réclamations</h3>
-      </div>
-      <div class="table-responsive">
-        <table class="table align-items-center table-flush">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col">Titre</th>
-            <th scope="col">Description</th>
-            <th scope="col">Status</th>
-            <th scope="col">Users</th>
-            <th scope="col">Completion</th>
-            <th scope="col"></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <th scope="row">
-              <div class="media align-items-center">
-                <div class="media-body">
-                  <span class="mb-0 text-sm">Argon Design System</span>
-                </div>
-              </div>
-            </th>
-            <td>
-              $2,500 USD
-            </td>
-            <td>
-                  <span class="badge badge-dot mr-4">
-                    <i class="bg-warning"></i> pending
-                  </span>
-            </td>
-            <td>
-              <div class="avatar-group">
-                <a class="avatar avatar-sm" data-original-title="Ryan Tompson" data-toggle="tooltip"
-                   href="javascript:void(0)">
-                  <img alt="Image placeholder" class="rounded-circle" src="../assets/img/theme/team-1-800x800.jpg">
-                </a>
-                <a class="avatar avatar-sm" data-original-title="Romina Hadid" data-toggle="tooltip"
-                   href="javascript:void(0)">
-                  <img alt="Image placeholder" class="rounded-circle" src="../assets/img/theme/team-2-800x800.jpg">
-                </a>
-                <a class="avatar avatar-sm" data-original-title="Alexander Smith" data-toggle="tooltip"
-                   href="javascript:void(0)">
-                  <img alt="Image placeholder" class="rounded-circle" src="../assets/img/theme/team-3-800x800.jpg">
-                </a>
-                <a class="avatar avatar-sm" data-original-title="Jessica Doe" data-toggle="tooltip"
-                   href="javascript:void(0)">
-                  <img alt="Image placeholder" class="rounded-circle" src="../assets/img/theme/team-4-800x800.jpg">
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="d-flex align-items-center">
-                <span class="mr-2">60%</span>
-                <div>
-                  <div class="progress">
-                    <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" class="progress-bar bg-warning"
-                         role="progressbar" style="width: 60%;"></div>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td class="text-right">
-              <div ngbDropdown placement="bottom-right">
-                <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
-                  <i class="fas fa-ellipsis-v"></i>
-                </a>
-                <div class=" dropdown-menu-right dropdown-menu-arrow" ngbDropdownMenu>
-                  <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                  <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                  <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                </div>
-              </div>
-            </td>
-          </tr>
+                <td *ngIf="c.value.status == 'EN_ATTENTE'">
+                  <span class="enAtt">En attente</span>
+                </td>
+                <td *ngIf="c.value.status == 'EN_COURS'">
+                  <span class="enC">En cours</span>
+                </td>
+                <td *ngIf="c.value.status == 'RESOLU'">
+                  <span class="resolu">Résolu</span>
+                </td>
+                <td *ngIf="c.value.status == 'CONFIRMEE'">
+                  <span class="confirmee">Confirmé</span>
+                </td>
+                <td *ngIf="c.value.status == 'FERME_SANS_SOLUTION'">
+                  <span class="fermee">Fermé sans solution</span>
+                </td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
+                <td>{{c.value.createdAt}}</td>
+                <td class="text-center">
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]" ><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
 
-          </tbody>
-        </table>
-      </div>
-      <div class="card-footer py-4">
-        <nav aria-label="...">
-          <ul class="pagination justify-content-end mb-0">
-            <li class="page-item disabled">
-              <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                <i class="fas fa-angle-left"></i>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item active">
-              <a class="page-link" href="javascript:void(0)">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="javascript:void(0)">
-                <i class="fas fa-angle-right"></i>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
+              </tbody>
+            </table>
+
+          </div>
+          <div class="card-footer row">
+            <div class="col-md-4">
+              Par séléction multiple :
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()"  *ngIf="loggedUserRole != 'Client'"> Archiver</button>
+            </div>
+            <div class="col-md-8 text-right">
+              <nav aria-label="...">
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="En Attente">
+      <ng-template ngbTabContent>
+        <h2 *ngIf="collection.dataEnAttente.length === 0" class="vide">
+          Pas de réclamation en attente pour le moment</h2>
+
+        <div class="card shadow" *ngIf="collection.dataEnAttente.length !== 0">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Code</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Descirption</th>
+                <th scope="col">Priorité </th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Résponsable</th>
+                <th scope="col">Date de création</th>
+                <th scope="col" class="text-center">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of collection.dataEnAttente | sort: 'priority' | paginate: configEnAttente ; let i =index">
+                <td>
+                  <label class="form-radio">
+                    <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
+                  </label>
+                </td>
+                <td>{{c.value.code}}</td>
+                <td>{{c.value.title}}</td>
+                <td>
+                  <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
+                </td>
+                <td *ngIf="c.value.priority == 'FAIBLE'">
+                  <span class="priority faible">Faible</span>
+                </td>
+                <td *ngIf="c.value.priority == 'MOYEN'">
+                  <span class="priority moyenne">Moyenne</span>
+                </td>
+                <td *ngIf="c.value.priority == 'ELEVEE'">
+                  <span class="priority elevee">Elevé</span>
+                </td>
+                <td *ngIf="c.value.priority == 'URGENT'">
+                  <span class="priority urgent">Urgent !</span>
+                </td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
+                <td>{{c.value.createdAt}}</td>
+                <td class="text-center">
+                  <button class="btn btn-success btn-sm" (click)="bipper(c.value)" *ngIf="loggedUserRole === 'Admin'">Poke</button>
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+          <div class="card-footer row">
+            <div class="col-md-4">
+              Par séléction multiple :
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
+            </div>
+            <div class="col-md-8 text-right">
+              <nav aria-label="...">
+                <pagination-controls (pageChange)="pageChangedEnAttente($event)"></pagination-controls>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="En Cours">
+      <ng-template ngbTabContent>
+        <h2 *ngIf="collection.dataEnCours.length === 0" class="vide">Pas de réclamation résolu pour le moment</h2>
+        <div class="card shadow" *ngIf="collection.dataEnCours.length !== 0">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Code</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">État</th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Responsable</th>
+                <th scope="col">Date de création</th>
+                <th scope="col" class="text-center">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of collection.dataEnCours | paginate: configEnCours ; let i =index">
+                <td>
+                  <label class="form-radio">
+                    <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
+                  </label>
+                </td>
+                <td>{{c.value.code}}</td>
+                <td>En cours</td>
+                <td>
+                  <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
+                </td>
+                <td>{{c.value.status}}</td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
+                <td>{{c.value.createdAt}}</td>
+                <td class="text-center">
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+          <div class="card-footer row">
+            <div class="col-md-4">
+              Par séléction multiple :
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
+            </div>
+            <div class="col-md-8 text-right">
+              <nav aria-label="...">
+                <pagination-controls (pageChange)="pageChangedEnCours($event)"></pagination-controls>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Résolu(s)">
+      <ng-template ngbTabContent>
+        <h2 *ngIf="collection.dataResolu.length === 0"  class="vide">Pas de réclamation résolu pour le moment</h2>
+        <div class="card shadow" *ngIf="collection.dataResolu.length !== 0">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Code</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">État</th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Responsable</th>
+                <th scope="col">Date de création</th>
+                <th scope="col" class="text-center">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of collection.dataResolu | paginate: configResolu ; let i =index">
+                <td>
+                  <label class="form-radio">
+                    <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
+                  </label>
+                </td>
+                <td>{{c.value.code}}</td>
+                <td>{{c.value.title}}</td>
+                <td>
+                  <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
+                </td>
+                <td>Résolu</td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
+                <td>{{c.value.createdAt}}</td>
+                <td class="text-center">
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-success btn-sm" (click)="confirmer(c.value)" *ngIf="c.value.createdById === loggedUserId"><i class="fas fa-check"></i> Valider</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+          <div class="card-footer row">
+            <div class="col-md-4">
+              Par séléction multiple :
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
+            </div>
+            <div class="col-md-8 text-right">
+              <nav aria-label="...">
+                <pagination-controls (pageChange)="pageChangedResolu($event)"></pagination-controls>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Confirmé(s)">
+      <ng-template ngbTabContent>
+        <h2 *ngIf="collection.dataConfirmed.length === 0"  class="vide">Pas de réclamation confirmée pour le moment</h2>
+        <div class="card shadow" *ngIf="collection.dataConfirmed.length !== 0">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Code</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">État</th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Responsable</th>
+                <th scope="col">Date de création</th>
+                <th scope="col" class="text-center">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of collection.dataConfirmed | paginate: configConfirmed ; let i =index">
+                <td>
+                  <label class="form-radio">
+                    <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
+                  </label>
+                </td>
+                <td>{{c.value.code}}</td>
+                <td>{{c.value.title}}</td>
+                <td>
+                  <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
+                </td>
+                <td>Confirmé</td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
+                <td>{{c.value.createdAt}}</td>
+                <td class="text-center">
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+          <div class="card-footer row">
+            <div class="col-md-4">
+              Par séléction multiple :
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="archiverSelectedClaims()" *ngIf="loggedUserRole != 'Client'"> Archiver</button>
+            </div>
+            <div class="col-md-8 text-right">
+              <nav aria-label="...">
+                <pagination-controls (pageChange)="pageChangedConfirmed($event)"></pagination-controls>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Fermée(s)" *ngIf="loggedUserRole != 'Client'">
+      <ng-template ngbTabContent>
+        <h2 *ngIf="collection.dataFermee.length === 0" class="vide">
+          Pas de réclamation férmée (Archivée) pour le moment</h2>
+
+        <div class="card shadow" *ngIf="collection.dataFermee.length !== 0">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Code</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">État</th>
+                <th scope="col" *ngIf="loggedUserRole == 'Admin'">Responsable</th>
+                <th scope="col">Date de création</th>
+                <th scope="col" class="text-center">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of collection.dataFermee | paginate: configFermee ; let i =index">
+                <td>
+                  <label class="form-radio">
+                    <input type="checkbox" (change)="checkbox(c.value, i)" [(ngModel)]="c.value.checked">
+                  </label>
+                </td>
+                <td>{{c.value.code}}</td>
+                <td>{{c.value.title}}</td>
+                <td>
+                  <div style="overflow: hidden; width: 250px; word-wrap: break-word;"> {{c.value.description}}</div>
+                </td>
+                <td>Fermé sans solution</td>
+                <td *ngIf="loggedUserRole == 'Admin'">{{c.value.responsable.firstName}}</td>
+                <td>{{c.value.createdAt}}</td>
+                <td class="text-center">
+                  <a class="btn btn-default btn-sm" [routerLink]="['/dash/claim/show/', c.value.id]"><i class="far fa-eye"></i></a>
+                  <button class="btn btn-warning btn-sm" (click)="edit(c.value)"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClaim(c.value)"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+          <div class="card-footer row">
+            <div class="col-md-4">
+              Par séléction multiple :
+              <button class="btn btn-danger btn-sm" (click)="deleteSelectedClaims()"> <i class="fas fa-trash"></i> Supprimer</button>
+              <button class="btn btn-facebook btn-sm" (click)="desarchiverSelectedClaims()"> Désarchiver</button>
+            </div>
+            <div class="col-md-8 text-right">
+              <nav aria-label="...">
+                <pagination-controls (pageChange)="pageChangedFermee($event)"></pagination-controls>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
 </div>

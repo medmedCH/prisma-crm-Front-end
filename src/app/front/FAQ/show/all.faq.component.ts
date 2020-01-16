@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FaqService} from '../../../services/managers/faq.service';
@@ -12,22 +12,25 @@ import {ClaimService} from '../../../services/managers/claim.service';
   styleUrls: []
 })
 export class AllFaqComponent {
+  claims;
 
-  constructor(private claimService: ClaimService, private router: Router) {
+  constructor(private claimService: ClaimService, private router: Router, private route: ActivatedRoute,) {
+    console.log(this.route.snapshot.data);
+    this.claims = this.route.snapshot.data['listFaq'];
   }
 
-  OnInit() {
-    // this.faqService.getAllFaq()
-    //   .subscribe(
-    //     response => {
-    //       console.log('hello faq');
-    //
-    //       console.log(response);
-    //     },
-    //     error => {
-    //       console.log('hello error');
-    //       console.log(error);
-    //     }
-    //   );
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnInit() {
+    this.claimService.getAllFaq()
+      .subscribe(
+        response => {
+          this.claims = response;
+          console.log(response);
+        },
+        error => {
+          console.log('hello error');
+          console.log(error);
+        }
+      );
   }
 }
