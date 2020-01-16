@@ -1,0 +1,44 @@
+<div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">date</th>
+      <th scope="col">Type</th>
+      <th scope="col">Download invoice</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let single of clientOrders">
+      <th scope="row">
+        <div class="media align-items-center">
+          <div class="media-body">
+            <span class="mb-0 text-sm">{{single.id}}</span>
+          </div>
+        </div>
+      </th>
+      <td>
+        <span class="bg bg-gradient-cyan" style="color: white">
+            {{single.createdAt}}</span>
+      </td>
+      <td>
+      {{single.orderNature}}
+      </td>
+
+      <td *ngIf="single.orderNature==='OnlinePaymentMethod' || (single.orderNature==='LocalPaymentMethod' && single.valid===true)">
+        <button class="btn btn-icon btn-3 bg-gradient-red" type="button" [routerLink]="['/front/invoicePermanent',single.id]">
+          <span class="btn-inner--icon" style="color: whitesmoke"><i class="ni ni-archive-2"></i></span>
+          <span class="btn-inner--text" style="color: whitesmoke">Download invoice</span>
+        </button>
+      </td>
+      <td *ngIf="single.orderNature==='LocalPaymentMethod' && single.valid===false">
+        <button class="btn btn-icon btn-3 bg-gradient-blue" type="button">
+          <span class="btn-inner--icon" style="color: whitesmoke"><i class="ni ni-archive-2"></i></span>
+          <span class="btn-inner--text" style="color: whitesmoke">Download temporary invoice</span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

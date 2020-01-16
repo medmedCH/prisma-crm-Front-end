@@ -1,0 +1,61 @@
+<div class="container-fluid mt--7">
+  <div style="margin-top: 10em;"></div>
+  <div class="row" id="recette">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Recipe of {{recette.dateCreation}}</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush" id="dataTable">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Order id</th>
+              <th scope="col">Total</th>
+              <th scope="col">Payment method</th>
+              <th scope="col">Order status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let row of recette.commandes">
+              <th scope="row">
+                <div class="media align-items-center">
+                  <span class="badge badge-pill badge-success">{{row.id}}</span>
+                </div>
+              </th>
+              <td>
+                {{row.totale}} TND
+              </td>
+              <td>
+
+                <div class="">
+                  <a class="btn btn-default" style="color: white">
+                    {{row.orderNature}}
+                  </a>
+                </div>
+              </td>
+              <td>
+                <span class="badge badge-dot mr-4" *ngIf="!row.valid">
+                        <i class="bg-danger"></i> Invalid
+                      </span>
+                <span class="badge badge-dot mr-4" *ngIf="row.valid">
+                        <i class="bg-success"></i> Valid
+                      </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          Total : <span class="bg-gradient-cyan">{{recette.totaleRecette}} TND</span>&nbsp;&nbsp;&nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="downloadAsPdf()">
+    <span class="btn-inner--icon"><i class="ni ni-paper-diploma"></i></span>
+    <span class="btn-inner--text">Download PDF</span>
+  </button>
+</div>
+
+

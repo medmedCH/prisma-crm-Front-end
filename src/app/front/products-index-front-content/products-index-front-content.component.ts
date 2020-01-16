@@ -19,7 +19,8 @@ export class ProductsIndexFrontContentComponent implements OnInit, AfterViewInit
     this.service.fetchProducts().subscribe((e) => {
       this.products = e;
       console.log(this.products);
-    });
+      console.log('rrrrrrrrrrrrrrrrrrrrrrr');
+    }, error => console.log('eeeeeeeeeeeeeeeeeeeeee'));
     this.service.fetchCartsForAClient(1).subscribe((e) => {
       this.carts = e;
       console.table(e);

@@ -11,6 +11,8 @@ import {InvoicesComponent} from './invoices/invoices.component';
 import {CartsComponent} from './carts/carts.component';
 import {ViewOrderComponent} from './view-order/view-order.component';
 import {EditOrderComponent} from './edit-order/edit-order.component';
+import {RecetteModel} from '../models/orderModule/RecetteModel';
+import {RecetteComponent} from './recette/recette.component';
 
 const routes: Routes = [
   {
@@ -21,10 +23,11 @@ const routes: Routes = [
       {path: 'products', component: ProductsComponent},
       {path: 'orders', component: OrdersComponent},
       {path: 'quotations', component: QuotationsComponent},
-      {path: 'invoices', component: InvoicesComponent},
+      {path: 'Recettes', component: InvoicesComponent},
       {path: 'carts', component: CartsComponent},
       {path: 'viewOrder', component: ViewOrderComponent},
       {path: 'editOrder', component: EditOrderComponent},
+      {path: 'Recettes/recette/:date', component: RecetteComponent},
     ]
   },
 

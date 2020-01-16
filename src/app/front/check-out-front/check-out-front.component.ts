@@ -81,7 +81,7 @@ export class CheckOutFrontComponent implements OnInit, AfterViewInit {
     this.longitude = parseFloat(sessionStorage.getItem('longitude'));
     this.latitude = parseFloat(sessionStorage.getItem('latitude'));
     this.orderClient.createdAt = new Date();
-    this.orderClient.isValid = false;
+    this.orderClient.valid = false;
   }
 
   ngAfterViewInit(): void {

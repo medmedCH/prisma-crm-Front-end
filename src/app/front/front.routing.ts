@@ -8,6 +8,11 @@ import {ClientCartContentFrontComponent} from './client-cart-content-front/clien
 import {CheckOutFrontComponent} from './check-out-front/check-out-front.component';
 import {PaypalCheckoutComponent} from './paypal-checkout/paypal-checkout.component';
 import {ClientOrdersFrontComponent} from './client-orders-front/client-orders-front.component';
+import {QuotationsComponent} from '../back/quotations/quotations.component';
+import {QuotationClientComponent} from './quotation-client/quotation-client.component';
+import {OnlineInvoiceFrontComponent} from './online-invoice-front/online-invoice-front.component';
+import {InvoiceClientTemporaryComponent} from './invoice-client-temporary/invoice-client-temporary.component';
+import {InvoiceClientPermanentComponent} from './invoice-client-permanent/invoice-client-permanent.component';
 
 const routes: Routes = [
   {
@@ -23,6 +28,9 @@ const routes: Routes = [
       {path: 'checkout', component: CheckOutFrontComponent},
       {path: 'paypal', component: PaypalCheckoutComponent},
       {path: 'orders/:id', component: ClientOrdersFrontComponent},
+      {path: 'quotation/:id', component: QuotationClientComponent},
+      {path: 'invoicePermanent/:id', component: InvoiceClientPermanentComponent},
+      {path: 'temporaryInvoice/:id', component: InvoiceClientTemporaryComponent},
       {path: '**', component: HomeComponent},
     ]
   },

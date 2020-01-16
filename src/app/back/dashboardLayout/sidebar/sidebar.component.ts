@@ -14,7 +14,7 @@ export const ROUTES: RouteInfo[] = [
   {path: '/back/orders', title: 'Orders', icon: 'ni-basket text-orange', class: ''},
   {path: '/back/carts', title: 'Carts', icon: 'ni-bag-17 text-yellow', class: ''},
   {path: '/back/quotations', title: 'Quotations', icon: 'ni-send text-red', class: ''},
-  {path: '/back/invoices', title: 'Invoices', icon: 'ni-single-copy-04 text-info', class: ''}
+  {path: '/back/Recettes', title: 'Recettes', icon: 'ni-single-copy-04 text-info', class: ''}
 ];
 
 @Component({

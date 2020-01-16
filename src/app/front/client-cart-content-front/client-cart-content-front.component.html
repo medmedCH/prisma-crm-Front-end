@@ -101,10 +101,10 @@
             </tr>
             <tr>
               <td class="left">
-                <button  type="button" class="btn btn-success" (click)="getQuotation()" >Quotation</button>
+                <button  type="button" class="btn btn-success" *ngIf="total>0" [routerLink]="['/front/quotation',cart.id]"  >Quotation</button>
               </td>
               <td class="right">
-                <button  type="button" class="btn btn-warning" (click)="clearCart()" [routerLink]="'/front/products'">Clear cart</button>
+                <button  type="button" class="btn btn-warning" (click)="clearCart()" [routerLink]="'/front/products'" *ngIf="total>0">Clear cart</button>
               </td>
             </tr>
             </tbody>
@@ -113,7 +113,7 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-default btn-round btn-block btn-lg" type="button" [routerLink]="'/front/checkout'">Checkout</button>
+  <button class="btn btn-default btn-round btn-block btn-lg" type="button" [routerLink]="'/front/checkout'" *ngIf="total>0">Checkout</button>
 </div>
 </div>
 

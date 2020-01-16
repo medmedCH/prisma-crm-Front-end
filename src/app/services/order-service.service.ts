@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {StoreModel} from '../models/orderModule/StoreModel';
 import {ClientOrderModel} from '../models/orderModule/ClientOrderModel';
 import {ProductModel} from '../models/orderModule/ProductModel';
+import {Client} from '../models/orderModule/Client';
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +14,13 @@ export class OrderServiceService {
   }
 
   // ------------------------------------Back office -----------------------------------------------//
+  // tested
+  // integrated
   getAllOrders() {
     return this.http.post<ClientOrderModel[]>('http://localhost:9080/prisma-crm-web/main/orderAd/back/fetch-orders', null);
   }
-
-  getOrderCart() {
-  }
-
-  getPercentageWinLossBetweenTwoDays() {
-  }
-
-  getTodayCarts() {
-  }
-
+  // tested
+  // integrated
   validateTemporaryOrder(orderId) {
     return this.http.post('http://localhost:9080/prisma-crm-web/main/orderAd/validateOrder/' + orderId + '/2', null);
   }
@@ -33,16 +28,22 @@ export class OrderServiceService {
 
   // ------------------------------------End back office-------------------------------------------//
   // ------------------------------------front office -----------------------------------------------//
+  // tested
+  // integrated
   getNearestStoreAddress(longtitude, latitude) {
     return this.http.get<StoreModel>('http://localhost:9080/prisma-crm-web/main/cart/getNearesAddress/'
       + longtitude + '/' + latitude);
   }
 
+  // tested
+  // integrated
   passTemporaryOrder(cart, client, distance, store) {
     return this.http.post<number>('http://localhost:9080/prisma-crm-web/main/cart/checkOutOrderCash/' + cart
       + '/' + client + '/' + distance + '/' + store, null);
   }
 
+  // tested
+  // integrated
   passToPayPalOrder(cart, client, distance, store) {
     return this.http.post<number>('http://localhost:9080/prisma-crm-web/main/cart/checkOutOrderOnline/' + cart
       + '/' + client + '/' + distance + '/' + store, null);
@@ -54,24 +55,23 @@ export class OrderServiceService {
   }
 
   getBestClientOfAllTime() {
-    return this.http.post<ProductModel>('http://localhost:9080/prisma-crm-web/main/orderAd/back/client-of-all-time', null);
+    return this.http.post<Client>('http://localhost:9080/prisma-crm-web/main/orderAd/back/client-of-all-time', null);
   }
 
   getOrdersTotal() {
   }
 
-  getMostActiveStire()
-  {
+  getMostActiveStire() {
 
   }
 
-  getTotalNumberOfOrders()
-  {
+  getTotalNumberOfOrders() {
 
   }
 
-  get
-
+  getOrdersByDate(date) {
+    return this.http.post<ClientOrderModel[]>('http://localhost:9080/prisma-crm-web/main/orderAd/back/get-orders-date/' + date, null);
+  }
 
 
   // ------------------------------------End front office-------------------------------------------//
