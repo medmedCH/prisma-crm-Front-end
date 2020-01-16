@@ -37,6 +37,7 @@ export class VehiculeComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
 
   ngOnInit() {
+    console.log(this.paginator);
     this.loadData();
 
   }

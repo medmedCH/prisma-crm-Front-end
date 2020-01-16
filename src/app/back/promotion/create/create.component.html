@@ -1,0 +1,107 @@
+<button class="btn btn-icon btn-2" style="background-color:#172b4d;color: white " type="button"
+        [routerLink]="['/promotion/show']">
+  <span><i class="ni ni-bag-17"></i></span>
+  <span class="btn-inner--text">Listes promotion</span>
+</button>
+<div class="card m-3">
+  <h5 class="card-header">Ajouter Promotion</h5>
+  <div class="card-body">
+    <form [formGroup]="ajoutForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label>Nom Promotion</label>
+        <input type="text" formControlName="nm" name="name" class="form-control" [(ngModel)]="promotion.name"
+               [ngClass]="{ 'is-invalid': submitted && f.nm.errors }"/>
+        <div *ngIf="submitted && f.nm.errors" class="invalid-feedback">
+
+          <div *ngIf="f.nm.errors.required">Nom obligatoire</div>
+        </div>
+      </div>
+      <!--
+            <div class="form-group">
+              <label>Date début</label>
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                </div>
+                <input class="form-control datepicker"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" placeholder="choisir une date" formControlName="dd" name="s_date"
+                       [(ngModel)]="promotion.s_date" >
+              </div>
+            </div>-->
+
+
+
+
+      <div class="form-group">
+        <label>Date début: </label>
+        <br>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="choisir une date">
+          <mat-datepicker-toggle matSuffix [for]="picker"  [(ngModel)]="promotion.s_date" >
+
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <!--
+             [ngClass]="{ 'is-invalid': submitted && f.dd.errors }
+                <input type="text" placeholder="choisir une date" formControlName="dd" class="form-control" name="s_date"
+                       [(ngModel)]="promotion.s_date"
+                       [ngClass]="{ 'is-invalid': submitted && f.dd.errors }">-->
+        <!--<div *ngIf="submitted && f.dd.errors" class="invalid-feedback">
+
+          <div *ngIf="f.dd.errors.required">Date début obligatoire</div>
+        </div>-->
+      </div>
+      <div class="form-group">
+        <label>pourcentage</label>
+        <input type="text" formControlName="pourcentage" name="percentage" class="form-control"
+               [(ngModel)]="promotion.percentage"
+               [ngClass]="{ 'is-invalid': submitted && f.pourcentage.errors }"/>
+        <div *ngIf="submitted && f.pourcentage.errors" class="invalid-feedback">
+          <div *ngIf="f.pourcentage.errors.required">pourcentage obligatoire</div>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Période</label>
+        <input type="text" formControlName="pd" name="period" class="form-control" [(ngModel)]="promotion.period"
+               [ngClass]="{ 'is-invalid': submitted && f.pd.errors }"/>
+        <div *ngIf="submitted && f.pd.errors" class="invalid-feedback">
+          <div *ngIf="f.pd.errors.required">période obligatoire</div>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Date fin</label>
+        <input type="text" formControlName="df" name="e_date" class="form-control" [(ngModel)]="promotion.e_date"
+               [ngClass]="{ 'is-invalid': submitted && f.df.errors }"/>
+        <div *ngIf="submitted && f.df.errors" class="invalid-feedback">
+          <div *ngIf="f.df.errors.required">Date fin obligatoire</div>
+
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-primary mr-1" (click)="addPromotion(promotion)">Ajouter</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+      </div>
+      <hr>
+      <br>
+      <button class="btn btn-icon btn-2" style="background-color:#172b4d;color: white " type="button"
+              [routerLink]="['/promotion/show']">
+        <span><i class="ni ni-bag-17"></i></span>
+        <span class="btn-inner--text">Liste Promotion</span>
+      </button>
+
+      <button class="btn btn-icon btn-2" style="background-color:#172b4d;color: white " type="button"
+              [routerLink]="['/promotion/produitpromotion']">
+        <span><i class="ni ni-bag-17"></i></span>
+        <span class="btn-inner--text">Liste Produit en Promotion</span>
+      </button>
+    </form>
+  </div>
+</div>
+

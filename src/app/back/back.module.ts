@@ -14,6 +14,17 @@ import {ToastrModule} from 'ngx-toastr';
 import {RepairModule} from './repairs/repair.module';
 import {FullCalendarModule} from '@fullcalendar/angular';
 
+import {ClaimBackModule} from './claim/claim.back.module';
+import {ProductModule} from './product/product.module';
+import {PromotionModule} from './promotion/promotion.module';
+import {PromotionService} from '../services/managers/promotion.service';
+import {OffreModule} from './offre/offre.module';
+import {OffreService} from '../services/managers/offre.service';
+import {PackModule} from './pack/pack.module';
+import {PackService} from '../services/managers/pack.service';
+import {Affiche1Component} from './pack/affiche1/affiche1.component';
+import {AppComponent} from '../app.component';
+import {MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatNativeDateModule, MatSliderModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -24,10 +35,20 @@ import {FullCalendarModule} from '@fullcalendar/angular';
     UserModule,
     RepairModule,
     VehiculeModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ClaimBackModule,
+    ProductModule,
+    PromotionModule,
+    OffreModule,
+    PackModule, MatDialogModule, CommonModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatSliderModule
   ],
-  declarations: [BackComponent, DashboardComponent, UserProfileComponent],
-  providers: [AuthGuard]
+  declarations: [BackComponent, DashboardComponent, UserProfileComponent, Affiche1Component],
+  providers: [AuthGuard, PromotionService, OffreService, PackService],
+  entryComponents: [Affiche1Component]
 })
 export class BackModule {
 }

@@ -9,6 +9,7 @@ import {LoginComponent} from '../../pages/login/login.component';
 import {RegisterComponent} from '../../pages/register/register.component';
 import {RegisterService} from '../../services/managers/register.service';
 import {RecaptchaModule} from 'angular-google-recaptcha';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import {RecaptchaModule} from 'angular-google-recaptcha';
     FormsModule,
     ReactiveFormsModule,
     RecaptchaModule,
+    TranslateModule,
     // NgbModule
   ],
   declarations: [

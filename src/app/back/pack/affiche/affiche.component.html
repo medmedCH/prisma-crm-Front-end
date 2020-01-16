@@ -1,0 +1,30 @@
+<button class="btn btn-icon btn-2" style="background-color:#172b4d;color: white " type="button"
+        [routerLink]="['/pack/add']">
+  <span><i class="ni ni-bag-17"></i></span>
+  <span class="btn-inner--text">Ajouter un pack</span>
+</button>
+<br>
+<div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Nom Pack</th>
+      <th scope="col">Description</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Produits</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let x of pa ">
+      <td>{{x.name}}</td>
+      <td>{{x.description}}</td>
+      <td>{{x.price}}</td>
+      <td>
+        <button class="btn btn-icon btn-2 btn-primary" type="button" (click)="open(x.id)">
+          <span class="btn-inner--icon"><i class="ni ni-atom"></i></span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

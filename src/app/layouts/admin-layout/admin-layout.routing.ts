@@ -9,5 +9,8 @@ export const AdminLayoutRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'tables', component: TablesComponent},
   {path: 'icons', component: IconsComponent},
-  {path: 'maps', component: MapsComponent}
+  {path: 'maps', component: MapsComponent},
+
+
+
 ];

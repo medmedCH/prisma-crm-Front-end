@@ -1,9 +1,7 @@
 import {Component} from '@angular/core';
-import {ClaimService} from 'src/app/services/managers/claim.service';
+import { ClaimService } from 'src/app/services/managers/claim.service';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {StatusModalComponent} from './statusModal/statusModal.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-claim-check',
@@ -14,14 +12,18 @@ export class ClaimCheckComponent {
 
   title = 'Consul Claim';
   status;
-
-  constructor(private claimService: ClaimService, private router: Router, private modalService: NgbModal) {
+  claim;
+  constructor(private claimService: ClaimService, private router: Router) {
   }
 
 
   getStatusFrom = new FormGroup({
     claimCode: new FormControl('', [Validators.required]),
   });
+
+  ngOnInit() {
+
+  }
   /*this.claimService.getFaqById(1)
     .subscribe(
       response => {
@@ -38,15 +40,12 @@ export class ClaimCheckComponent {
 
   getClaimStatus() {
     this.claimService.getStatudClaimByCode(this.getStatusFrom.value.claimCode)
-      .subscribe(
-        response => {
+      .subscribe( response => {
           this.status = response['claimStatus'];
-          const modalRef = this.modalService.open(StatusModalComponent);
-          modalRef.componentInstance.status = this.status;
-        },
-        error => {
-          const modalRef = this.modalService.open(StatusModalComponent);
-          modalRef.componentInstance.status = 'Code invalide';
+          console.log(this.status.claimStatus)
+        } ,
+        error =>{
+          console.log(error);
         }
       );
   }

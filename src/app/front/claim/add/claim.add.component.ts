@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {ClaimService} from 'src/app/services/managers/claim.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {StatusModalComponent} from '../check/statusModal/statusModal.component';
 import {Claim} from '../../../models/Claim';
 import {StorageService} from '../../../services/security/storage.service';
 import {AlertService} from '../../../services/common/AlerteService';
+import {LoginService} from '../../../services/security/login.service';
 
 @Component({
   selector: 'app-claim-add',
@@ -21,7 +21,8 @@ export class ClaimAddComponent {
   constructor(private claimService: ClaimService,
               private storageService: StorageService,
               private alertService: AlertService,
-              private router: Router) {
+              private loginService: LoginService,
+              private router: Router, private  route: ActivatedRoute) {
   }
 
   addClaimFrom = new FormGroup({
@@ -32,22 +33,23 @@ export class ClaimAddComponent {
   });
 
   addClaim() {
-    if (null !== StorageService.get('currentUser')) {
+    if (LoginService.isLogged()) {
       const currentUser = StorageService.get('currentUser');
-      console.log('heeeeyyyyyyyy');
-      console.log(currentUser);
+      console.log(StorageService.get('currentUser'));
       // tslint:disable-next-line:max-line-length
       this.c = new Claim(this.addClaimFrom.value.titre, this.addClaimFrom.value.description, this.addClaimFrom.value.type, this.addClaimFrom.value.priority, currentUser.userId);
       this.claimService.addClaim(this.c)
         .subscribe(
-          response => {},
+          response => {
+            this.router.navigate(['/dash/claim']);
+          },
           error => {console.log(error); }
         );
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], { queryParams: { returnUrl: ['/claim/add'] } });
       this.alertService.error('Vous devez se connecter d\'abord');
     }
-
   }
+
 
 }

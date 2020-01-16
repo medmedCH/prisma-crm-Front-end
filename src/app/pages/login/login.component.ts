@@ -1,7 +1,8 @@
 import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
 import {LoginService} from '../../services/security/login.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,24 @@ import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 export class LoginComponent implements OnInit, OnDestroy {
   model: any = {};
   public data: any = [];
+  returnUrl = '';
 
   errorMessage: string;
+
   // , @Inject(LOCAL_STORAGE) private storage: WebStorageService
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute, private translate: TranslateService) {
+    translate.setDefaultLang('en');
+    if (this.loginService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
   }
+
+  useLanguage(language: string) {
+    this.translate.use(language);
+  }
+
   ngOnInit() {
+    this.returnUrl = decodeURI(this.route.snapshot.queryParams['returnUrl'] || '/');
   }
 
   ngOnDestroy() {
@@ -26,10 +39,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginService.login(this.model.email, this.model.password)
       .subscribe(
         (response: any) => {
-                console.log(response);
-                this.router.navigate(['dash']);
-            } ,
-      error => console.log(error)
-    );
+          if (this.returnUrl) {
+            this.router.navigateByUrl(this.returnUrl);
+          } else {
+            this.router.navigateByUrl('/dash');
+          }
+        },
+        error => console.log(error)
+      );
   }
 }

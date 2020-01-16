@@ -1,0 +1,14 @@
+{
+  "login": {
+    "title": "Formulaire De Connexion",
+    "email.placeholder": "Email d'utilisateurا",
+    "password.placeholder": "Mot de passe",
+    "button.name": "Se connecter",
+    "forgotpassword.link": "Mot De Passe Oublié ?",
+    "register.link": "Créer Un Nouveau Compte",
+    "button.en": "Anglais",
+    "button.zh": "Chinoise",
+    "button.fr": "Française",
+    "button.ar": "Arabe"
+  }
+}

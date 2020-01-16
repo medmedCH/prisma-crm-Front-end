@@ -1,0 +1,36 @@
+
+
+<div class="card m-3">
+  <h2 class="card-header">Passer un produit en promotion</h2>
+  <div class="card-body">
+    <form [formGroup]="addProductPromotion"  >
+        <div class="form-group col" >
+          <label>Produits</label>
+          <select formControlName="produit" class="form-control">
+<!--                  [ngClass]="{ 'is-invalid': submitted && f.produit.errors }">-->
+            <option *ngFor="let x of prd  "  value="{{x.id}}"  [(ngModel)]="x.id"  >{{x.name}}  :{{x.price}}dt</option>
+
+          </select>
+         <!-- <div *ngIf="submitted && f.produit.errors" class="invalid-feedback">
+            <div *ngIf="addProductPromotion.produit.errors.required">Produits obligatoire</div>
+          </div>-->
+        </div>
+
+      <div class="form-group col" >
+        <label>Promotions</label>
+        <select formControlName="promotion" class="form-control"> <!--[ngClass]="{ 'is-invalid': submitted && f.pr.errors }"--> >
+          <option *ngFor="let j of promo" value="{{j.id}}" [(ngModel)]="j.id" >{{j.name}} :{{j.percentage}}%</option>
+
+        </select>
+       <!-- <div *ngIf="submitted && f.pr.errors" class="invalid-feedback">
+          <div *ngIf="f.pr.errors.required">Promotions obligatoire</div>
+        </div>-->
+      </div>
+<br><br><br>
+      <div class="text-center">
+        <button class="btn btn-primary mr-1" (click)="sub()" >Passer</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

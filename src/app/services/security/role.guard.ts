@@ -17,16 +17,13 @@ export class RoleGuard implements CanActivate {
     if (localStorage.getItem('userToken') != null) {
       const roles = next.data['roles'] as Array<string>;
       if (roles) {
-        // const match = this.userService.roleMatch(roles);
         const user = StorageService.get('currentUser');
-        const match = roles.find(ob => ob === user.role);
+
+        const match = roles.indexOf(user.role);
         if (match != null) {
-          return true;
+          this.router.navigate(['/faq']);
         } else {
-          // tslint:disable-next-line: quotemark
-          // this.toastr.info("You don't have access to this page");
-          this.router.navigate(['/login']);
-          // this.router.navigate(['/forbidden']);
+          this.router.navigate(['/faq']);
           return false;
         }
       } else {
